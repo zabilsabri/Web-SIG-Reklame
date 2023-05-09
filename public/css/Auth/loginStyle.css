@@ -1,0 +1,55 @@
+body{
+    overflow: hidden;
+}
+
+.img-login{
+    max-width: 100%;
+    height: auto;
+    width: auto\9; /* ie8 */
+}
+
+.login-title{
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 30px;
+
+    color: #2E50A6;
+}
+
+.login-desc{
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+
+    color: #858585;
+}
+
+.form-control{
+    border-top-width: 0 !important;
+    border-left-width: 0 !important;
+    border-right-width: 0 !important;
+    border-radius: 0 !important;
+    font-weight: 500;
+}
+
+.btn{
+    background-color: #2E50A6;
+}
+
+.form-check-label, .text-decoration-none{
+    font-family: 'Nunito';
+    font-weight: 700;
+    color: #2E50A6;
+}
+
+:root{
+    --bs-body-color: #2E50A6;
+    --bs-border-color: #2E50A6;
+}
+
+.form-control:focus, .form-control:active{
+    outline: none !important;
+    box-shadow: none;
+}
