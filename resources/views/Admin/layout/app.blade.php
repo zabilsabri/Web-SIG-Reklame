@@ -10,8 +10,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
     <link rel="stylesheet" href="{{ asset('css/Admin/layoutStyle.css') }}">
-    <title>Layout</title>
+    <title>{{ $title }}</title>
 </head>
 <body>
 <nav class="navbar bg-body-tertiary">
@@ -35,32 +36,76 @@
                 </li>
                 <li class="text-center">
                     <div class="text-center">
-                    <img src="{{ asset('img/profile-pic.png') }}" alt="">
-                    <p class="username" >user</p>
+                        <img class="sb-img"  src="{{ asset('img/profile-pic.png') }}" alt="">
+                        <p class="username" >user</p>
                     </div>
                     <hr>
                 </li>
-                <li>
-                    <a href="#"><i class="fa fa-home" aria-hidden="true"> </i> <span class="sb-text" style="margin-left:10px;">Home</span>  </a>
+                <li class="{{ Route::is('home.admin') ? 'active' : '' }}">
+                    <a href="{{ Route('home.admin') }}"><i class="fa fa-home" aria-hidden="true"> </i> <span class="sb-text" style="margin-left:10px;">Home</span>  </a>
                 </li>
-                <li>
+                <li class="">
                     <a href="#"> <i class="fa fa-files-o" aria-hidden="true"> </i> <span class="sb-text" style="margin-left:10px;">Data Reklame</span> </a>
                 </li>
-                <li>
-                    <a href="#"> <i class="fa fa-window-maximize" aria-hidden="true"> </i> <span class="sb-text" style="margin-left:10px;">Penyewaan Reklame</span> </a>
+                <li class="{{ Route::is('reklame.admin') ? 'active' : '' }}">
+                    <a href="{{ Route('reklame.admin') }}"> <i class="fa fa-window-maximize" aria-hidden="true"> </i> <span class="sb-text" style="margin-left:10px;">Penyewaan Reklame</span> </a>
                 </li>
-                <li>
+                <li class="">
                     <a href="#"> <i class="fa fa-user-circle" aria-hidden="true"> </i> <span class="sb-text" style="margin-left:10px;">Pengaturan Akun</span> </a>
                 </li>
             </ul>
         </div>
+        <section>
+           @yield('content')
+        </section>
+    </div>
+</div>
         <!-- /#sidebar-wrapper -->
-
     
 </body>
 <script src="https://kit.fontawesome.com/645f3ace4e.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
 </html>
+
+<script>
+  const ctx = document.getElementById('myChart');
+  const labels = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: labels,
+        datasets: [{
+            label: 'Penyewaan Reklame',
+            data: [65, 59, 80, 81, 56, 55, 40, 80, 81, 56, 55, 40],
+            fill: false,
+            borderColor: 'rgb(46, 80, 166)',
+            tension: 0.5
+      }]
+    },
+  });
+</script>
+
+<script>
+    $(document).ready( function () {
+        $('#myTable').DataTable({
+            scrollX: true,
+            "dom": '<"toolbar">frtp',
+            language: { search: '', searchPlaceholder: "Search..." },
+            language:  {
+                paginate: {
+                    next: ">",
+                    previous: "<"
+                }
+            },
+            responsive: true,
+            
+        });
+        $('div.toolbar').html('<button type="button" class="btn btn-primary float-left">+ Tambah Data</button>');
+    });
+</script>
 
 <script>
 $("#menu-toggle").click(function(e) {

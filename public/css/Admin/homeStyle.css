@@ -1,0 +1,51 @@
+.card-text{
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 22px;
+}
+
+.lgi-title{
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 700;
+    color: #464255;
+}
+
+.card-body-title{
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 15px;
+}
+
+.chart-penyewaan-reklame{
+    border: 2px solid #2E50A6;
+    border-radius: 20px;
+}
+
+.card-body-description{
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 500;
+    color: #808080;
+    font-size: 12px;
+}
+
+.ct-sec{
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    color: #464255;
+}
+
+.card{
+    --bs-card-border-color: #2E50A6 !important;
+    --bs-card-border-width: 2px !important;
+    --bs-card-border-radius: 20px !important;
+}
+
+.list-group-item {
+    border: none !important;
+}

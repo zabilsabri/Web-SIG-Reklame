@@ -8,10 +8,35 @@ body {
     background-color: #2E50A6 !important;
 }
 
+.active{
+    text-decoration: none;
+    background: #fff;
+    border-radius: 15px;
+}
+
+.active a{
+    color: #2E50A6 !important;
+}
+
+#wrapper.toggled .active {
+    text-decoration: none;
+    color: #a7bef7;
+    background: none !important;
+}
+
+#wrapper.toggled .active a {
+    text-decoration: none;
+    color: #a7bef7 !important;
+}
+
 .sb-text{
     font-family: 'Nunito';
     font-weight: 600;
     font-size: 12px;
+}
+
+.navbar{
+    margin-bottom: 20px;
 }
 
 hr{
@@ -47,7 +72,6 @@ hr{
     left: 250px;
     width: 0;
     height: 85%;
-    margin-top: 20px;
     margin-left: -230px;
     overflow-y: auto;
     background-color: #2E50A6!Important;
@@ -89,7 +113,6 @@ hr{
     text-indent: 20px;
     line-height: 40px;
     color: #FFFF;
-
 }
 
 .sidebar-nav li a {
@@ -127,7 +150,7 @@ hr{
 
 @media(min-width:768px) {
     #wrapper {
-        padding-left: 220px;
+        padding-left: 185px;
     }
 
     #wrapper.toggled {
@@ -157,7 +180,7 @@ hr{
  float:right;
  } 
 
- #wrapper.toggled img{
+ #wrapper.toggled .sb-img{
     float: right;
     width: 20px;
     height: 20px;
