@@ -2,6 +2,24 @@ body {
     overflow-x: hidden;
 }
 
+.breadcrump-page{
+    font-family: 'Nunito Sans';
+    font-style: normal;
+    font-weight: 600;
+    color: #334155;
+    font-size: 20px;
+}
+
+.breadcrump-role{
+    font-family: 'Nunito Sans';
+    font-style: normal;
+    font-weight: 600;
+    color: #808080;    
+    font-size: 20px;
+    visibility: visible !important;
+}
+
+
 /* Toggle Styles */
 
 .bg-body-tertiary {
@@ -258,4 +276,8 @@ hr{
         margin-right: 0;
     }
 
+}
+
+.btn-primary{
+    --bs-btn-bg: #2E50A6 !important;
 }

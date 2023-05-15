@@ -27,6 +27,11 @@ Route::group(['prefix' => '', 'namespace' => 'App\Http\Controllers\Admin'], func
 
         Route::group(['prefix' => 'penyewaan-reklame'], function () {
             Route::get('/', 'SewaReklameController@index')->name('reklame.admin');
+            Route::get('/edit', 'SewaReklameController@edit')->name('reklame-edit.admin');
+        });
+
+        Route::group(['prefix' => 'kelola-akun'], function () {
+            Route::get('/', 'akunController@index')->name('akun.admin');
     
         });
 

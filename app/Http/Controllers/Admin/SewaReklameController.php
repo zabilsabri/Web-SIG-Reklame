@@ -11,4 +11,9 @@ class SewaReklameController extends Controller
     {
         return view('Admin.Penyewaan Reklame.index');
     }
+
+    public function edit()
+    {
+        return view('Admin.Penyewaan Reklame.edit');
+    }
 }

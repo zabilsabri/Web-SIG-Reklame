@@ -1,49 +1,54 @@
-.table{
-    font-size: 13px !important;
-}
-
-.table-head{
-    background-color: #2E50A6;
-    color: white;
-}
-
-.dataTables_wrapper .dataTables_filter input {
-    margin-bottom: 20px;
-}
-
-.dataTables_wrapper .dataTables_filter input {
-    border: 1px solid #2E50A6 !important;
-    border-radius: 8px !important;
-    width: 250px;
-}
-
-.dataTables_scrollHead{
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
-}
-
-.toolbar {
+.btn-sr, .toolbar {
     float: left;
 }
 
-.btn-primary{
-    --bs-btn-bg: #2E50A6 !important;
+.modal-header {
+    border-bottom: none !important;
 }
 
-#myTable_wrapper{
-    padding: 20px;
+.modal-footer {
+    display: inline !important;
+    text-align: center !important;
+    border-top: none !important;
+}
+
+.back-title{
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.card-edit{
     border: 1px solid #DFDFDF;
     box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.12);
-    border-radius: 10px;    
+    border-radius: 10px;
+    border-left-color: #2E50A6;
+    border-left-width: 15px;
 }
 
-.dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
-    background: #FFFF !important;
-    border-radius: 50%;
+.bootstrap-select>.dropdown-toggle {
+    border: 1px solid #2E50A6;
+    color: #2E50A6;
 }
 
-.dataTables_wrapper .dataTables_paginate {
-    float: none !important;
-    text-align: center !important;
-    padding-top: 0.25em;
+.dropdown-item.active, .dropdown-item:active {
+    color: var(--bs-dropdown-link-active-color) !important;
+}
+
+.form-label-modal{
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 13px;
+    color: #2E50A6;
+    margin: 0px;
+}
+
+.disable-label{
+    color: #A1A1A1;
+}
+
+.form-date{
+    color: #2E50A6 !important;
 }

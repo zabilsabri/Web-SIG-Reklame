@@ -1,0 +1,53 @@
+.table{
+    font-size: 13px !important;
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 600;
+}
+
+thead tr th {
+    text-align: center !important;
+    border: 1px solid;
+}
+
+.table-head{
+    background-color: #2E50A6;
+    color: white;
+}
+
+.dataTables_wrapper .dataTables_filter input {
+    margin-bottom: 20px;
+}
+
+.dataTables_wrapper .dataTables_filter input {
+    border: 1px solid #2E50A6 !important;
+    border-radius: 8px !important;
+    width: 250px;
+}
+
+.dataTables_scrollHead{
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+#myTable_wrapper{
+    padding: 20px;
+    border: 1px solid #DFDFDF;
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.12);
+    border-radius: 10px;    
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+    background: #FFFF !important;
+    border-radius: 50%;
+}
+
+.dataTables_wrapper .dataTables_paginate {
+    float: none !important;
+    text-align: center !important;
+    padding-top: 0.25em;
+}
+
+.dataTables_scrollHeadInner, .table{
+    width:100%!important
+};
