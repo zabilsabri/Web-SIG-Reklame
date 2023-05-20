@@ -11,4 +11,14 @@ class AkunController extends Controller
     {
         return view('Admin.Akun.index');
     }
+
+    public function detail()
+    {
+        return view('Admin.Akun.detail');
+    }
+
+    public function edit()
+    {
+        return view('Admin.Akun.edit');
+    }
 }

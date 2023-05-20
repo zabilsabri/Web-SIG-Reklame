@@ -43,17 +43,14 @@
                     </div>
                     <hr>
                 </li>
-                <li class="{{ Route::is('home.admin') ? 'active' : '' }}">
-                    <a href="{{ Route('home.admin') }}"><i class="fa fa-home" aria-hidden="true"> </i> <span class="sb-text" style="margin-left:10px;">Home</span>  </a>
+                <li class="#">
+                    <a href="#"><i class="fa fa-home" aria-hidden="true"> </i> <span class="sb-text" style="margin-left:10px;">Home</span>  </a>
                 </li>
                 <li class="">
-                    <a href="#"> <i class="fa fa-files-o" aria-hidden="true"> </i> <span class="sb-text" style="margin-left:10px;">Data Reklame</span> </a>
+                    <a href="#"> <i class="fa fa-files-o" aria-hidden="true"> </i> <span class="sb-text" style="margin-left:10px;">Informasi Reklame</span> </a>
                 </li>
-                <li class="{{ Route::is('reklame.admin') ? 'active' : '' }}">
-                    <a href="{{ Route('reklame.admin') }}"> <i class="fa fa-window-maximize" aria-hidden="true"> </i> <span class="sb-text" style="margin-left:10px;">Penyewaan Reklame</span> </a>
-                </li>
-                <li class="{{ Route::is('akun.admin') ? 'active' : '' }}">
-                    <a href="{{ Route('akun.admin') }}"> <i class="fa fa-user-circle" aria-hidden="true"> </i> <span class="sb-text" style="margin-left:10px;">Pengaturan Akun</span> </a>
+                <li class="#">
+                    <a href="#"> <i class="fa fa-user-circle" aria-hidden="true"> </i> <span class="sb-text" style="margin-left:10px;">Bantuan</span> </a>
                 </li>
             </ul>
         </div>

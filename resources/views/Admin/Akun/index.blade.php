@@ -23,7 +23,7 @@
             <td>Mark</td>
             <td>Otto</td>
             <td class="text-center" >
-                <a href="#"><img src="{{ asset('img/ic_edit.png') }}" alt="edit"></a>
+                <a href="{{ route('akun-detail.admin') }}"><img src="{{ asset('img/ic_edit.png') }}" alt="edit"></a>
                 <a href="#"><img src="{{ asset('img/ic_delete.png') }}" alt="delete"></a>
             </td>
         </tr>
@@ -56,25 +56,25 @@
                 <div class="col-sm-6">
                     <div class="mb-3">
                         <p class="form-label-modal" >Nama Reklame</p>
-                        <input type="text" class="form-control" id="disabledTextInput">
+                        <input type="text" class="form-control input-border-blue" id="disabledTextInput">
                     </div>
                     <div class="mb-3">
                         <p class="form-label-modal" >Email</p>
-                        <input type="email" class="form-control" id="disabledTextInput">
+                        <input type="email" class="form-control input-border-blue" id="disabledTextInput">
                     </div>
                     <div class="mb-3">
                         <p class="form-label-modal" >Alamat</p>
-                        <input type="text" class="form-control" id="disabledTextInput">
+                        <input type="text" class="form-control input-border-blue" id="disabledTextInput">
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="mb-3">
                         <p class="form-label-modal" >Nomor Telpon</p>
-                        <input type="text" class="form-control" name="penyewa">
+                        <input type="text" class="form-control input-border-blue" name="penyewa">
                     </div>
                     <div class="mb-3">
                         <p class="form-label-modal" >Password</p>
-                        <input type="text" class="form-control" name="penyewa">
+                        <input type="text" class="form-control input-border-blue" name="penyewa">
                     </div>
                     <div class="text-center mt-4">
                         <button class="btn btn-primary w-50" type="button">SIMPAN</button>

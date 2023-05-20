@@ -12,7 +12,7 @@
   </div>
 </div>
 
-<div class="card-edit p-5 mt-4">
+<div class="card-edit p-5 mt-4 mb-5">
     <div class="row">
         <div class="col-sm-6">
             <div class="mb-3">

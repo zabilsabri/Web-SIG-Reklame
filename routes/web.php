@@ -31,9 +31,17 @@ Route::group(['prefix' => '', 'namespace' => 'App\Http\Controllers\Admin'], func
         });
 
         Route::group(['prefix' => 'kelola-akun'], function () {
-            Route::get('/', 'akunController@index')->name('akun.admin');
-    
+            Route::get('/', 'AkunController@index')->name('akun.admin');
+            Route::get('/detail', 'AkunController@detail')->name('akun-detail.admin');
+            Route::get('/edit', 'AkunController@edit')->name('akun-edit.admin');
         });
+
+    });
+});
+
+Route::group(['prefix' => '', 'namespace' => 'App\Http\Controllers\User'], function () {
+    Route::group(['prefix' => 'user'], function () {
+        Route::get('/', 'HomeController@index')->name('home.user');
 
     });
 });

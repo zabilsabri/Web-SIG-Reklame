@@ -2,6 +2,18 @@ body {
     overflow-x: hidden;
 }
 
+.text-blue{
+    color: #2E50A6;
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 600;
+    margin-bottom: 0px;
+}
+
+.input-border-blue{
+    border: 0.5px solid #2E50A6;
+}
+
 .breadcrump-page{
     font-family: 'Nunito Sans';
     font-style: normal;
