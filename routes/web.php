@@ -42,6 +42,12 @@ Route::group(['prefix' => '', 'namespace' => 'App\Http\Controllers\Admin'], func
 Route::group(['prefix' => '', 'namespace' => 'App\Http\Controllers\User'], function () {
     Route::group(['prefix' => 'user'], function () {
         Route::get('/', 'HomeController@index')->name('home.user');
+        Route::get('/bantuan', 'HomeController@bantuan')->name('bantuan.user');
+
+        Route::group(['prefix' => 'Info-Reklame'], function () {
+            Route::get('/', 'ReklameController@index')->name('reklame.user');
+        });
 
     });
+
 });

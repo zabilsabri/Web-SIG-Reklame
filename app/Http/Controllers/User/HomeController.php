@@ -11,4 +11,9 @@ class HomeController extends Controller
     {
         return view('User.Home.index');
     }
+
+    public function bantuan()
+    {
+        return view('User.Bantuan.index');
+    }
 }

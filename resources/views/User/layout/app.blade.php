@@ -43,14 +43,14 @@
                     </div>
                     <hr>
                 </li>
-                <li class="#">
-                    <a href="#"><i class="fa fa-home" aria-hidden="true"> </i> <span class="sb-text" style="margin-left:10px;">Home</span>  </a>
+                <li class="{{ Route::is('home.user') ? 'active' : '' }}">
+                    <a href="{{ route('home.user') }}"><i class="fa fa-home" aria-hidden="true"> </i> <span class="sb-text" style="margin-left:10px;">Home</span>  </a>
                 </li>
                 <li class="">
                     <a href="#"> <i class="fa fa-files-o" aria-hidden="true"> </i> <span class="sb-text" style="margin-left:10px;">Informasi Reklame</span> </a>
                 </li>
-                <li class="#">
-                    <a href="#"> <i class="fa fa-user-circle" aria-hidden="true"> </i> <span class="sb-text" style="margin-left:10px;">Bantuan</span> </a>
+                <li class="{{ Route::is('bantuan.user') ? 'active' : '' }}">
+                    <a href="{{ route('bantuan.user') }}"> <i class="fa fa-user-circle" aria-hidden="true"> </i> <span class="sb-text" style="margin-left:10px;">Bantuan</span> </a>
                 </li>
             </ul>
         </div>
