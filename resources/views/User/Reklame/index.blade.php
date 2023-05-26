@@ -1,7 +1,8 @@
 @extends('User.layout.app', ['title' => 'Penyewaan Reklame'])
+<link rel="stylesheet" href="{{ asset('css/Layout/dropdown.css') }}">
 
 @section('content')
-<table id="tableSewaReklame" class="table table-striped table-hover">
+<table id="tableInfoReklame" class="table table-striped table-hover">
     <thead>
         <tr class="table-head" >
             <th scope="col">ID</th>
@@ -14,7 +15,7 @@
             <th scope="col">Perusahaan Penyewa</th>
             <th scope="col">PIC Perusahaan Penyewa</th>
             <th scope="col">Status</th>
-            <th width="13%" scope="col">Aksi</th>
+            <th width="15%" scope="col">Aksi</th>
         </tr>
     </thead>
     <tbody>

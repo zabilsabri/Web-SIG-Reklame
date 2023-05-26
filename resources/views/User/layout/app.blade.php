@@ -46,8 +46,8 @@
                 <li class="{{ Route::is('home.user') ? 'active' : '' }}">
                     <a href="{{ route('home.user') }}"><i class="fa fa-home" aria-hidden="true"> </i> <span class="sb-text" style="margin-left:10px;">Home</span>  </a>
                 </li>
-                <li class="">
-                    <a href="#"> <i class="fa fa-files-o" aria-hidden="true"> </i> <span class="sb-text" style="margin-left:10px;">Informasi Reklame</span> </a>
+                <li class="{{ Route::is('reklame.user') ? 'active' : '' }}">
+                    <a href="{{ route('reklame.user') }}"> <i class="fa fa-files-o" aria-hidden="true"> </i> <span class="sb-text" style="margin-left:10px;">Informasi Reklame</span> </a>
                 </li>
                 <li class="{{ Route::is('bantuan.user') ? 'active' : '' }}">
                     <a href="{{ route('bantuan.user') }}"> <i class="fa fa-user-circle" aria-hidden="true"> </i> <span class="sb-text" style="margin-left:10px;">Bantuan</span> </a>
@@ -73,27 +73,8 @@
 </html>
 
 <script>
-  const ctx = document.getElementById('myChart');
-  const labels = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
-
-  new Chart(ctx, {
-    type: 'line',
-    data: {
-        labels: labels,
-        datasets: [{
-            label: 'Penyewaan Reklame',
-            data: [65, 59, 80, 81, 56, 55, 40, 80, 81, 56, 55, 40],
-            fill: false,
-            borderColor: 'rgb(46, 80, 166)',
-            tension: 0.5
-      }]
-    },
-  });
-</script>
-
-<script>
     $(document).ready( function () {
-        $('#tableSewaReklame').DataTable({
+        $('#tableInfoReklame').DataTable({
             scrollX: true,
             "dom": '<"btn-sr">frtp',
             language: { search: '', searchPlaceholder: "Search...",
@@ -102,32 +83,20 @@
                     previous: "<"
                 } },
             responsive: true,
-            
+            "searching": true,
         });
-        $('div.btn-sr').html('<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tambahSewaReklameModal">+ Tambah Data</button>');
-    
+        
+        $('div.btn-sr').html('<select id="categoryFilterStatus" class="form-control special"><option value="">Status (Show All)</option><option value="Belum Disewa">Belum Disewa</option><option value="Sudah Disewa">Sudah Disewa</option></select>');
+        
+        var table = $('#tableInfoReklame').DataTable();
+
+        $("#tableInfoReklame_filter.dataTables_filter").append($("#categoryFilterStatus"));
+        
+        $("#categoryFilterStatus").on('change', function (e) {
+            table.column(10).search(this.value).draw();
+        });
     });
 
-    $(document).ready( function () {
-        $('#tableKelolaAkun').DataTable({
-            scrollX: true,
-            "dom": '<"toolbar">frtp',
-            language: { search: '', searchPlaceholder: "Search...",
-                paginate: {
-                    next: ">",
-                    previous: "<"
-                } },
-            responsive: true,
-            
-        });
-        $('div.toolbar').html('<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tambahAkunModal">+ Tambah User</button>');
-    
-    });
-
-</script>
-
-<script>
-    $('#test').selectpicker();
 </script>
 
 <script>
