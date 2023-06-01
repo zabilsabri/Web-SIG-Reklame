@@ -1,7 +1,5 @@
 .special{
-    width: 35% !important;
-    float: right;
-    margin-left: 20px;
+    float: left;
     border: 1px solid #2E50A6 !important;
     color: #2E50A6 !important;
 }

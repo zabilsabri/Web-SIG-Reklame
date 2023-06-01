@@ -5,14 +5,36 @@
     font-weight: 600;
 }
 
-thead tr th {
+td, th{
     text-align: center !important;
-    border: 1px solid;
+}
+
+.table>:not(caption)>*>* {
+    border-bottom-width: 0px !important;
 }
 
 .table-head{
     background-color: #2E50A6;
     color: white;
+}
+
+
+.status-monitor-blue{
+    background: #D0DCF8;
+    border-radius: 5px;
+    color: #2E50A6;
+}
+
+.status-monitor-yellow{
+    background: #FFF3D6;
+    border-radius: 5px;
+    color: #FF9900;
+}
+
+.status-monitor-red{
+    background: #FFDEDE;
+    border-radius: 5px;
+    color: #FF0000; 
 }
 
 .dataTables_wrapper .dataTables_filter input {

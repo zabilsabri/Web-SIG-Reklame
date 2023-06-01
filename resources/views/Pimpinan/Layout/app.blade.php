@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/css/bootstrap-select.min.css">
     <link rel="stylesheet" href="{{ asset('css/Layout/layoutStyle.css') }}">
     <link rel="stylesheet" href="{{ asset('css/Layout/datatables.css') }}">
+
     <title>{{ $title }}</title>
 </head>
 <body>
@@ -43,14 +44,11 @@
                     </div>
                     <hr>
                 </li>
-                <li class="{{ Route::is('home.user') ? 'active' : '' }}">
-                    <a href="{{ route('home.user') }}"><i class="fa fa-home" aria-hidden="true"> </i> <span class="sb-text" style="margin-left:10px;">Home</span>  </a>
+                <li class="{{ Route::is('home.pimpinan') ? 'active' : '' }}">
+                    <a href="{{ Route('home.pimpinan') }}"><i class="fa fa-home" aria-hidden="true"> </i> <span class="sb-text" style="margin-left:10px;">Home</span>  </a>
                 </li>
-                <li class="{{ Route::is('reklame.user') ? 'active' : '' }}">
-                    <a href="{{ route('reklame.user') }}"> <i class="fa fa-files-o" aria-hidden="true"> </i> <span class="sb-text" style="margin-left:10px;">Informasi Reklame</span> </a>
-                </li>
-                <li class="{{ Route::is('bantuan.user') ? 'active' : '' }}">
-                    <a href="{{ route('bantuan.user') }}"> <i class="fa fa-user-circle" aria-hidden="true"> </i> <span class="sb-text" style="margin-left:10px;">Bantuan</span> </a>
+                <li class="{{ Route::is('monitor.pimpinan') ? 'active' : '' }}">
+                    <a href="{{ Route('monitor.pimpinan') }}"> <i class="fa fa-window-maximize" aria-hidden="true"> </i> <span class="sb-text" style="margin-left:10px;">Monitoring Reklame</span> </a>
                 </li>
             </ul>
         </div>
@@ -73,8 +71,27 @@
 </html>
 
 <script>
+  const ctx = document.getElementById('myChart');
+  const labels = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: labels,
+        datasets: [{
+            label: 'Penyewaan Reklame',
+            data: [65, 59, 80, 81, 56, 55, 40, 80, 81, 56, 55, 40],
+            fill: false,
+            borderColor: 'rgb(46, 80, 166)',
+            tension: 0.5
+      }]
+    },
+  });
+</script>
+
+<script>
     $(document).ready( function () {
-        $('#tableInfoReklame').DataTable({
+        $('#tableMonitorReklame').DataTable({
             scrollX: true,
             "dom": '<"btn-sr">frtp',
             language: { search: '', searchPlaceholder: "Search...",
@@ -83,18 +100,19 @@
                     previous: "<"
                 } },
             responsive: true,
-            "searching": true,
+            
         });
-        
+
         $('div.btn-sr').html('<select id="categoryFilterStatus" style="width: auto;" class="form-control special"><option value="">Status (Show All)</option><option value="Belum Disewa">Belum Disewa</option><option value="Sudah Disewa">Sudah Disewa</option></select>');
         
-        var table = $('#tableInfoReklame').DataTable();
+        var table = $('#tableMonitorReklame').DataTable();
 
-        $("#tableInfoReklame_filter.dataTables_filter").append($("#categoryFilterStatus"));
+        $("#tableMonitorReklame_filter.dataTables_filter").append($("#categoryFilterStatus"));
         
         $("#categoryFilterStatus").on('change', function (e) {
-            table.column(10).search(this.value).draw();
+            table.column(4).search(this.value).draw();
         });
+    
     });
 
 </script>

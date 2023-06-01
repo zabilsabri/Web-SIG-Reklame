@@ -51,3 +51,17 @@ Route::group(['prefix' => '', 'namespace' => 'App\Http\Controllers\User'], funct
     });
 
 });
+
+
+Route::group(['prefix' => '', 'namespace' => 'App\Http\Controllers\Pimpinan'], function () {
+    Route::group(['prefix' => 'pimpinan'], function () {
+        Route::get('/', 'HomeController@index')->name('home.pimpinan');
+
+        Route::group(['prefix' => 'Monitor-Reklame'], function () {
+            Route::get('/', 'MonitorController@index')->name('monitor.pimpinan');
+            Route::get('/detail', 'MonitorController@detail')->name('monitor-detail.pimpinan');
+        });
+
+    });
+
+});
