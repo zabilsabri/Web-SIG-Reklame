@@ -50,9 +50,12 @@
                 <li class="{{ Route::is('monitor.pimpinan') ? 'active' : '' }}">
                     <a href="{{ Route('monitor.pimpinan') }}"> <i class="fa fa-window-maximize" aria-hidden="true"> </i> <span class="sb-text" style="margin-left:10px;">Monitoring Reklame</span> </a>
                 </li>
+                <li class="{{ Route::is('laporan.pimpinan') ? 'active' : '' }}">
+                    <a href="{{ Route('laporan.pimpinan') }}"> <i class="fa fa-folder" aria-hidden="true"></i> <span class="sb-text" style="margin-left:10px;">Laporan Penyewaan</span> </a>
+                </li>
             </ul>
         </div>
-        <p class="breadcrump-page text-end mb-5" >{{ $title }} | <span class="breadcrump-role" >Admin</span></p>
+        <p class="breadcrump-page text-end mb-5" >{{ $title }} | <span class="breadcrump-role" >Pimpinan</span></p>
         <section>
             @yield('content')
         </section>
@@ -115,6 +118,23 @@
     
     });
 
+</script>
+
+<script>
+    $(document).ready( function () {
+        $('#tableLaporan').DataTable({
+            scrollX: true,
+            "dom": 'frtp',
+            language: { search: '', searchPlaceholder: "Search...",
+                paginate: {
+                    next: ">",
+                    previous: "<"
+                } },
+            responsive: true,
+            
+        });
+    
+    });
 </script>
 
 <script>

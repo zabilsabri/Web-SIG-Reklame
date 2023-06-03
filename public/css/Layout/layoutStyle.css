@@ -2,6 +2,14 @@ body {
     overflow-x: hidden;
 }
 
+.card-border-blue{
+    border: 1px solid #DFDFDF;
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.12);
+    border-radius: 10px;
+    border-left-color: #2E50A6;
+    border-left-width: 15px;
+}
+
 .text-blue{
     color: #2E50A6;
     font-family: 'Nunito';

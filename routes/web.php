@@ -36,6 +36,11 @@ Route::group(['prefix' => '', 'namespace' => 'App\Http\Controllers\Admin'], func
             Route::get('/edit', 'AkunController@edit')->name('akun-edit.admin');
         });
 
+        Route::group(['prefix' => 'Laporan-Penyewaan'], function () {
+            Route::get('/', 'LaporanController@index')->name('laporan.admin');
+            Route::get('/detail', 'LaporanController@detail')->name('laporan-detail.admin');
+        });
+
     });
 });
 
@@ -60,6 +65,11 @@ Route::group(['prefix' => '', 'namespace' => 'App\Http\Controllers\Pimpinan'], f
         Route::group(['prefix' => 'Monitor-Reklame'], function () {
             Route::get('/', 'MonitorController@index')->name('monitor.pimpinan');
             Route::get('/detail', 'MonitorController@detail')->name('monitor-detail.pimpinan');
+        });
+
+        Route::group(['prefix' => 'Laporan-Penyewaan'], function () {
+            Route::get('/', 'LaporanController@index')->name('laporan.pimpinan');
+            Route::get('/detail', 'LaporanController@detail')->name('laporan-detail.pimpinan');
         });
 
     });

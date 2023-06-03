@@ -55,6 +55,9 @@
                 <li class="{{ Route::is('akun.admin') ? 'active' : '' }}">
                     <a href="{{ Route('akun.admin') }}"> <i class="fa fa-user-circle" aria-hidden="true"> </i> <span class="sb-text" style="margin-left:10px;">Pengaturan Akun</span> </a>
                 </li>
+                <li class="{{ Route::is('laporan.admin') ? 'active' : '' }}">
+                    <a href="{{ Route('laporan.admin') }}"> <i class="fa fa-folder" aria-hidden="true"></i> <span class="sb-text" style="margin-left:10px;">Laporan Penyewaan</span> </a>
+                </li>
             </ul>
         </div>
         <p class="breadcrump-page text-end mb-5" >{{ $title }} | <span class="breadcrump-role" >Admin</span></p>
@@ -108,6 +111,21 @@
             
         });
         $('div.btn-sr').html('<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tambahSewaReklameModal">+ Tambah Data</button>');
+    
+    });
+
+    $(document).ready( function () {
+        $('#tableLaporan').DataTable({
+            scrollX: true,
+            "dom": 'frtp',
+            language: { search: '', searchPlaceholder: "Search...",
+                paginate: {
+                    next: ">",
+                    previous: "<"
+                } },
+            responsive: true,
+            
+        });
     
     });
 
