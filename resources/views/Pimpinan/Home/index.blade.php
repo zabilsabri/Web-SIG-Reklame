@@ -1,4 +1,4 @@
-@extends('Pimpinan.layout.app', ['title' => 'Home'])
+@extends('Pimpinan.Layout.app', ['title' => 'Home'])
 <link rel="stylesheet" href="{{ asset('css/Admin/homeStyle.css') }}">
 
 
