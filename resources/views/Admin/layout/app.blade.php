@@ -60,7 +60,7 @@
                     <a href="{{ Route('laporan.admin') }}"> <i class="fa fa-folder" aria-hidden="true"></i> <span class="sb-text" style="margin-left:10px;">Laporan Penyewaan</span> </a>
                 </li>
                 <li class="mt-auto">
-                    <a href="#"> <i class="fa fa-sign-out" aria-hidden="true"></i> <span class="sb-text" style="margin-left:10px;">Keluar</span> </a>
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"> <i class="fa fa-sign-out" aria-hidden="true"></i> <span class="sb-text" style="margin-left:10px;">Keluar</span> </a>
                 </li>
             </ul>
         </div>
@@ -68,6 +68,25 @@
         <section>
             @yield('content')
         </section>
+        
+        <!-- Modal Logout -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                <div class="modal-body">
+                    <div class="text-center mb-3">
+                        <img src="{{ asset('img/redquestion.png') }}" width="90px" height="90px" alt="">
+                        <p class="text-black mt-3" >Apakah Anda yakin ingin keluar?</p>
+                    </div>
+                    <div class="d-flex justify-content-around">
+                        <button type="button" class="btn btn-secondary w-25" data-bs-dismiss="modal">Tidak</button>
+                        <button type="button" class="btn btn-danger w-25">Ya</button>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
         <!-- /#sidebar-wrapper -->

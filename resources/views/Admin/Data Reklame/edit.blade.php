@@ -26,11 +26,11 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <p class="form-label-modal text-light-blue" >Lokasi Reklame</p>
-                        <input type="text" class="form-control input-border-blue" readonly>
+                        <input type="text" class="form-control input-border-blue">
                     </div>
                     <div class="col-sm-6">
                         <p class="form-label-modal text-light-blue" >Lokasi Reklame</p>
-                        <input type="text" class="form-control input-border-blue" readonly>
+                        <input type="text" class="form-control input-border-blue">
                     </div>
                 </div>
             </div>
@@ -38,11 +38,11 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <p class="form-label-modal text-light-blue" >Tinggi Reklame</p>
-                        <input type="text" class="form-control input-border-blue" readonly>
+                        <input type="text" class="form-control input-border-blue">
                     </div>
                     <div class="col-sm-6">
                         <p class="form-label-modal text-light-blue" >Luas Reklame</p>
-                        <input type="text" class="form-control input-border-blue" readonly>
+                        <input type="text" class="form-control input-border-blue">
                     </div>
                 </div>
             </div>
@@ -50,11 +50,11 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <p class="form-label-modal text-light-blue" >Lama Pemasangan</p>
-                        <input type="text" class="form-control input-border-blue" readonly>
+                        <input type="text" class="form-control input-border-blue">
                     </div>
                     <div class="col-sm-6">
                         <p class="form-label-modal text-light-blue" >Harga Sewa</p>
-                        <input type="text" class="form-control input-border-blue" readonly>
+                        <input type="text" class="form-control input-border-blue">
                     </div>
                 </div>
             </div>

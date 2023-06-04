@@ -17,7 +17,7 @@
   <h3 class="title-blue mb-0" >Detail Data Penyewaan</h3>
 </div>
 
-<div class="row">
+<div class="row gap-5">
     <div class="col-sm-6">
         <div class="map mb-4">
             <img src="{{ asset('img/home(1).png') }}" class="img-fluid" height = 600; alt="reklame picture">
@@ -26,7 +26,7 @@
             <img src="{{ asset('img/home(1).png') }}" class="img-fluid" alt="reklame picture">
         </div>
     </div>
-    <div class="col-sm-6">
+    <div class="col-sm-4">
         <div class="data-reklame mb-3">
             <div class="text-light-blue">
                 <h4>Data Reklame</h4>
