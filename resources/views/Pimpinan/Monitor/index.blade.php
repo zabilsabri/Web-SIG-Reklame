@@ -1,6 +1,6 @@
-@extends('Pimpinan.layout.app', ['title' => 'Monitor-Reklame'])
+@extends('Pimpinan.Layout.app', ['title' => 'Monitor-Reklame'])
 <link rel="stylesheet" href="{{ asset('css/Layout/dropdown.css') }}">
-
+<link rel="stylesheet" href="{{ asset('css/Layout/datatables.css') }}">
 
 @section('content')
 
