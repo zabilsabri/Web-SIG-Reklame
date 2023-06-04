@@ -3,3 +3,7 @@
     border: 1px solid #2E50A6 !important;
     color: #2E50A6 !important;
 }
+
+.bootstrap-select .dropdown-toggle:focus, .bootstrap-select>select.mobile-device:focus+.dropdown-toggle {
+    outline: none !important;
+}

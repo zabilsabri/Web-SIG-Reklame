@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="{{ asset('css/Admin/Penyewaan Reklame/sewaReklame.css') }}">
 
 @section('content')
-<table id="tableSewaReklame" class="table table-striped table-hover">
+<table id="tableReklame" class="table table-striped table-hover">
     <thead>
         <tr class="table-head" >
             <th scope="col">ID</th>
@@ -39,11 +39,11 @@
 </table>
 @endsection
 
-<div class="modal fade" id="tambahSewaReklameModal" tabindex="-1" aria-labelledby="tambahSewaReklameModalLabel" aria-hidden="true">
+<div class="modal fade" id="tambahReklameModal" tabindex="-1" aria-labelledby="tambahReklameModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-xl">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="tambahSewaReklameModalLabel">Tambah Data Penyewaan</h1>
+        <h1 class="modal-title fs-5" id="tambahReklameModalLabel">Tambah Data Penyewaan</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
         <div class="modal-body">

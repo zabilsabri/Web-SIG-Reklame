@@ -33,7 +33,7 @@
 		<div id="wrapper">
         <!-- Sidebar -->
         <div id="sidebar-wrapper">
-            <ul class="sidebar-nav" style="margin-left:0;">
+            <ul class="sidebar-nav d-flex flex-column" style="margin-left:0; height: 95%">
                 <li class="sidebar-brand">
                     <a href="#menu-toggle"  id="menu-toggle" style="margin-top:20px;"> <i class="fa fa-bars " style="font-size:20px !Important;" aria-hidden="true" aria-hidden="true"></i> </a>
                 </li>
@@ -52,6 +52,9 @@
                 </li>
                 <li class="{{ Route::is('laporan.pimpinan') ? 'active' : '' }}">
                     <a href="{{ Route('laporan.pimpinan') }}"> <i class="fa fa-folder" aria-hidden="true"></i> <span class="sb-text" style="margin-left:10px;">Laporan Penyewaan</span> </a>
+                </li>
+                <li class="mt-auto">
+                    <a href="#"> <i class="fa fa-sign-out" aria-hidden="true"></i> <span class="sb-text" style="margin-left:10px;">Keluar</span> </a>
                 </li>
             </ul>
         </div>

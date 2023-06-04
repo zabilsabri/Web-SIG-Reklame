@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/css/bootstrap-select.min.css">
     <link rel="stylesheet" href="{{ asset('css/Layout/layoutStyle.css') }}">
     <link rel="stylesheet" href="{{ asset('css/Layout/datatables.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/Layout/dropdown.css') }}">
     <title>{{ $title }}</title>
 </head>
 <body>
@@ -32,7 +33,7 @@
 		<div id="wrapper">
         <!-- Sidebar -->
         <div id="sidebar-wrapper">
-            <ul class="sidebar-nav" style="margin-left:0;">
+            <ul class="sidebar-nav d-flex flex-column" style="margin-left:0; height: 95%">
                 <li class="sidebar-brand">
                     <a href="#menu-toggle"  id="menu-toggle" style="margin-top:20px;"> <i class="fa fa-bars " style="font-size:20px !Important;" aria-hidden="true" aria-hidden="true"></i> </a>
                 </li>
@@ -46,8 +47,8 @@
                 <li class="{{ Route::is('home.admin') ? 'active' : '' }}">
                     <a href="{{ Route('home.admin') }}"><i class="fa fa-home" aria-hidden="true"> </i> <span class="sb-text" style="margin-left:10px;">Home</span>  </a>
                 </li>
-                <li class="">
-                    <a href="#"> <i class="fa fa-files-o" aria-hidden="true"> </i> <span class="sb-text" style="margin-left:10px;">Data Reklame</span> </a>
+                <li class="{{ Route::is('data-reklame.admin') ? 'active' : '' }}">
+                    <a href="{{ Route('data-reklame.admin') }}"> <i class="fa fa-files-o" aria-hidden="true"> </i> <span class="sb-text" style="margin-left:10px;">Data Reklame</span> </a>
                 </li>
                 <li class="{{ Route::is('reklame.admin') ? 'active' : '' }}">
                     <a href="{{ Route('reklame.admin') }}"> <i class="fa fa-window-maximize" aria-hidden="true"> </i> <span class="sb-text" style="margin-left:10px;">Penyewaan Reklame</span> </a>
@@ -57,6 +58,9 @@
                 </li>
                 <li class="{{ Route::is('laporan.admin') ? 'active' : '' }}">
                     <a href="{{ Route('laporan.admin') }}"> <i class="fa fa-folder" aria-hidden="true"></i> <span class="sb-text" style="margin-left:10px;">Laporan Penyewaan</span> </a>
+                </li>
+                <li class="mt-auto">
+                    <a href="#"> <i class="fa fa-sign-out" aria-hidden="true"></i> <span class="sb-text" style="margin-left:10px;">Keluar</span> </a>
                 </li>
             </ul>
         </div>
@@ -99,7 +103,7 @@
 
 <script>
     $(document).ready( function () {
-        $('#tableSewaReklame').DataTable({
+        $('#tableReklame').DataTable({
             scrollX: true,
             "dom": '<"btn-sr">frtp',
             language: { search: '', searchPlaceholder: "Search...",
@@ -110,7 +114,7 @@
             responsive: true,
             
         });
-        $('div.btn-sr').html('<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tambahSewaReklameModal">+ Tambah Data</button>');
+        $('div.btn-sr').html('<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tambahReklameModal">+ Tambah Data</button>');
     
     });
 

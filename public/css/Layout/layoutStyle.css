@@ -25,6 +25,11 @@ body {
     color: #6187E8;
 }
 
+.bg-light-blue{
+    background: #D0DCF8;
+    border-radius: 10px;
+}
+
 .text-black{
     font-family: 'Nunito';
     font-style: normal;

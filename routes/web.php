@@ -30,6 +30,11 @@ Route::group(['prefix' => '', 'namespace' => 'App\Http\Controllers\Admin'], func
             Route::get('/edit', 'SewaReklameController@edit')->name('reklame-edit.admin');
         });
 
+        Route::group(['prefix' => 'data-reklame'], function () {
+            Route::get('/', 'DataReklameController@index')->name('data-reklame.admin');
+            Route::get('/edit', 'DataReklameController@edit')->name('data-reklame-edit.admin');
+        });
+
         Route::group(['prefix' => 'kelola-akun'], function () {
             Route::get('/', 'AkunController@index')->name('akun.admin');
             Route::get('/detail', 'AkunController@detail')->name('akun-detail.admin');
