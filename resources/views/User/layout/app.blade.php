@@ -93,7 +93,7 @@
         $("#tableInfoReklame_filter.dataTables_filter").append($("#categoryFilterStatus"));
         
         $("#categoryFilterStatus").on('change', function (e) {
-            table.column(10).search(this.value).draw();
+            table.column(9).search(this.value).draw();
         });
     });
 

@@ -15,13 +15,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => '', 'namespace' => 'App\Http\Controllers\Auth'], function () {
 
-    Route::get('', 'LoginController@index')->name('login');
-    // Route::post('/loginProcess', 'LoginController@authenticate')->name('login.post');
-    // Route::get('/logout', 'LoginController@logout')->name('logout');
+    Route::get('/login', 'LoginController@index')->name('login');
+    Route::post('/loginProcess', 'LoginController@authenticate')->name('login.post');
+    Route::get('/logout', 'LoginController@logout')->name('logout');
 
 });
 
-Route::group(['prefix' => '', 'namespace' => 'App\Http\Controllers\Admin'], function () {
+Route::group(['prefix' => '', 'namespace' => 'App\Http\Controllers\Admin', 'middleware' => ['auth', 'HakAkses:Admin']], function () {
     Route::group(['prefix' => 'admin'], function () {
         Route::get('/', 'HomeController@index')->name('home.admin');
 
@@ -50,20 +50,16 @@ Route::group(['prefix' => '', 'namespace' => 'App\Http\Controllers\Admin'], func
 });
 
 Route::group(['prefix' => '', 'namespace' => 'App\Http\Controllers\User'], function () {
-    Route::group(['prefix' => 'user'], function () {
-        Route::get('/', 'HomeController@index')->name('home.user');
+    Route::get('/', 'HomeController@index')->name('home.user');
         Route::get('/bantuan', 'HomeController@bantuan')->name('bantuan.user');
 
         Route::group(['prefix' => 'Info-Reklame'], function () {
             Route::get('/', 'ReklameController@index')->name('reklame.user');
         });
-
-    });
-
 });
 
 
-Route::group(['prefix' => '', 'namespace' => 'App\Http\Controllers\Pimpinan'], function () {
+Route::group(['prefix' => '', 'namespace' => 'App\Http\Controllers\Pimpinan', 'middleware' => ['auth', 'HakAkses:Pimpinan']], function () {
     Route::group(['prefix' => 'pimpinan'], function () {
         Route::get('/', 'HomeController@index')->name('home.pimpinan');
 

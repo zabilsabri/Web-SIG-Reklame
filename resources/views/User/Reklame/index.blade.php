@@ -5,17 +5,16 @@
 <table id="tableInfoReklame" class="table table-striped table-hover">
     <thead>
         <tr class="table-head" >
-            <th scope="col">ID</th>
-            <th scope="col">Nama</th>
-            <th scope="col">Lokasi</th>
-            <th scope="col">Jenis Iklan</th>
+            <th scope="col">Nomor Reklame</th>
+            <th scope="col">Perusahaan Penyewa</th>
+            <th scope="col">Alamat Perusahaan</th>
+            <th scope="col">Jenis Reklame</th>
+            <th scope="col">Lokasi Reklame</th>
             <th scope="col">Tanggal Pemasangan</th>
             <th scope="col">Jatuh Tempo</th>
+            <th scope="col">Lama Pemasangan</th>
             <th scope="col">Harga Sewa</th>
-            <th scope="col">Perusahaan Penyewa</th>
-            <th scope="col">PIC Perusahaan Penyewa</th>
             <th scope="col">Status</th>
-            <th width="15%" scope="col">Aksi</th>
         </tr>
     </thead>
     <tbody>
@@ -30,10 +29,6 @@
             <td>Mark</td>
             <td>Otto</td>
             <td>@mdo</td>
-            <td class="text-center" >
-                <a href="{{ route('reklame-edit.admin') }}"><img src="{{ asset('img/ic_edit.png') }}" alt="edit"></a>
-                <a href=""><img src="{{ asset('img/ic_delete.png') }}" alt="delete"></a>
-            </td>
         </tr>
     </tbody>
 </table>

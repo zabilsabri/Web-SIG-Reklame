@@ -39,8 +39,8 @@
                 </li>
                 <li class="text-center">
                     <div class="text-center">
-                        <img class="sb-img"  src="{{ asset('img/profile-pic.png') }}" alt="">
-                        <p class="username" >user</p>
+                        <img class="sb-img" src="{{ asset('img/profile-pic.png') }}" alt="">
+                        <p class="username">{{ Auth::user()->nama }}</p>
                     </div>
                     <hr>
                 </li>
@@ -64,7 +64,7 @@
                 </li>
             </ul>
         </div>
-        <p class="breadcrump-page text-end mb-5" >{{ $title }} | <span class="breadcrump-role" >Admin</span></p>
+        <p class="breadcrump-page text-end mb-5" >{{ $title }} | <span class="breadcrump-role" >{{ Auth::user()->role }}</span></p>
         <section>
             @yield('content')
         </section>
@@ -80,7 +80,7 @@
                     </div>
                     <div class="d-flex justify-content-around">
                         <button type="button" class="btn btn-secondary w-25" data-bs-dismiss="modal">Tidak</button>
-                        <button type="button" class="btn btn-danger w-25">Ya</button>
+                        <a href="{{ route('logout') }}" type="button" class="btn btn-danger w-25">Ya</a>
                     </div>
                 </div>
                 </div>
