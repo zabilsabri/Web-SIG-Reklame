@@ -5,7 +5,7 @@
 <table id="tableKelolaAkun" class="table table-striped table-hover">
     <thead>
         <tr class="table-head" >
-            <th scope="col">ID</th>
+            <th scope="col">No.</th>
             <th scope="col">Nama</th>
             <th scope="col">Peran</th>
             <th scope="col">Nomor Telpon</th>
@@ -14,20 +14,6 @@
             <th scope="col">Aksi</th>
         </tr>
     </thead>
-    <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td class="text-center" >
-                <a href="{{ route('akun-detail.admin') }}"><img src="{{ asset('img/ic_edit.png') }}" alt="edit"></a>
-                <a href="#"><img src="{{ asset('img/ic_delete.png') }}" alt="delete"></a>
-            </td>
-        </tr>
-    </tbody>
 </table>
 @endsection
 
@@ -54,31 +40,34 @@
             </div>
             <div class="row">
                 <div class="col-sm-6">
+                <form action="" id="addUserForm" method="post">
                     <div class="mb-3">
                         <p class="form-label-modal" >Nama Reklame</p>
-                        <input type="text" class="form-control input-border-blue" id="disabledTextInput">
+                        <input type="text" class="form-control input-border-blue" id="nama" name="nama">
                     </div>
                     <div class="mb-3">
                         <p class="form-label-modal" >Email</p>
-                        <input type="email" class="form-control input-border-blue" id="disabledTextInput">
+                        <input type="email" class="form-control input-border-blue" id="email" name="email">
                     </div>
                     <div class="mb-3">
                         <p class="form-label-modal" >Alamat</p>
-                        <input type="text" class="form-control input-border-blue" id="disabledTextInput">
+                        <input type="text" class="form-control input-border-blue" id="alamat" name="alamat">
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="mb-3">
                         <p class="form-label-modal" >Nomor Telpon</p>
-                        <input type="text" class="form-control input-border-blue" name="penyewa">
+                        <input type="text" class="form-control input-border-blue" id="no_telp" name="no_telp">
                     </div>
                     <div class="mb-3">
                         <p class="form-label-modal" >Password</p>
-                        <input type="text" class="form-control input-border-blue" name="penyewa">
+                        <input type="text" class="form-control input-border-blue" id="password" name="password">
+                        <input id="signup-token" name="_token" type="hidden" value="{{csrf_token()}}">
                     </div>
                     <div class="text-center mt-4">
-                        <button class="btn btn-primary w-50" type="button">SIMPAN</button>
+                        <button class="btn btn-primary w-50" id="add_user" type="button">SIMPAN</button>
                     </div>
+                </form>
                 </div>
             </div>            
         </div>

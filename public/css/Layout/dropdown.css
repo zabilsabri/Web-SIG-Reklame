@@ -4,6 +4,15 @@
     color: #2E50A6 !important;
 }
 
+.bootstrap-select>.dropdown-toggle {
+    border: 1px solid #2E50A6;
+    color: #2E50A6;
+}
+
+.dropdown-item.active, .dropdown-item:active {
+    color: var(--bs-dropdown-link-active-color) !important;
+}   
+
 .bootstrap-select .dropdown-toggle:focus, .bootstrap-select>select.mobile-device:focus+.dropdown-toggle {
     outline: none !important;
 }

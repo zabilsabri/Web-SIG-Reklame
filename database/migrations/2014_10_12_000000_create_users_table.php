@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('alamat');
             $table->string('no_telp');
+            $table->string('foto')->nullable();
             $table->enum('role', ['Pimpinan', 'Admin']);
             $table->rememberToken();
             $table->timestamps();

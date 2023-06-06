@@ -36,9 +36,22 @@ Route::group(['prefix' => '', 'namespace' => 'App\Http\Controllers\Admin', 'midd
         });
 
         Route::group(['prefix' => 'kelola-akun'], function () {
+
+            //Lihat
             Route::get('/', 'AkunController@index')->name('akun.admin');
-            Route::get('/detail', 'AkunController@detail')->name('akun-detail.admin');
-            Route::get('/edit', 'AkunController@edit')->name('akun-edit.admin');
+            Route::get('/json', 'AkunController@json')->name('akun-json.admin');
+            Route::get('/detail/{id}', 'AkunController@detail')->name('akun-detail.admin');
+
+            //Tambah
+            Route::post('/add', 'AkunController@store')->name('akun-tambah.admin');
+
+            //Hapus
+            Route::delete('/delete/{id}', 'AkunController@destroy')->name('akun-hapus.admin');
+
+            //Edit
+            Route::get('/edit/{id}', 'AkunController@edit')->name('akun-edit.admin');
+            Route::put('/process-edit/{id}', 'AkunController@editProcess')->name('akun-edit-process.admin');
+            
         });
 
         Route::group(['prefix' => 'Laporan-Penyewaan'], function () {

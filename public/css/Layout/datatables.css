@@ -9,15 +9,14 @@ td, th{
     text-align: center !important;
 }
 
-.table>:not(caption)>*>* {
-    border-bottom-width: 0px !important;
-}
-
 .table-head{
-    background-color: #2E50A6;
+    background-color: #2E50A6 !important;
     color: white;
 }
 
+.table>:not(caption)>*>* {
+    border-bottom-width: 0px !important;
+}
 
 .status-monitor-blue{
     background: #D0DCF8;
@@ -71,5 +70,5 @@ td, th{
 }
 
 .dataTables_scrollHeadInner, .table{
-    width:100%!important
+    width:100%!important;
 };

@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -66,6 +67,7 @@
         </div>
         <p class="breadcrump-page text-end mb-5" >{{ $title }} | <span class="breadcrump-role" >{{ Auth::user()->role }}</span></p>
         <section>
+            @include('sweetalert::alert')
             @yield('content')
         </section>
         
@@ -98,8 +100,82 @@
 <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/js/bootstrap-select.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/js/i18n/defaults-*.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="sweetalert2.all.min.js"></script>
 
 </html>
+
+<script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+</script>
+
+<script>
+    $(document).ready(function(){
+        $(document).on('click', '#add_user', function(e){
+            e.preventDefault();
+            let nama = $('#nama').val();
+            let email = $('#email').val();
+            let alamat = $('#alamat').val();
+            let no_telp = $('#no_telp').val();
+            let password = $('#password').val();
+            let _token = $('#signup-token').val();
+
+            $.ajax({
+                method: 'POST',
+                url:"{{ route('akun-tambah.admin') }}",
+                dataType: 'json',
+                data:{nama:nama, email:email, alamat:alamat, no_telp:no_telp, password:password, _token:_token},
+                success: function (response) {
+                    if(response.status == 'success'){
+                        $('#tambahAkunModal').modal('hide');
+                        $('#addUserForm')[0].reset();
+                        $('#tableKelolaAkun').DataTable().ajax.reload();
+                        Swal.fire("Done!", "Data User Berhasil Ditambahkan", "success");
+                    }
+                },
+                error: function (response) {
+                    var errors = response.responseJSON;
+                    alert(errors);
+                }
+            })
+
+        })
+    })
+</script>
+
+<script>
+    $(document).ready(function(){
+        $(document).on('click', '#btn-hapus', function(e){
+            var id = $(this).data('id');
+            Swal.fire({
+                title: 'Konfirmasi',
+                icon: 'question',
+                text: 'Apakah Anda Yakin Ingin Menghapus Data User Ini?',
+                showConfirmButton: true, 
+                showCancelButton: true
+            }).then(function(){
+                $.ajax({
+                    url: 'kelola-akun/delete/'+id,
+                    method: 'DELETE',
+                    success: function (response) {
+                    if(response.status == 'success'){
+                        $('#tableKelolaAkun').DataTable().ajax.reload();
+                        Swal.fire("Done!", "Data User Berhasil Dihapus", "success");
+                    }
+                    },
+                    error: function (response) {
+                        var errors = response.responseJSON;
+                        alert(errors);
+                    }
+                })
+            });
+        })
+    })
+</script>
 
 <script>
   const ctx = document.getElementById('myChart');
@@ -154,7 +230,8 @@
 
     $(document).ready( function () {
         $('#tableKelolaAkun').DataTable({
-            scrollX: true,
+            ajax: "{{ route('akun-json.admin') }}",
+            processing: true,
             "dom": '<"toolbar">frtp',
             language: { search: '', searchPlaceholder: "Search...",
                 paginate: {
@@ -162,6 +239,27 @@
                     previous: "<"
                 } },
             responsive: true,
+            columns: [{
+                data: 'DT_RowIndex', name: 'DT_RowIndex', searchable: false
+            },{
+                data: 'nama',
+                name: 'nama'
+            },{
+                data: 'role',
+                name: 'role'
+            },{
+                data: 'no_telp',
+                name: 'no_telp'
+            },{
+                data: 'email',
+                name: 'email'
+            },{
+                data: 'alamat',
+                name: 'alamat'
+            },{
+                data: 'aksi',
+                name: 'aksi'
+            }]
             
         });
         $('div.toolbar').html('<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tambahAkunModal">+ Tambah User</button>');
