@@ -41,6 +41,7 @@ class AkunController extends Controller
     {
         $user = new User();
         $user->nama = $request->nama;
+        $user->role = $request->role;
         $user->email = $request->email;
         $user->alamat = $request->alamat;
         $user->no_telp = $request->no_telp;

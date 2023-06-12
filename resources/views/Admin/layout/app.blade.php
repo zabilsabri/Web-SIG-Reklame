@@ -117,6 +117,7 @@
     $(document).ready(function(){
         $(document).on('click', '#add_user', function(e){
             e.preventDefault();
+            let role = $('.selectpicker').val();
             let nama = $('#nama').val();
             let email = $('#email').val();
             let alamat = $('#alamat').val();
@@ -128,7 +129,7 @@
                 method: 'POST',
                 url:"{{ route('akun-tambah.admin') }}",
                 dataType: 'json',
-                data:{nama:nama, email:email, alamat:alamat, no_telp:no_telp, password:password, _token:_token},
+                data:{nama:nama, role:role, email:email, alamat:alamat, no_telp:no_telp, password:password, _token:_token},
                 success: function (response) {
                     if(response.status == 'success'){
                         $('#tambahAkunModal').modal('hide');
@@ -173,6 +174,101 @@
                     }
                 })
             });
+        });
+        $(document).on('click', '#btn-hapus-reklame', function(e){
+            var id = $(this).data('id');
+            Swal.fire({
+                title: 'Konfirmasi',
+                icon: 'question',
+                text: 'Apakah Anda Yakin Ingin Menghapus Data User Ini?',
+                showConfirmButton: true, 
+                showCancelButton: true
+            }).then((result) => {
+                if(result.value){
+                $.ajax({
+                    url: 'data-reklame/delete/'+id,
+                    method: 'DELETE',
+                    success: function (response) {
+                    if(response.status == 'success'){
+                        $('#tableReklame').DataTable().ajax.reload();
+                        Swal.fire("Done!", "Data Reklame Berhasil Dihapus", "success");
+                    }
+                    },
+                    error: function (response) {
+                        var errors = response.responseJSON;
+                        alert(errors);
+                    }
+                })
+            }});
+        })
+    })
+</script>
+
+<script>
+    $(document).ready(function(){
+        $(document).on('click', '#add_reklame', function(e){
+            e.preventDefault();
+            let status = $('.selectpicker').val();
+            let nama = $('#nama-add').val();
+            let lattitude = $('#lattitude-add').val();
+            let longitude = $('#longitude-add').val();
+            let tinggi = $('#tinggi-add').val();
+            let luas = $('#luas-add').val();
+            let lama = $('#lama-add').val();
+            let harga = $('#harga-add').val();
+            let _token = $('#reklame-token-add').val();
+
+            $.ajax({
+                method: 'POST',
+                url:"{{ route('data-reklame-tambah.admin') }}",
+                dataType: 'json',
+                data:{nama:nama, status:status, lattitude:lattitude, longitude:longitude, tinggi:tinggi, luas:luas, lama:lama, harga:harga,_token:_token},
+                success: function (response) {
+                    if(response.status == 'success'){
+                        $('#tambahReklameModal').modal('hide');
+                        $('#formReklame')[0].reset();
+                        $('#tableReklame').DataTable().ajax.reload();
+                        Swal.fire("Done!", "Data Reklame Berhasil Ditambahkan", "success");
+                    }
+                },
+                error: function (response) {
+                    var errors = response.responseJSON;
+                    alert(errors);
+                }
+            })
+
+        })
+    })
+</script>
+
+<script>
+    $(document).ready(function(){
+        $(document).on('click', '#detail-reklame', function(e){
+            e.preventDefault();
+            var id = $(this).data('id');
+
+            $.ajax({
+                method: 'GET',
+                url:'data-reklame/json-detail/'+id,
+                dataType: 'json',
+                success: function (response) {
+                    if(response.statusWeb == 'success'){
+                        $('#detailReklame').modal('show');
+                        $('#nama').val(response.reklame.nama);
+                        $('#latitude').val(response.reklame.latitude);
+                        $('#longitude').val(response.reklame.longitude);
+                        $('#status').val(response.reklame.status);
+                        $('#harga').val(response.reklame.harga);
+                        $('#tgl_pasang').val(response.reklame.tgl_pasang);
+                        $('#jth_tempo').val(response.reklame.jth_tempo);
+                        $('#jenis_iklan').val(response.reklame.jenis_iklan);
+                    }
+                },
+                error: function (response) {
+                    var errors = response.responseJSON;
+                    alert(errors);
+                }
+            })
         })
     })
 </script>
@@ -199,6 +295,7 @@
 <script>
     $(document).ready( function () {
         $('#tableReklame').DataTable({
+            ajax: "{{ route('data-reklame-json.admin') }}",
             scrollX: true,
             "dom": '<"btn-sr">frtp',
             language: { search: '', searchPlaceholder: "Search...",
@@ -207,7 +304,30 @@
                     previous: "<"
                 } },
             responsive: true,
-            
+            columns: [{
+                data: 'DT_RowIndex', name: 'DT_RowIndex', searchable: false
+            },{
+                data: 'nama',
+                name: 'nama'
+            },{
+                data: 'detail',
+                name: 'detail'
+            },{
+                data: 'lama',
+                name: 'lama'
+            },{
+                data: 'harga',
+                name: 'harga'
+            },{
+                data: 'status',
+                name: 'status'
+            },{
+                data: 'aksi',
+                name: 'aksi'
+            }],
+            "columnDefs": [
+                { "width": "100px", "targets": 6 } // Mengatur lebar kolom pertama menjadi 200px
+            ]
         });
         $('div.btn-sr').html('<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tambahReklameModal">+ Tambah Data</button>');
     
@@ -223,7 +343,19 @@
                     previous: "<"
                 } },
             responsive: true,
-            
+        });
+    });
+
+    $(document).ready( function () {
+        $('#tableSewaReklame').DataTable({
+            scrollX: true,
+            "dom": 'frtp',
+            language: { search: '', searchPlaceholder: "Search...",
+                paginate: {
+                    next: ">",
+                    previous: "<"
+                } },
+            responsive: true,
         });
     
     });

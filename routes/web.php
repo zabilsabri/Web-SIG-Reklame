@@ -32,7 +32,12 @@ Route::group(['prefix' => '', 'namespace' => 'App\Http\Controllers\Admin', 'midd
 
         Route::group(['prefix' => 'data-reklame'], function () {
             Route::get('/', 'DataReklameController@index')->name('data-reklame.admin');
-            Route::get('/edit', 'DataReklameController@edit')->name('data-reklame-edit.admin');
+            Route::get('/json', 'DataReklameController@json')->name('data-reklame-json.admin');
+            Route::get('/json-detail/{id}', 'DataReklameController@jsonDetail')->name('data-reklame-json-detail.admin');
+            Route::post('/add', 'DataReklameController@store')->name('data-reklame-tambah.admin');
+            Route::get('/edit/{id}', 'DataReklameController@edit')->name('data-reklame-edit.admin');
+            Route::put('/edit-process/{id}', 'DataReklameController@editProcess')->name('data-reklame-edit-process.admin');
+            Route::delete('/delete/{id}', 'DataReklameController@destroy')->name('data-reklame-hapus.admin');
         });
 
         Route::group(['prefix' => 'kelola-akun'], function () {

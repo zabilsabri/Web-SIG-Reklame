@@ -30,7 +30,7 @@
                     <div class="col-sm-auto">
                         <div class="btn-group">
                             <select class="selectpicker">
-                                <option data-tokens="ketchup mustard">Peran</option>
+                                <option selected>Peran</option>
                                 <option value="Pimpinan">Pimpinan</option>
                                 <option value="Admin">Admin</option>
                             </select>

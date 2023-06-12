@@ -20,7 +20,8 @@ return new class extends Migration
             $table->string('luas');
             $table->string('latitude');
             $table->string('longitude');
-            $table->string('foto');
+            $table->string('foto')->nullable();
+            $table->string('lama');
             $table->timestamps();
         });
     }

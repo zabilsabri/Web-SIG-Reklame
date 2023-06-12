@@ -27,7 +27,7 @@ class LoginController extends Controller
                 return redirect()->route('home.pimpinan');
             }
         }else{
-            return redirect()->to('/')->send()->with('failed', 'Email Atau Password Anda Salah!');
+            return back()->with('failed', 'Email Atau Password Anda Salah!');
         }
     }
 

@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="{{ asset('css/Admin/Penyewaan Reklame/sewaReklame.css') }}">
 
 @section('content')
-<table id="tableReklame" class="table table-striped table-hover">
+<table id="tableSewaReklame" class="table table-striped table-hover">
     <thead>
         <tr class="table-head" >
             <th scope="col">ID</th>
