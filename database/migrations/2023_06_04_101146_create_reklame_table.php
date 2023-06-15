@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('status');
             $table->string('tinggi');
             $table->string('luas');
+            $table->string('jalan');
             $table->string('latitude');
             $table->string('longitude');
             $table->string('foto')->nullable();

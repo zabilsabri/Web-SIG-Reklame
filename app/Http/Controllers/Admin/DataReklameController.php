@@ -42,6 +42,7 @@ class DataReklameController extends Controller
         $reklame = new Reklame();
         $reklame->status = $request->status;
         $reklame->nama = $request->nama;
+        $reklame->jalan = $request->jalan;
         $reklame->latitude = $request->lattitude;
         $reklame->longitude = $request->longitude;
         $reklame->tinggi = $request->tinggi;
@@ -67,9 +68,7 @@ class DataReklameController extends Controller
         $reklame->lama = $request->lama;
         $reklame->save();
 
-        return response()->json([
-            'status' => 'success'
-        ]);
+        return back();
     }
 
     public function edit($id)

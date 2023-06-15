@@ -210,6 +210,7 @@
             e.preventDefault();
             let status = $('.selectpicker').val();
             let nama = $('#nama-add').val();
+            let jalan = $('#jalan-add').val();
             let lattitude = $('#lattitude-add').val();
             let longitude = $('#longitude-add').val();
             let tinggi = $('#tinggi-add').val();
@@ -222,7 +223,7 @@
                 method: 'POST',
                 url:"{{ route('data-reklame-tambah.admin') }}",
                 dataType: 'json',
-                data:{nama:nama, status:status, lattitude:lattitude, longitude:longitude, tinggi:tinggi, luas:luas, lama:lama, harga:harga,_token:_token},
+                data:{nama:nama, jalan:jalan, status:status, lattitude:lattitude, longitude:longitude, tinggi:tinggi, luas:luas, lama:lama, harga:harga,_token:_token},
                 success: function (response) {
                     if(response.status == 'success'){
                         $('#tambahReklameModal').modal('hide');
@@ -349,7 +350,7 @@
     $(document).ready( function () {
         $('#tableSewaReklame').DataTable({
             scrollX: true,
-            "dom": 'frtp',
+            "dom": '<"sw-reklame-add">frtp',
             language: { search: '', searchPlaceholder: "Search...",
                 paginate: {
                     next: ">",
@@ -357,7 +358,7 @@
                 } },
             responsive: true,
         });
-    
+        $('div.sw-reklame-add').html('<button type="button" class="btn btn-primary float-start" data-bs-toggle="modal" data-bs-target="#tambahSewaReklameModal">+ Tambah Sewa Reklame</button>');
     });
 
     $(document).ready( function () {

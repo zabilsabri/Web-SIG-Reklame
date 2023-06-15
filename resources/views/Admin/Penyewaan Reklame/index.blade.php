@@ -39,11 +39,11 @@
 </table>
 @endsection
 
-<div class="modal fade" id="tambahReklameModal" tabindex="-1" aria-labelledby="tambahReklameModalLabel" aria-hidden="true">
+<div class="modal fade" id="tambahSewaReklameModal" tabindex="-1" aria-labelledby="tambahSewaReklameModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-xl">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="tambahReklameModalLabel">Tambah Data Penyewaan</h1>
+        <h1 class="modal-title fs-5" id="tambahSewaReklameModalLabel">Tambah Data Penyewaan</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
         <div class="modal-body">
@@ -55,25 +55,35 @@
                                 <p class="form-label-modal" >ID Reklame</p>
                                 <div class="btn-group">
                                     <select class="selectpicker" data-live-search="true">
-                                        <option data-tokens="ketchup mustard">Kosong</option>
-                                        <option data-tokens="mustard">1</option>
-                                        <option data-tokens="frosting">2</option>
+                                        <option value="">Pilih Reklame</option>
+                                        @foreach($reklames as $reklame)
+                                        <option data-tokens="{{ $reklame -> id }}" value="{{ $reklame -> id }}">{{ $reklame -> nama }} ({{ $reklame -> id }})</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
                             <div class="col-sm-auto">
                                 <p class="form-label-modal disable-label" >Status Reklame</p>
-                                <input type="text" id="disabledTextInput" class="form-control" disabled>
+                                <input type="text" id="status" class="form-control" disabled>
                             </div>
                         </div>
                     </div>
                     <div class="mb-3">
                         <p class="form-label-modal disable-label" >Nama Reklame</p>
-                        <input type="text" class="form-control" id="disabledTextInput" disabled>
+                        <input type="text" class="form-control" id="nama" disabled>
                     </div>
-                    <div class="mb-3">
-                        <p class="form-label-modal disable-label" >Lokasi Reklame</p>
-                        <input type="text" class="form-control" id="disabledTextInput" disabled>
+                    <div class="mb-3 p-3 bg-light-blue">
+                        <p class="form-label-modal text-black mb-3" >Titik Lokasi Reklame</p>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <p class="form-label-modal text-light-blue" >Lattitude</p>
+                                <input type="text" class="form-control" id="lattitude-add" disabled>
+                            </div>
+                            <div class="col-sm-6">
+                                <p class="form-label-modal text-light-blue" >Longitude</p>
+                                <input type="text" class="form-control" id="longitude-add" disabled>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-sm-6">
