@@ -49,3 +49,26 @@
 .list-group-item {
     border: none !important;
 }
+
+.welcome-section {
+    max-width: 540px;
+}
+
+.total-reklame-section {
+    max-width: 700px;
+}
+
+
+@media (min-width: 1300px) {
+    .welcome-section {
+        min-width: 340px;
+    }
+
+    .total-reklame-section {
+        max-width: 400px;
+    }
+}
+
+@media (min-width: 992px) {
+    
+}
