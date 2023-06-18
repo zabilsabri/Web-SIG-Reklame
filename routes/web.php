@@ -27,7 +27,12 @@ Route::group(['prefix' => '', 'namespace' => 'App\Http\Controllers\Admin', 'midd
 
         Route::group(['prefix' => 'penyewaan-reklame'], function () {
             Route::get('/', 'SewaReklameController@index')->name('reklame.admin');
-            Route::get('/edit', 'SewaReklameController@edit')->name('reklame-edit.admin');
+            Route::get('/json-modal/{id}', 'SewaReklameController@jsonModal')->name('reklame-modal-json.admin');
+            Route::get('/json', 'SewaReklameController@json')->name('reklame-json.admin');
+            Route::post('/add', 'SewaReklameController@store')->name('reklame-tambah.admin');
+            Route::get('/edit/{id}', 'SewaReklameController@edit')->name('reklame-edit.admin');
+            Route::put('/edit-process/{id}', 'SewaReklameController@editProcess')->name('reklame-edit-process.admin');
+            Route::delete('/delete/{id}', 'SewaReklameController@destroy')->name('reklame-hapus.admin');
         });
 
         Route::group(['prefix' => 'data-reklame'], function () {

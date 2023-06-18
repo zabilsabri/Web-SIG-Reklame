@@ -71,7 +71,104 @@
                 </div>
             </div>            
         </div>
-
     </div>
   </div>
 </div>
+
+@push('script')
+<script>
+    $(document).ready(function(){
+        $(document).on('click', '#add_user', function(e){
+            e.preventDefault();
+            let role = $('.selectpicker').val();
+            let nama = $('#nama').val();
+            let email = $('#email').val();
+            let alamat = $('#alamat').val();
+            let no_telp = $('#no_telp').val();
+            let password = $('#password').val();
+            let _token = $('#signup-token').val();
+
+            $.ajax({
+                method: 'POST',
+                url:"{{ route('akun-tambah.admin') }}",
+                dataType: 'json',
+                data:{nama:nama, role:role, email:email, alamat:alamat, no_telp:no_telp, password:password, _token:_token},
+                success: function (response) {
+                    if(response.status == 'success'){
+                        $('#tambahAkunModal').modal('hide');
+                        $('#addUserForm')[0].reset();
+                        $('#tableKelolaAkun').DataTable().ajax.reload();
+                        Swal.fire("Done!", "Data User Berhasil Ditambahkan", "success");
+                    }
+                },
+                error: function (response) {
+                    var errors = response.responseJSON;
+                    alert(errors);
+                }
+            })
+
+        });
+        $(document).on('click', '#btn-hapus', function(e){
+            var id = $(this).data('id');
+            Swal.fire({
+                title: 'Konfirmasi',
+                icon: 'question',
+                text: 'Apakah Anda Yakin Ingin Menghapus Data User Ini?',
+                showConfirmButton: true, 
+                showCancelButton: true
+            }).then((result) => {
+                if(result.value){
+                    $.ajax({
+                        url: 'kelola-akun/delete/'+id,
+                        method: 'DELETE',
+                        success: function (response) {
+                        if(response.status == 'success'){
+                            $('#tableKelolaAkun').DataTable().ajax.reload();
+                            Swal.fire("Done!", "Data User Berhasil Dihapus", "success");
+                        }
+                        },
+                        error: function (response) {
+                            var errors = response.responseJSON;
+                            alert(errors);
+                        }
+                    })
+                }
+            });
+        });
+        $('#tableKelolaAkun').DataTable({
+            ajax: "{{ route('akun-json.admin') }}",
+            processing: true,
+            "dom": '<"toolbar">frtp',
+            language: { search: '', searchPlaceholder: "Search...",
+                paginate: {
+                    next: ">",
+                    previous: "<"
+                } },
+            responsive: true,
+            columns: [{
+                data: 'DT_RowIndex', name: 'DT_RowIndex', searchable: false
+            },{
+                data: 'nama',
+                name: 'nama'
+            },{
+                data: 'role',
+                name: 'role'
+            },{
+                data: 'no_telp',
+                name: 'no_telp'
+            },{
+                data: 'email',
+                name: 'email'
+            },{
+                data: 'alamat',
+                name: 'alamat'
+            },{
+                data: 'aksi',
+                name: 'aksi'
+            }]
+            
+        });
+        $('div.toolbar').html('<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tambahAkunModal">+ Tambah User</button>');
+    })
+</script>
+@endpush
