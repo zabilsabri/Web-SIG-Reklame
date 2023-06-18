@@ -2,148 +2,148 @@ body {
     overflow-x: hidden;
 }
 
-.card-border-blue{
-    border: 1px solid #DFDFDF;
+.card-border-blue {
+    border: 1px solid #dfdfdf;
     box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.12);
     border-radius: 10px;
-    border-left-color: #2E50A6;
+    border-left-color: #2e50a6;
     border-left-width: 15px;
 }
 
-.text-blue{
-    color: #2E50A6;
-    font-family: 'Nunito';
+.text-blue {
+    color: #2e50a6;
+    font-family: "Nunito";
     font-style: normal;
     font-weight: 600;
     margin-bottom: 0px;
 }
 
-.text-light-blue{
-    font-family: 'Nunito';
+.text-light-blue {
+    font-family: "Nunito";
     font-style: normal;
     font-weight: 700;
-    color: #6187E8;
+    color: #6187e8;
 }
 
-.bg-light-blue{
-    background: #D0DCF8;
+.bg-light-blue {
+    background: #d0dcf8;
     border-radius: 10px;
 }
 
-.text-black{
-    font-family: 'Nunito';
+.text-black {
+    font-family: "Nunito";
     font-style: normal;
     font-weight: 500;
 }
 
-.shadow-text{
+.shadow-text {
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     font-weight: 700 !important;
 }
 
-.input-border-blue{
-    border: 0.5px solid #2E50A6;
+.input-border-blue {
+    border: 0.5px solid #2e50a6;
 }
 
-.title-blue{
-    font-family: 'Nunito';
+.title-blue {
+    font-family: "Nunito";
     font-style: normal;
     font-weight: 700;
-    color: #2E50A6;
+    color: #2e50a6;
     text-align: center;
 }
 
-.breadcrump-page{
-    font-family: 'Nunito Sans';
+.breadcrump-page {
+    font-family: "Nunito Sans";
     font-style: normal;
     font-weight: 600;
     color: #334155;
     font-size: 20px;
 }
 
-.breadcrump-role{
-    font-family: 'Nunito Sans';
+.breadcrump-role {
+    font-family: "Nunito Sans";
     font-style: normal;
     font-weight: 600;
-    color: #808080;    
+    color: #808080;
     font-size: 20px;
     visibility: visible !important;
 }
 
-
 /* Toggle Styles */
 
 .bg-body-tertiary {
-    background-color: #2E50A6 !important;
+    background-color: #2e50a6 !important;
 }
 
-.active{
+.active {
     text-decoration: none;
     background: #fff;
     border-radius: 15px;
 }
 
-.active a{
-    color: #2E50A6 !important;
+.active a {
+    color: #2e50a6 !important;
 }
 
-#wrapper.toggled .active {
+#side-container.toggled .active {
     text-decoration: none;
     color: #a7bef7;
     background: none !important;
 }
 
-#wrapper.toggled .active a {
+#side-container.toggled .active a {
     text-decoration: none;
     color: #a7bef7 !important;
 }
 
-.sb-text{
-    font-family: 'Nunito';
+.sb-text {
+    font-family: "Nunito";
     font-weight: 600;
     font-size: 12px;
 }
 
-.navbar{
+.navbar {
     margin-bottom: 20px;
 }
 
-hr{
+hr {
     width: 215px;
 }
 
-.username{
-    font-family: 'Nunito';
+.username {
+    font-family: "Nunito";
     font-weight: 700;
 }
 
-.nav-text{
-    font-family: 'Nunito';
+
+.nav-text {
+    font-family: "Nunito";
     font-weight: 800;
 }
 
-#wrapper {
-    padding-left: 0;
+#side-container {
+    padding-left: 185px;
     -webkit-transition: all 0.6s ease;
     -moz-transition: all 0.6s ease;
     -o-transition: all 0.6s ease;
     transition: all 0.6s ease;
-    
 }
 
-#wrapper.toggled {
-    padding-left: 200px;
+#side-container.toggled {
+    padding-left: 0;
 }
 
 #sidebar-wrapper {
     z-index: 1000;
     position: fixed;
     left: 250px;
-    width: 0;
+    top: 75px;
+    width: 200px;
     height: 85%;
     margin-left: -230px;
     overflow-y: auto;
-    background-color: #2E50A6!Important;
+    background-color: #2e50a6 !important;
     -webkit-transition: all 0.5s ease;
     border-radius: 20px;
     -moz-transition: all 0.5s ease;
@@ -151,8 +151,8 @@ hr{
     transition: all 0.5s ease;
 }
 
-#wrapper.toggled #sidebar-wrapper {
-    width: 0;
+#side-container.toggled #sidebar-wrapper {
+    width: 50px;
 }
 
 #page-content-wrapper {
@@ -161,9 +161,9 @@ hr{
     padding: 10px;
 }
 
-#wrapper.toggled #page-content-wrapper {
+#side-container.toggled #page-content-wrapper {
     position: absolute;
-    margin-left:-250px;
+    margin-left: -250px;
 }
 
 /* Sidebar Styles */
@@ -171,7 +171,7 @@ hr{
 .sidebar-nav {
     position: absolute;
     top: 0;
-    right:15px;
+    right: 15px;
     width: 200px;
     margin: 0;
     padding: 0;
@@ -181,18 +181,18 @@ hr{
 .sidebar-nav li {
     text-indent: 20px;
     line-height: 40px;
-    color: #FFFF;
+    color: #ffff;
 }
 
 .sidebar-nav li a {
     display: block;
     text-decoration: none;
-    color: #FFFF;
+    color: #ffff;
 }
 
 .sidebar-nav li a:hover {
     text-decoration: none;
-    color: #2E50A6;
+    color: #2e50a6;
     background: #fff;
     border-radius: 15px;
 }
@@ -209,7 +209,7 @@ hr{
 }
 
 .sidebar-nav > .sidebar-brand a {
-    color: #FFFF;
+    color: #ffff;
 }
 
 .sidebar-nav > .sidebar-brand a:hover {
@@ -217,118 +217,162 @@ hr{
     background: none;
 }
 
-@media(min-width:768px) {
-    #wrapper {
-        padding-left: 185px;
-    }
+/* section media-query */
+section.include-section {
+    max-width: 1200px;
+    margin-left: 3rem;
+}
 
-    #wrapper.toggled {
-        padding-left: 0;
-    }
+#wrapper {
+    padding-left: 185px;
+}
 
-    #sidebar-wrapper {
-        width: 200px;
-    }
+#side-container.toggled {
+    padding-left: 0;
+}
 
-    #wrapper.toggled #sidebar-wrapper {
-        width: 50px;
-    }
+#sidebar-wrapper {
+    width: 200px;
+}
 
-    #wrapper.toggled li a:hover {
-        text-decoration: none;
-        color: #a7bef7;
-        background: none !important;
-        border-radius: 15px;
-    }
+#side-container.toggled #sidebar-wrapper {
+    width: 50px;
+}
 
-#wrapper.toggled span {
-        visibility:hidden;
-        
-    }
-  #wrapper.toggled   i {
- float:right;
- } 
+#side-container.toggled li a:hover {
+    text-decoration: none;
+    color: #a7bef7;
+    background: none !important;
+    border-radius: 15px;
+}
 
- #wrapper.toggled .sb-img{
+#side-container.toggled span {
+    visibility: hidden;
+}
+
+#side-container.toggled i {
+    float: right;
+}
+
+#side-container.toggled .sb-img {
     float: right;
     width: 20px;
     height: 20px;
- }
-
-    #page-content-wrapper {
-        padding: 20px;
-        position: relative;
-    }
-
-    #wrapper.toggled #page-content-wrapper {
-        position: relative;
-        margin-right: 0;
-    }
 }
 
+#page-content-wrapper {
+    padding: 20px;
+    position: relative;
+}
 
-@media(max-width:414px) {
+#side-container.toggled #page-content-wrapper {
+    position: relative;
+    margin-right: 0;
+}
 
-#wrapper.toggled #page-content-wrapper {
+.hamburger-button {
+    display: none;
+    flex-direction: column;
+    margin-inline: 20px;
+    gap: .2rem;
+    justify-content: center;
+}
+
+.hamburger-button input {
     position: absolute;
-    margin-right:60px;
+    width: 2rem;
+    height: 1.5rem;
+    opacity: 0;
+    translate: -5px -2px;
+    z-index: 2;
 }
 
-#wrapper.toggled {
-    padding-right: 60px;
+.hamburger-button span:nth-child(2) {
+    transform-origin: 0 0;
 }
 
- #wrapper {
-        padding-left: 20px;
+.hamburger-button span:nth-child(4) {
+    transform-origin: 0 100%;
+}
+
+.hamburger-button input:checked ~ span:nth-child(2) {
+    transform: rotate(45deg) translate(-2px, -2px);
+}
+
+.hamburger-button input:checked ~ span:nth-child(3) {
+    transform: scale(0);
+}
+
+.hamburger-button input:checked ~ span:nth-child(4) {
+    transform: rotate(-45deg) translate(0, 0);
+}
+
+.hamburger-button span {
+    border-radius: 20px;
+    width: 1.5rem;
+    height: .2rem;
+    background-color: white;
+    transition: all .4s;
+}
+
+.navbar-brand h6 {
+    font-size: calc(10px + (26 - 14) * ((80vw - 300px) / (1600 - 300)));
+}
+
+.navbar-brand img {
+    width: calc(24px + (26 - 14) * ((90vw - 300px) / (1600 - 300)));
+    height: calc(24px + (26 - 14) * ((90vw - 300px) / (1600 - 300)));
+}
+
+/* user homepage */
+#home-desc {
+    margin-inline: 20px;
+    font-size: calc(9px + (26 - 14) * ((90vw - 300px) / (1600 - 300)));
+}
+
+@media (max-width: 992px) {
+
+    section.include-section {
+        margin-left: 0;
     }
 
-    #wrapper.toggled {
-        padding-left: 0;
+    #wrapper {
+        padding-inline: 10px;
+    }
+
+    .sidebar-nav .account-section {
+        margin-top: 2rem;
     }
 
     #sidebar-wrapper {
-        width: 50px;
+        transform: translateX(-120%);
+        height: 88vh;
     }
 
-    #wrapper.toggled #sidebar-wrapper {
-        width: 140px;
-        
-        
-    }
-    
-    #wrapper.toggled span {
-        visibility:visible;
-        position:relative;
-        left:70px;
-        bottom:13px;
-        
+    .toggle-sidebar #sidebar-wrapper {
+        transform: translateX(0);
     }
 
-#wrapper span {
-        visibility:hidden;
-        
-    }
-  
-    #wrapper.toggled i {
-    float:right;
- } 
- 
-  #wrapper   i {
- float:right;
- } 
-
-    #page-content-wrapper {
-        padding: 5px;
-        position: relative;
+    .hamburger-button {
+        display: flex;
     }
 
-    #wrapper.toggled #page-content-wrapper {
-        position: relative;
-        margin-right: 0;
+    .sidebar-nav .sidebar-brand {
+        display: none;
     }
-
 }
 
-.btn-primary{
-    --bs-btn-bg: #2E50A6 !important;
+@media (max-width: 576px) {
+    .hamburger-button {
+        margin-left: 10px;
+        margin-right: 20px;
+    }
+    
+}
+
+
+
+
+.btn-primary {
+    --bs-btn-bg: #2e50a6 !important;
 }
