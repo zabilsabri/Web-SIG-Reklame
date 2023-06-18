@@ -30,3 +30,22 @@
 </div>
 
 @endsection
+
+@push('script')
+
+<script>
+$(document).ready( function () {
+    $('#tableLaporan').DataTable({
+        scrollX: true,
+        "dom": 'frtp',
+        language: { search: '', searchPlaceholder: "Search...",
+            paginate: {
+                next: ">",
+                previous: "<"
+            } },
+        responsive: true,
+    });
+});
+</script>
+
+@endpush
