@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Reklame;
+use App\Models\Penyewaan;
 use DataTables;
 
 class DataReklameController extends Controller
@@ -40,7 +41,6 @@ class DataReklameController extends Controller
     public function store(Request $request)
     {
         $reklame = new Reklame();
-        $reklame->status = $request->status;
         $reklame->nama = $request->nama;
         $reklame->jalan = $request->jalan;
         $reklame->latitude = $request->lattitude;

@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="{{ asset('css/Admin/Penyewaan Reklame/sewaReklame.css') }}">
 
 @section('content')
-<table id="tableSewaReklame" class="table table-striped table-hover">
+<table id="tableSewaReklame" class="table table-striped table-hover nowrap">
     <thead>
         <tr class="table-head" >
             <th scope="col">ID</th>
@@ -151,7 +151,10 @@
             },{
                 data: 'aksi',
                 name: 'aksi'
-            }]
+            }],
+            "columnDefs": [
+                { "width": "100px", "targets": 10 }
+            ]
             });
         $('div.sw-reklame-add').html('<button type="button" class="btn btn-primary float-start" data-bs-toggle="modal" data-bs-target="#tambahSewaReklameModal">+ Tambah Sewa Reklame</button>');
     });

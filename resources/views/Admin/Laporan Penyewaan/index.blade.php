@@ -9,13 +9,15 @@
         </div>
         <div class="card-body">
             <h5 class="card-title text-blue">Pilih Periode Data Penyewaan</h5>
-            <select class="form-select form-select-lg my-3 input-border-blue" aria-label=".form-select-lg example">
+            <form action="{{ route('laporan-detail.admin')}}" method="GET">
+            <select class="form-select form-select-lg my-3 input-border-blue" name="year" aria-label=".form-select-lg example">
                 <option selected>Periode Data</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-            </select>    
+                @foreach($res as $re)
+                <option value="{{$re -> year}}">{{$re -> year}}</option>
+                @endforeach
+            </select>   
             <input class="btn btn-primary float-end" type="submit" value="Submit">    
+            </form>
         </div>
     </div>
 </div>

@@ -16,15 +16,17 @@
             </tr>
         </thead>
         <tbody>
+            @foreach($penyewaans as $index => $penyewaan)
             <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
+                <th scope="row">{{ $index++ }}</th>
+                <td>{{ $penyewaan -> nama }}</td>
+                <td>{{ $penyewaan -> perusahaan }}</td>
+                <td>{{ $penyewaan -> tgl_pasang }}</td>
+                <td>{{ $penyewaan -> jenis }}</td>
+                <td>{{ $penyewaan -> reklame -> jalan }}</td>
+                <td>{{ $penyewaan -> reklame ->harga }}</td>
             </tr>
+            @endforeach
         </tbody>
     </table>
 </div>
