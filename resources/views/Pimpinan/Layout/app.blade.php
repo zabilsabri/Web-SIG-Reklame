@@ -64,7 +64,7 @@
     </div>
 </div>
         <!-- /#sidebar-wrapper -->
-    
+
 </body>
 <script src="https://kit.fontawesome.com/645f3ace4e.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
@@ -95,7 +95,7 @@
 </script>
 
 <script>
-    $(document).ready( function () {
+    // $(document).ready( function () {
         $('#tableMonitorReklame').DataTable({
             scrollX: true,
             "dom": '<"btn-sr">frtp',
@@ -105,20 +105,29 @@
                     previous: "<"
                 } },
             responsive: true,
-            
+            order: [[ 1, "asc" ]],
+
         });
 
         $('div.btn-sr').html('<select id="categoryFilterStatus" style="width: auto;" class="form-control special"><option value="">Status (Show All)</option><option value="Belum Disewa">Belum Disewa</option><option value="Sudah Disewa">Sudah Disewa</option></select>');
-        
+
         var table = $('#tableMonitorReklame').DataTable();
 
         $("#tableMonitorReklame_filter.dataTables_filter").append($("#categoryFilterStatus"));
-        
+
         $("#categoryFilterStatus").on('change', function (e) {
             table.column(4).search(this.value).draw();
         });
-    
-    });
+
+        table.on('order.dt search.dt', function () {
+            let i = 1;
+
+            table.cells(null, 0, { search: 'applied', order: 'applied' }).every(function (cell) {
+                this.data(i++);
+            });
+        }).draw();
+
+    // });
 
 </script>
 
@@ -133,9 +142,8 @@
                     previous: "<"
                 } },
             responsive: true,
-            
         });
-    
+
     });
 </script>
 
