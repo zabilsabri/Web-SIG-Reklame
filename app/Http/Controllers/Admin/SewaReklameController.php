@@ -40,6 +40,9 @@ class SewaReklameController extends Controller
             ->addColumn('aksi', function($penyewaan){
                 return view('Admin.layout.Table Button.sewaReklame')->with('data', $penyewaan);
             })
+            ->addColumn('tgl_jatuh_tempo', function($penyewaan){
+                return $penyewaan->getRawOriginal('tgl_jatuh_tempo');
+            })
             ->make(true);
     }
 

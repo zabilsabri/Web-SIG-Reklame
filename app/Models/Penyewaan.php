@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Penyewaan extends Model
 {
@@ -13,8 +14,7 @@ class Penyewaan extends Model
     	return $this->belongsTo('App\Models\Reklame');
     }
 
-    public function status()
-    {
+    public function status(){
         // check day difference between now and tgl_jatuh_tempo and wether it's overdue or not
         $now = date('Y-m-d');
         $tgl_jatuh_tempo = $this->tgl_jatuh_tempo;
@@ -29,6 +29,22 @@ class Penyewaan extends Model
             return 1;
         } else {
             return 0;
+        }
+    }
+        
+    public function getTglJatuhTempoAttribute($value) {
+        if(!isset($value)){
+            return "Tersedia";
+        } else {
+            $tgl_jatuh_tempo = Carbon::parse($value);
+
+            $diff = now()->diffInDays($tgl_jatuh_tempo, false);
+
+            if($diff <= 0){
+                return "Tersedia";
+            } else {
+                return "Tidak ahh";
+            }
         }
     }
 }

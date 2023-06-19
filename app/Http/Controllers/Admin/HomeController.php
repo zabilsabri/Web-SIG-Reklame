@@ -35,7 +35,7 @@ class HomeController extends Controller
         $on_progress = 0;
 
         foreach ($penyewaans as $penyewaan) {
-            $tgl_jatuh_tempo = Carbon::parse($penyewaan->tgl_jatuh_tempo);
+            $tgl_jatuh_tempo = Carbon::parse($penyewaan->getRawOriginal('tgl_jatuh_tempo'));
 
             $diff = now()->diffInDays($tgl_jatuh_tempo, false);
             if($diff <= 0){

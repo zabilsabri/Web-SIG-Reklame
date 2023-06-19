@@ -10,7 +10,7 @@ class Reklame extends Model
     use HasFactory;
 
     public function penyewaan(){
-    	return $this->hasMany('app\Models\Penyewaan');
+    	return $this->hasMany('App\Models\Penyewaan');
     }
 
     public function setHargaAttribute($value)
