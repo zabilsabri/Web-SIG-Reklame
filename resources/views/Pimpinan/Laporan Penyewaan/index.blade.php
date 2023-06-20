@@ -2,8 +2,8 @@
 
 @section('content')
 
-<div class="card-border-blue p-5">
-    <div class="card m-5">
+<div class="card-border-blue p-2">
+    <div class="card m-2">
         <div class="card-header title-blue">
             Laporan Data Penyewaan
         </div>

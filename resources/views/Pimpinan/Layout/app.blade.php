@@ -173,7 +173,14 @@
     });
 
     $(document).on("click", function(a) {
-        if ($(a.target).is(".sidebar-nav") == false) {
+        if ($(a.target).is(".sidebar-nav") == false &&
+                $(a.target).is("#sidebar-wrapper") == false &&
+                $(a.target).is(".sidebar-nav") == false && 
+                $(a.target).is("div.text-center") === false &&
+                $(a.target).is("li.account-section.text-center") === false &&
+                $(a.target).is("img.sb-img") === false &&
+                $(a.target).is("p.username") === false && 
+                $(a.target).is("li hr") === false) {
             $(".hamburger-button input").prop('checked', false);
             $("#side-container").removeClass("toggle-sidebar");
         }
