@@ -336,12 +336,32 @@ section.include-section {
         margin-left: 0;
     }
 
+    #side-container {
+        position: relative;
+    }
+
+    #side-container.toggle-sidebar .side-bg {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        width: calc(100vw + 100vw);
+        height: calc(100vh + 100vh);
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+    }
+
     #wrapper {
         padding-inline: 10px;
     }
 
     .sidebar-nav .account-section {
         margin-top: 2rem;
+    }
+
+    .account-section div img {
+        width: calc(60px + (26 - 20) * ((1500vw - 900px) / (3000 - 300)));
     }
 
     #sidebar-wrapper {

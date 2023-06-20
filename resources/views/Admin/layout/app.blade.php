@@ -41,6 +41,8 @@
     </nav>
     <!-- Sidebar -->
     <div id="side-container">
+        <div class="side-bg">
+        </div>
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav d-flex flex-column" style="margin-left:0; height: 95%">
                 <li class="sidebar-brand">
@@ -167,5 +169,4 @@
             $("#side-container").removeClass("toggle-sidebar");
         }
     });
-
 </script>

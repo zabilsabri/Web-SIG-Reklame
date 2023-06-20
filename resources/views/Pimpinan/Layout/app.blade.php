@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,35 +17,45 @@
 
     <title>{{ $title }}</title>
 </head>
+
 <body>
-<nav class="navbar bg-body-tertiary">
-  <div class="container-fluid">
-    <a class="navbar-brand text-white" href="#">
-      <img src="{{ asset('img/Logo.png') }}" alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
-      <span class="nav-text">
-        SIG REKLAME KECAMATAN KOLAKA
-      </span>
-    </a>
-  </div>
-</nav>
-<div class="container">
-	<div class="row">
-		<div id="wrapper">
-        <!-- Sidebar -->
+    <nav class="navbar bg-body-tertiary fixed-top">
+        <div class="container-fluid">
+            <div class="brand-section d-flex">
+                <div class="hamburger-button">
+                    <input type="checkbox" />
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <a class="navbar-brand text-white d-flex align-items-center" href="#">
+                    <img src="{{ asset('img/Logo.png') }}" alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
+                    <h6 class="nav-text mb-0 ms-3">
+                        SIG REKLAME KECAMATAN KOLAKA
+                    </h6>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <div id="side-container">
+        <div class="side-bg">
+        </div>
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav d-flex flex-column" style="margin-left:0; height: 95%">
                 <li class="sidebar-brand">
-                    <a href="#menu-toggle"  id="menu-toggle" style="margin-top:20px;"> <i class="fa fa-bars " style="font-size:20px !Important;" aria-hidden="true" aria-hidden="true"></i> </a>
+                    <a href="#menu-toggle" id="menu-toggle" style="margin-top:20px;"> <i class="fa fa-bars " style="font-size:20px !Important;" aria-hidden="true" aria-hidden="true"></i> </a>
                 </li>
-                <li class="text-center">
+                <li class="text-center account-section">
                     <div class="text-center">
-                        <img class="sb-img"  src="{{ asset('img/profile-pic.png') }}" alt="">
-                        <p class="username" >user</p>
+                        <img class="sb-img" src="{{ asset('img/profile-pic.png') }}" alt="">
+                        <p class="username">user</p>
                     </div>
                     <hr>
                 </li>
                 <li class="{{ Route::is('home.pimpinan') ? 'active' : '' }}">
-                    <a href="{{ Route('home.pimpinan') }}"><i class="fa fa-home" aria-hidden="true"> </i> <span class="sb-text" style="margin-left:10px;">Home</span>  </a>
+                    <a href="{{ Route('home.pimpinan') }}"><i class="fa fa-home" aria-hidden="true"> </i> <span class="sb-text" style="margin-left:10px;">Home</span> </a>
                 </li>
                 <li class="{{ Route::is('monitor.pimpinan') ? 'active' : '' }}">
                     <a href="{{ Route('monitor.pimpinan') }}"> <i class="fa fa-window-maximize" aria-hidden="true"> </i> <span class="sb-text" style="margin-left:10px;">Monitoring Reklame</span> </a>
@@ -57,14 +68,19 @@
                 </li>
             </ul>
         </div>
-        <p class="breadcrump-page text-end mb-5" >{{ $title }} | <span class="breadcrump-role" >Pimpinan</span></p>
-        <section>
-            @yield('content')
-        </section>
     </div>
-</div>
+
+    <div class="container pt-5 mt-4">
+        <div class="row">
+            <div id="wrapper">
+                <p class="breadcrump-page text-end mb-5">{{ $title }} | <span class="breadcrump-role">Pimpinan</span></p>
+                <section>
+                    @yield('content')
+                </section>
+            </div>
+        </div>
         <!-- /#sidebar-wrapper -->
-    
+
 </body>
 <script src="https://kit.fontawesome.com/645f3ace4e.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
@@ -76,72 +92,90 @@
 </html>
 
 <script>
-  const ctx = document.getElementById('myChart');
-  const labels = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+    const ctx = document.getElementById('myChart');
+    const labels = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
 
-  new Chart(ctx, {
-    type: 'line',
-    data: {
-        labels: labels,
-        datasets: [{
-            label: 'Penyewaan Reklame',
-            data: [65, 59, 80, 81, 56, 55, 40, 80, 81, 56, 55, 40],
-            fill: false,
-            borderColor: 'rgb(46, 80, 166)',
-            tension: 0.5
-      }]
-    },
-  });
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Penyewaan Reklame',
+                data: [65, 59, 80, 81, 56, 55, 40, 80, 81, 56, 55, 40],
+                fill: false,
+                borderColor: 'rgb(46, 80, 166)',
+                tension: 0.5
+            }]
+        },
+    });
 </script>
 
 <script>
-    $(document).ready( function () {
+    $(document).ready(function() {
         $('#tableMonitorReklame').DataTable({
             scrollX: true,
             "dom": '<"btn-sr">frtp',
-            language: { search: '', searchPlaceholder: "Search...",
+            language: {
+                search: '',
+                searchPlaceholder: "Search...",
                 paginate: {
                     next: ">",
                     previous: "<"
-                } },
+                }
+            },
             responsive: true,
-            
+
         });
 
         $('div.btn-sr').html('<select id="categoryFilterStatus" style="width: auto;" class="form-control special"><option value="">Status (Show All)</option><option value="Belum Disewa">Belum Disewa</option><option value="Sudah Disewa">Sudah Disewa</option></select>');
-        
+
         var table = $('#tableMonitorReklame').DataTable();
 
         $("#tableMonitorReklame_filter.dataTables_filter").append($("#categoryFilterStatus"));
-        
-        $("#categoryFilterStatus").on('change', function (e) {
+
+        $("#categoryFilterStatus").on('change', function(e) {
             table.column(4).search(this.value).draw();
         });
-    
-    });
 
+    });
 </script>
 
 <script>
-    $(document).ready( function () {
+    $(document).ready(function() {
         $('#tableLaporan').DataTable({
             scrollX: true,
             "dom": 'frtp',
-            language: { search: '', searchPlaceholder: "Search...",
+            language: {
+                search: '',
+                searchPlaceholder: "Search...",
                 paginate: {
                     next: ">",
                     previous: "<"
-                } },
+                }
+            },
             responsive: true,
-            
+
         });
-    
+
     });
 </script>
 
 <script>
-$("#menu-toggle").click(function(e) {
-    e.preventDefault();
-    $("#wrapper").toggleClass("toggled");
-});
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#side-container").toggleClass("toggled");
+    });
+
+    $(".hamburger-button input").click(function(e) {
+        e.stopPropagation();
+        console.log("hamburger clicked");
+        $("#side-container").toggleClass("toggle-sidebar");
+    });
+
+    $(document).on("click", function(a) {
+        if ($(a.target).is(".sidebar-nav") == false) {
+            $(".hamburger-button input").prop('checked', false);
+            $("#side-container").removeClass("toggle-sidebar");
+        }
+    });
 </script>
