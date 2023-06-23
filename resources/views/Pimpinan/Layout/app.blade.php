@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/css/bootstrap-select.min.css">
     <link rel="stylesheet" href="{{ asset('css/Layout/layoutStyle.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/Layout/datatables.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/Layout/dropdown.css') }}">
 
     <title>{{ $title }}</title>
 </head>
@@ -131,21 +133,7 @@
 
 </script>
 
-<script>
-    $(document).ready( function () {
-        $('#tableLaporan').DataTable({
-            scrollX: true,
-            "dom": 'frtp',
-            language: { search: '', searchPlaceholder: "Search...",
-                paginate: {
-                    next: ">",
-                    previous: "<"
-                } },
-            responsive: true,
-        });
-
-    });
-</script>
+@yield('datatable')
 
 <script>
 $("#menu-toggle").click(function(e) {
