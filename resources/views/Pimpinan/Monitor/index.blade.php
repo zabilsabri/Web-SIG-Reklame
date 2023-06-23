@@ -21,14 +21,14 @@
             <th></th>
             <td>{{ $penyewaan->reklame->nama }}</td>
             <td>{{ $penyewaan->perusahaan }}</td>
-            @if ($penyewaan->status() == 1)
+            @if ($penyewaan->getStatus() == 1)
             <td>
                 <p class="status-monitor-blue p-2 m-0" >Sedang Disewa</p>
             </td>
             <td>
                 <a href="{{ route('monitor-detail.pimpinan', ['id' => $penyewaan->id]) }}"><img src="{{ asset('img/blue i.png') }}" width="25px" alt="blue"></a>
             </td>
-            @elseif ($penyewaan->status() == 2)
+            @elseif ($penyewaan->getStatus() == 2)
             <td>
                 <p class="status-monitor-yellow p-2 m-0" ><img class="me-1" src="{{ asset('img/clock yellow.png') }}" alt="">Mendekati Jatuh Tempo</p>
             </td>

@@ -14,14 +14,12 @@ class Penyewaan extends Model
     	return $this->belongsTo('App\Models\Reklame');
     }
 
-    public function status(){
-        // check day difference between now and tgl_jatuh_tempo and wether it's overdue or not
+    public function getStatus(){
         $now = date('Y-m-d');
-        $tgl_jatuh_tempo = $this->tgl_jatuh_tempo;
+        $tgl_jatuh_tempo = $this->getRawOriginal('tgl_jatuh_tempo');
 
         if ($now <= $tgl_jatuh_tempo) {
-            $diff = date_diff(date_create($now), date_create($tgl_jatuh_tempo));
-            $diff = $diff->format("%a");
+            $diff = now()->diffInDays($tgl_jatuh_tempo, false);
             if ($diff <= 5) {
                 return 2;
             }
@@ -31,7 +29,7 @@ class Penyewaan extends Model
             return 0;
         }
     }
-        
+
     public function getTglJatuhTempoAttribute($value) {
         if(!isset($value)){
             return "Tersedia";
