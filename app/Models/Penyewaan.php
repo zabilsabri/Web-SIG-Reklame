@@ -17,7 +17,7 @@ class Penyewaan extends Model
     public function status(){
         // check day difference between now and tgl_jatuh_tempo and wether it's overdue or not
         $now = date('Y-m-d');
-        $tgl_jatuh_tempo = $this->tgl_jatuh_tempo;
+        $tgl_jatuh_tempo = $this->getRawOriginal('tgl_jatuh_tempo');
 
         if ($now <= $tgl_jatuh_tempo) {
             $diff = date_diff(date_create($now), date_create($tgl_jatuh_tempo));
@@ -25,26 +25,17 @@ class Penyewaan extends Model
             if ($diff <= 5) {
                 return 2;
             }
-
             return 1;
         } else {
             return 0;
         }
     }
-        
-    public function getTglJatuhTempoAttribute($value) {
-        if(!isset($value)){
-            return "Tersedia";
-        } else {
-            $tgl_jatuh_tempo = Carbon::parse($value);
 
-            $diff = now()->diffInDays($tgl_jatuh_tempo, false);
+    public function getTglPasangAttribute($value){
+        return Carbon::parse($value)->format('d/m/Y');
+    }
 
-            if($diff <= 0){
-                return "Tersedia";
-            } else {
-                return "Tidak ahh";
-            }
-        }
+    public function getTglJatuhTempoAttribute($value){
+        return Carbon::parse($value)->format('d/m/Y');
     }
 }

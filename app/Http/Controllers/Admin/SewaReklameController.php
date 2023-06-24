@@ -7,14 +7,14 @@ use Illuminate\Http\Request;
 use App\Models\Reklame;
 use DataTables;
 use App\Models\Penyewaan;
+use DB;
 
 class SewaReklameController extends Controller
 {
     public function index()
     {
-        $reklames = Reklame::get();
-        return view('Admin.Penyewaan Reklame.index')
-            ->with(compact('reklames'));
+        $reklames = Reklame::with('penyewaan')->get();
+        return view('Admin.Penyewaan Reklame.index')->with('data', $reklames);
     }
 
     public function edit($id)
@@ -25,7 +25,7 @@ class SewaReklameController extends Controller
     }
 
     public function jsonModal($id_reklame){
-        $reklameModal = Reklame::find($id_reklame);
+        $reklameModal = Reklame::with('penyewaan')->find($id_reklame);
         return response()->json([
             'statusWeb' => 'success',
             'reklame' => $reklameModal
@@ -40,8 +40,8 @@ class SewaReklameController extends Controller
             ->addColumn('aksi', function($penyewaan){
                 return view('Admin.layout.Table Button.sewaReklame')->with('data', $penyewaan);
             })
-            ->addColumn('tgl_jatuh_tempo', function($penyewaan){
-                return $penyewaan->getRawOriginal('tgl_jatuh_tempo');
+            ->addColumn('status', function($penyewaan){
+                return view('Admin.layout.Table Button.status2')->with('data', $penyewaan);
             })
             ->make(true);
     }
@@ -57,9 +57,12 @@ class SewaReklameController extends Controller
         $penyewaan->tgl_jatuh_tempo = $request->jth_tempo;
         $penyewaan->save();
 
+
         return response()->json([
             'status' => 'success'
         ]);
+
+        
     }
 
     public function editProcess(Request $request, $id)
