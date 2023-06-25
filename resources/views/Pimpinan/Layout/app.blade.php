@@ -59,14 +59,14 @@
                 <li class="{{ Route::is('home.pimpinan') ? 'active' : '' }}">
                     <a href="{{ Route('home.pimpinan') }}"><i class="fa fa-home" aria-hidden="true"> </i> <span class="sb-text" style="margin-left:10px;">Home</span> </a>
                 </li>
-                <li class="{{ Route::is('monitor.pimpinan') ? 'active' : '' }}">
+                <li class="{{ Route::is('monitor.pimpinan') || Route::is('monitor-detail.pimpinan') ? 'active' : '' }}">
                     <a href="{{ Route('monitor.pimpinan') }}"> <i class="fa fa-window-maximize" aria-hidden="true"> </i> <span class="sb-text" style="margin-left:10px;">Monitoring Reklame</span> </a>
                 </li>
-                <li class="{{ Route::is('laporan.pimpinan') ? 'active' : '' }}">
+                <li class="{{ Route::is('laporan.pimpinan') || Route::is('laporan-detail.pimpinan') ? 'active' : '' }}">
                     <a href="{{ Route('laporan.pimpinan') }}"> <i class="fa fa-folder" aria-hidden="true"></i> <span class="sb-text" style="margin-left:10px;">Laporan Penyewaan</span> </a>
                 </li>
                 <li class="mt-auto">
-                    <a href="#"> <i class="fa fa-sign-out" aria-hidden="true"></i> <span class="sb-text" style="margin-left:10px;">Keluar</span> </a>
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"> <i class="fa fa-sign-out" aria-hidden="true"></i> <span class="sb-text" style="margin-left:10px;">Keluar</span> </a>
                 </li>
             </ul>
         </div>
@@ -79,6 +79,26 @@
                 <section>
                     @yield('content')
                 </section>
+
+                <!-- Modal Logout -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <div class="text-center mb-3">
+                                    <img src="{{ asset('img/redquestion.png') }}" width="90px" height="90px" alt="">
+                                    <p class="text-black mt-3">Apakah Anda yakin ingin keluar?</p>
+                                </div>
+                                <div class="d-flex justify-content-around">
+                                    <button type="button" class="btn btn-secondary w-25" data-bs-dismiss="modal">Tidak</button>
+                                    <a href="{{ route('logout') }}" type="button" class="btn btn-danger w-25">Ya</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
             </div>
         </div>
         <!-- /#sidebar-wrapper -->
@@ -93,24 +113,7 @@
 
 </html>
 
-<script>
-    const ctx = document.getElementById('myChart');
-    const labels = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
-
-    new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: labels,
-            datasets: [{
-                label: 'Penyewaan Reklame',
-                data: [65, 59, 80, 81, 56, 55, 40, 80, 81, 56, 55, 40],
-                fill: false,
-                borderColor: 'rgb(46, 80, 166)',
-                tension: 0.5
-            }]
-        },
-    });
-</script>
+@stack('script')
 
 <script>
         $('#tableMonitorReklame').DataTable({
@@ -146,10 +149,6 @@ $("#categoryFilterStatus").on('change', function (e) {
                 this.data(i++);
             });
         }).draw();
-
-    // });
-
-    });
 </script>
 
 @yield('datatable')

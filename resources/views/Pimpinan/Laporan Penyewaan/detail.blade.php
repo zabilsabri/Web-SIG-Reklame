@@ -24,7 +24,7 @@
                 <td>{{ $penyewaan -> tgl_pasang }}</td>
                 <td>{{ $penyewaan -> jenis }}</td>
                 <td>{{ $penyewaan -> reklame -> jalan }}</td>
-                <td>{{ $penyewaan -> reklame ->harga }}</td>
+                <td>{{ $penyewaan -> total_harga }}</td>
             </tr>
             @endforeach
         </tbody>
