@@ -19,7 +19,7 @@
 </head>
 
 <body>
-    <nav class="navbar bg-body-tertiary">
+    <nav class="navbar bg-body-tertiary fixed-top">
         <div class="container-fluid">
             <div class="brand-section d-flex">
                 <div class="hamburger-button">
@@ -40,6 +40,8 @@
 
     <!-- Sidebar -->
     <div id="side-container">
+        <div class="side-bg">
+        </div>
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav" style="margin-left:0;">
                 <li class="sidebar-brand">
@@ -65,10 +67,10 @@
         </div>
     </div>
 
-    <div class="container">
+    <div class="container mt-4 pt-5">
         <div class="row">
             <div id="wrapper">
-                <p class="breadcrump-page text-end mb-5">{{ $title }} | <span class="breadcrump-role">Admin</span></p>
+                <p class="breadcrump-page text-end mb-5">{{ $title }} | <span class="breadcrump-role">User</span></p>
                 <section>
                     @yield('content')
                 </section>
@@ -127,10 +129,15 @@
         $("#side-container").toggleClass("toggle-sidebar");
     });
     $(document).on("click", function(a) {
-        if ($(a.target).is("#side-container") === false) {
+        if ($(a.target).is("#sidebar-wrapper") === false &&
+                $(a.target).is("ul.sidebar-nav") === false &&
+                $(a.target).is("li.account-section.text-center") === false && 
+                $(a.target).is("div.text-center") === false &&
+                $(a.target).is("img.sb-img") === false &&
+                $(a.target).is("p.username") === false &&
+                $(a.target).is("li hr") === false) {
             $(".hamburger-button input").prop('checked', false);
             $("#side-container").removeClass("toggle-sidebar");
         }
     });
-
 </script>

@@ -20,7 +20,7 @@
                 <form action="{{ route('reklame-edit-process.admin', [$penyewaan -> id]) }}" method="POST">
                 @csrf
                 {{ method_field('PUT') }}
-                <input type="text" value="{{ $penyewaan->reklame_id }}" class="form-control w-50" id="disabledTextInput" disabled>
+                <input type="text" value="{{ $penyewaan->reklame_id }}" name="id_reklame" class="form-control w-50" id="disabledTextInput" disabled>
             </div>
             <div class="mb-3">
                 <p class="form-label-modal disable-label" >Nama Reklame</p>
@@ -47,11 +47,11 @@
             <div class="row">
                 <div class="col-sm-6">
                     <p class="form-label-modal" >Tanggal Pemasangan</p>
-                    <input type="date" class="form-control form-date" name="tgl_pasang" value="{{ $penyewaan -> tgl_pasang }}">
+                    <input type="date" class="form-control form-date" name="tgl_pasang" value="{{ $penyewaan -> getRawOriginal('tgl_pasang') }}">
                 </div>
                 <div class="col-sm-6">
                     <p class="form-label-modal" >Jatuh Tempo</p>
-                    <input type="date"  class="form-control form-date" name="jth_tempo" value="{{ $penyewaan -> tgl_jatuh_tempo }}">
+                    <input type="date"  class="form-control form-date" name="jth_tempo" value="{{ $penyewaan -> getRawOriginal('tgl_jatuh_tempo') }}">
                 </div>
             </div>
         </div>
