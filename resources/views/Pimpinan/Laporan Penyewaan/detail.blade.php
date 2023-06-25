@@ -1,4 +1,4 @@
-@extends('Pimpinan.layout.app', ['title' => 'Laporan Penyewaan'])
+@extends('Pimpinan.Layout.app', ['title' => 'Laporan Penyewaan'])
 
 @section('content')
 
@@ -16,17 +16,37 @@
             </tr>
         </thead>
         <tbody>
+            @foreach($penyewaans as $index => $penyewaan)
             <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
+                <th scope="row">{{ $index++ }}</th>
+                <td>{{ $penyewaan -> nama }}</td>
+                <td>{{ $penyewaan -> perusahaan }}</td>
+                <td>{{ $penyewaan -> tgl_pasang }}</td>
+                <td>{{ $penyewaan -> jenis }}</td>
+                <td>{{ $penyewaan -> reklame -> jalan }}</td>
+                <td>{{ $penyewaan -> reklame ->harga }}</td>
             </tr>
+            @endforeach
         </tbody>
     </table>
 </div>
 
+@endsection
+
+@section('datatable')
+<script>
+    $(document).ready( function () {
+        $('#tableLaporan').DataTable({
+            scrollX: true,
+            "dom": 'frtp',
+            language: { search: '', searchPlaceholder: "Search...",
+                paginate: {
+                    next: ">",
+                    previous: "<"
+                } },
+            responsive: true,
+        });
+
+    });
+</script>
 @endsection
