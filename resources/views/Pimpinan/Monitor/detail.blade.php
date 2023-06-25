@@ -35,17 +35,17 @@
                 <tr>
                     <td class="text-black" >ID Sewa Reklame</td>
                     <td>:</td>
-                    <td class="text-light-blue" >test</td>
+                    <td class="text-light-blue" >{{ $penyewaan->id }}</td>
                 </tr>
                 <tr>
                     <td class="text-black" >Nama Reklame</td>
                     <td>:</td>
-                    <td class="text-light-blue" >test</td>
+                    <td class="text-light-blue" >{{ $penyewaan->reklame->nama }}</td>
                 </tr>
                 <tr>
                     <td class="text-black" >Lokasi Reklame</td>
                     <td>:</td>
-                    <td class="text-light-blue" >test</td>
+                    <td class="text-light-blue" >{{ $penyewaan->reklame->jalan }}</td>
                 </tr>
                 <tr>
                     <td class="text-black" >Jenis Iklan</td>
@@ -55,22 +55,30 @@
                 <tr>
                     <td class="text-black" >Tanggal Pemasangan</td>
                     <td>:</td>
-                    <td class="text-light-blue" >test</td>
+                    <td class="text-light-blue" >{{ $penyewaan->tgl_pasang }}</td>
                 </tr>
                 <tr>
                     <td class="text-black" >Harga Sewa</td>
                     <td>:</td>
-                    <td class="text-light-blue" >test</td>
+                    <td class="text-light-blue" >{{ $penyewaan->reklame->harga }}</td>
                 </tr>
                 <tr>
                     <td class="text-black" >Jatuh Tempo</td>
                     <td>:</td>
-                    <td class="text-light-blue" >test</td>
+                    <td class="text-light-blue" >{{ $penyewaan->tgl_jatuh_tempo }}</td>
                 </tr>
                 <tr>
                     <td class="text-black" >Status</td>
                     <td>:</td>
-                    <td class="text-light-blue" >test</td>
+                    <td class="text-light-blue" >
+                    @if ($penyewaan->status() == 1)
+                    Sedang Disewa
+                    @elseif ($penyewaan->status() == 2)
+                    Mendekati Jatuh Tempo
+                    @else
+                    Melebihi Jatuh Tempo
+                    @endif
+                    </td>
                 </tr>
             </table>
         </div>
@@ -82,12 +90,12 @@
                 <tr>
                     <td class="text-black" >Nama Perusahaan</td>
                     <td>:</td>
-                    <td class="text-light-blue" >test</td>
+                    <td class="text-light-blue" >{{ $penyewaan->perusahaan }}</td>
                 </tr>
                 <tr>
                     <td class="text-black" >PIC Perusahaan</td>
                     <td>:</td>
-                    <td class="text-light-blue" >test</td>
+                    <td class="text-light-blue" >{{ $penyewaan->nama }}</td>
                 </tr>
                 <tr>
                     <td class="text-black" >Alamat Perusahaan</td>

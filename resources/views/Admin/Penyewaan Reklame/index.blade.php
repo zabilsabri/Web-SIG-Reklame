@@ -11,11 +11,11 @@
             <th scope="col">Jenis Iklan</th>
             <th scope="col">Tanggal Pemasangan</th>
             <th scope="col">Jatuh Tempo</th>
-            <th scope="col">Harga Sewa</th>
+            <th width="10%" scope="col">Harga Sewa</th>
             <th scope="col">Perusahaan Penyewa</th>
             <th scope="col">PIC Perusahaan Penyewa</th>
-            <th scope="col">Status</th>
-            <th width="13%" scope="col">Aksi</th>
+            <th width="20%" scope="col">Status</th>
+            <th width="10%" scope="col">Aksi</th>
         </tr>
     </thead>
 </table>
@@ -38,16 +38,20 @@
                                 <div class="btn-group">
                                     <form action="" id="formAddSewaReklame" method="POST">
                                     <select class="selectpicker" id="id_reklame" onchange="pilih_reklame()" data-live-search="true">
-                                        <option value="">Pilih Reklame</option>
-                                        @foreach($reklames as $reklame)
-                                        <option data-tokens="{{ $reklame -> id }}" value="{{ $reklame -> id }}">{{ $reklame -> nama }} ({{ $reklame -> id }})</option>
+                                        <option value="" >Pilih Reklame</option>
+                                        @foreach($data as $reklame)
+                                            @forelse($reklame -> penyewaan as $status)
+                                            @if($loop->last)
+                                                @if($status -> status() == 0)
+                                                <option data-tokens="{{ $reklame -> id }}" value="{{ $reklame -> id }}">{{ $reklame -> nama }} ({{ $reklame -> id }})</option>
+                                                @endif
+                                            @endif
+                                            @empty
+                                            <option data-tokens="{{ $reklame -> id }}" value="{{ $reklame -> id }}">{{ $reklame -> nama }} ({{ $reklame -> id }})</option>
+                                            @endforelse
                                         @endforeach
                                     </select>
                                 </div>
-                            </div>
-                            <div class="col-sm-auto">
-                                <p class="form-label-modal disable-label" >Status Reklame</p>
-                                <input type="text" id="status" class="form-control" disabled>
                             </div>
                         </div>
                     </div>
@@ -137,7 +141,7 @@
                 data: 'tgl_jatuh_tempo',
                 name: 'tgl_jatuh_tempo'
             },{
-                data: 'reklame.harga',
+                data: 'total_harga',
                 name: 'harga'
             },{
                 data: 'perusahaan',
@@ -146,12 +150,15 @@
                 data: 'nama',
                 name: 'nama'
             },{
-                data: 'id',
+                data: 'status',
                 name: 'status'
             },{
                 data: 'aksi',
                 name: 'aksi'
-            }]
+            }],
+            "columnDefs": [
+                { "width": "100px", "targets": 9 }
+            ]
             });
         $('div.sw-reklame-add').html('<button type="button" class="btn btn-primary float-start" data-bs-toggle="modal" data-bs-target="#tambahSewaReklameModal">+ Tambah Sewa Reklame</button>');
     });
@@ -166,7 +173,6 @@
         datatype: "json",
         success: function(response){
             if(response.statusWeb == 'success'){
-                $('#status').val(response.reklame.status);
                 $('#nama').val(response.reklame.nama);
                 $('#lattitude-rek-sw').val(response.reklame.latitude);
                 $('#longitude-rek-sw').val(response.reklame.longitude);
@@ -196,9 +202,10 @@
                 success: function (response) {
                     if(response.status == 'success'){
                         $('#tambahSewaReklameModal').modal('hide');
-                        $('#formAddSewaReklame')[0].reset();
-                        $('#tableSewaReklame').DataTable().ajax.reload();
-                        Swal.fire("Done!", "Data Penyewaan Reklame Berhasil Ditambahkan", "success");
+                        Swal.fire("Done!", "Data Penyewaan Reklame Berhasil Ditambahkan. Tekan OK Untuk Memperbarui Halaman.", "success")
+                        .then(function(){
+                            location.reload();
+                        });
                     }
                 },
                 error: function (response) {
@@ -228,8 +235,11 @@ $(document).ready(function(){
                 method: 'DELETE',
                 success: function (response) {
                 if(response.status == 'success'){
-                    $('#tableSewaReklame').DataTable().ajax.reload();
-                    Swal.fire("Done!", "Data Penyewaan Reklame Berhasil Dihapus", "success");
+                    $('#tambahSewaReklameModal').modal('hide');
+                    Swal.fire("Done!", "Data Penyewaan Reklame Berhasil Ditambahkan. Tekan OK Untuk Memperbarui Halaman.", "success")
+                    .then(function(){
+                        location.reload();
+                    });
                 }
                 },
                 error: function (response) {

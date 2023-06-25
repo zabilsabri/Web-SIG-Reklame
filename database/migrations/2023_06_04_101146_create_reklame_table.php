@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('nama');
             $table->bigInteger('harga');
-            $table->string('status');
             $table->string('tinggi');
             $table->string('luas');
             $table->string('jalan');

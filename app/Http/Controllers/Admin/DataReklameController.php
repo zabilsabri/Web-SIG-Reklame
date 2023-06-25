@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Reklame;
+use App\Models\Penyewaan;
 use DataTables;
 
 class DataReklameController extends Controller
@@ -16,11 +17,14 @@ class DataReklameController extends Controller
 
     public function json()
     {
-        $reklames = Reklame::get();
+        $reklames = Reklame::with('penyewaan')->get();
         return DataTables::of($reklames)
             ->addIndexColumn()
             ->addColumn('detail', function($reklames){
                 return view('Admin.layout.Table Button.reklame2')->with('data', $reklames);
+            })
+            ->addColumn('status', function($reklames){
+                return view('Admin.layout.Table Button.status')->with('data', $reklames);
             })
             ->addColumn('aksi', function($reklames){
                 return view('Admin.layout.Table Button.reklame')->with('data', $reklames);
@@ -40,7 +44,6 @@ class DataReklameController extends Controller
     public function store(Request $request)
     {
         $reklame = new Reklame();
-        $reklame->status = $request->status;
         $reklame->nama = $request->nama;
         $reklame->jalan = $request->jalan;
         $reklame->latitude = $request->lattitude;

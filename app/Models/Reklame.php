@@ -10,7 +10,7 @@ class Reklame extends Model
     use HasFactory;
 
     public function penyewaan(){
-    	return $this->hasMany('app\Models\Penyewaan');
+    	return $this->hasMany('App\Models\Penyewaan');
     }
 
     public function setHargaAttribute($value)
@@ -21,7 +21,7 @@ class Reklame extends Model
     public function getHargaAttribute($value)
     {
         $money_format = number_format($value);
-        return "Rp " . $money_format;
+        return "Rp " . $money_format . " / bulan";
     }
 
 }

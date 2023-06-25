@@ -58,16 +58,16 @@
                 <li class="{{ Route::is('home.admin') ? 'active' : '' }}">
                     <a href="{{ Route('home.admin') }}"><i class="fa fa-home" aria-hidden="true"> </i> <span class="sb-text" style="margin-left:10px;">Home</span> </a>
                 </li>
-                <li class="{{ Route::is('data-reklame.admin') ? 'active' : '' }}">
+                <li class="{{ Route::is('data-reklame.admin') || Route::is('data-reklame-edit.admin')? 'active' : '' }}">
                     <a href="{{ Route('data-reklame.admin') }}"> <i class="fa fa-files-o" aria-hidden="true"> </i> <span class="sb-text" style="margin-left:10px;">Data Reklame</span> </a>
                 </li>
-                <li class="{{ Route::is('reklame.admin') ? 'active' : '' }}">
+                <li class="{{ Route::is('reklame.admin') || Route::is('reklame-edit.admin') ? 'active' : '' }}">
                     <a href="{{ Route('reklame.admin') }}"> <i class="fa fa-window-maximize" aria-hidden="true"> </i> <span class="sb-text" style="margin-left:10px;">Penyewaan Reklame</span> </a>
                 </li>
-                <li class="{{ Route::is('akun.admin') ? 'active' : '' }}">
+                <li class="{{ Route::is('akun.admin') || Route::is('akun-detail.admin') ? 'active' : '' }}">
                     <a href="{{ Route('akun.admin') }}"> <i class="fa fa-user-circle" aria-hidden="true"> </i> <span class="sb-text" style="margin-left:10px;">Pengaturan Akun</span> </a>
                 </li>
-                <li class="{{ Route::is('laporan.admin') ? 'active' : '' }}">
+                <li class="{{ Route::is('laporan.admin') || Route::is('laporan-detail.admin') ? 'active' : '' }}">
                     <a href="{{ Route('laporan.admin') }}"> <i class="fa fa-folder" aria-hidden="true"></i> <span class="sb-text" style="margin-left:10px;">Laporan Penyewaan</span> </a>
                 </li>
                 <li class="mt-auto">
@@ -128,25 +128,6 @@
 </script>
 
 @stack('script')
-
-<script>
-    const ctx = document.getElementById('myChart');
-    const labels = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
-
-    new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: labels,
-            datasets: [{
-                label: 'Penyewaan Reklame',
-                data: [65, 59, 80, 81, 56, 55, 40, 80, 81, 56, 55, 40],
-                fill: false,
-                borderColor: 'rgb(46, 80, 166)',
-                tension: 0.5
-            }]
-        },
-    });
-</script>
 
 <script>
     $('#test').selectpicker();

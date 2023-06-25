@@ -87,11 +87,6 @@
             <div class="row">
                 <div class="btn-group">
                     <form action="" method="POST" id="formReklame">
-                    <select class="selectpicker mb-3">
-                        <option value="">Pilih Status Reklame</option>
-                        <option value="Tersedia">Tersedia</option>
-                        <option value="Tidak Tersedia">Tidak Tersedia</option>
-                    </select>
                 </div>
                 <div class="col-sm-6">
                     <div class="mb-3">
@@ -226,7 +221,6 @@ $(document).ready(function(){
 $(document).ready(function(){
     $(document).on('click', '#add_reklame', function(e){
         e.preventDefault();
-        let status = $('.selectpicker').val();
         let nama = $('#nama-add').val();
         let jalan = $('#jalan-add').val();
         let lattitude = $('#lattitude-add').val();
@@ -241,7 +235,7 @@ $(document).ready(function(){
             method: 'POST',
             url:"{{ route('data-reklame-tambah.admin') }}",
             dataType: 'json',
-            data:{nama:nama, jalan:jalan, status:status, lattitude:lattitude, longitude:longitude, tinggi:tinggi, luas:luas, lama:lama, harga:harga,_token:_token},
+            data:{nama:nama, jalan:jalan, lattitude:lattitude, longitude:longitude, tinggi:tinggi, luas:luas, lama:lama, harga:harga,_token:_token},
             success: function (response) {
                 if(response.status == 'success'){
                     $('#tambahReklameModal').modal('hide');

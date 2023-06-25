@@ -111,7 +111,6 @@
 </script>
 
 <script>
-    $(document).ready(function() {
         $('#tableMonitorReklame').DataTable({
             scrollX: true,
             "dom": '<"btn-sr">frtp',
@@ -124,6 +123,7 @@
                 }
             },
             responsive: true,
+            order: [[ 1, "asc" ]],
 
         });
 
@@ -133,9 +133,19 @@
 
         $("#tableMonitorReklame_filter.dataTables_filter").append($("#categoryFilterStatus"));
 
-        $("#categoryFilterStatus").on('change', function(e) {
+$("#categoryFilterStatus").on('change', function (e) {
             table.column(4).search(this.value).draw();
         });
+
+        table.on('order.dt search.dt', function () {
+            let i = 1;
+
+            table.cells(null, 0, { search: 'applied', order: 'applied' }).every(function (cell) {
+                this.data(i++);
+            });
+        }).draw();
+
+    // });
 
     });
 </script>
@@ -154,14 +164,13 @@
                 }
             },
             responsive: true,
-
         });
 
     });
 </script>
 
 <script>
-    $("#menu-toggle").click(function(e) {
+$("#menu-toggle").click(function(e) {
         e.preventDefault();
         $("#side-container").toggleClass("toggled");
     });

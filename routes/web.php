@@ -61,7 +61,7 @@ Route::group(['prefix' => '', 'namespace' => 'App\Http\Controllers\Admin', 'midd
             //Edit
             Route::get('/edit/{id}', 'AkunController@edit')->name('akun-edit.admin');
             Route::put('/process-edit/{id}', 'AkunController@editProcess')->name('akun-edit-process.admin');
-            
+
         });
 
         Route::group(['prefix' => 'Laporan-Penyewaan'], function () {
@@ -88,7 +88,7 @@ Route::group(['prefix' => '', 'namespace' => 'App\Http\Controllers\Pimpinan', 'm
 
         Route::group(['prefix' => 'Monitor-Reklame'], function () {
             Route::get('/', 'MonitorController@index')->name('monitor.pimpinan');
-            Route::get('/detail', 'MonitorController@detail')->name('monitor-detail.pimpinan');
+            Route::get('/detail/{id}', 'MonitorController@detail')->name('monitor-detail.pimpinan');
         });
 
         Route::group(['prefix' => 'Laporan-Penyewaan'], function () {

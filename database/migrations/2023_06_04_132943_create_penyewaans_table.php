@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('jenis');
             $table->date('tgl_pasang');
             $table->date('tgl_jatuh_tempo');
+            $table->bigInteger('total_harga'); // Berapa banyak yang akan dibayar tergantung dari lama pemasangan ( / bulan )
             $table->timestamps();
 
             $table->foreign('reklame_id')->references('id')->on('reklames');
