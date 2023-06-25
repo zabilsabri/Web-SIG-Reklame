@@ -4,9 +4,9 @@
 
 @section('content')
 <h3 class="title-blue" >Selamat Datang</h3>
-<p class="text-blue text-center" >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam mollis, augue malesuada porttitor sodales, augue ante venenatis mi, at tincidunt nunc magna quis nulla. Curabitur vestibulum nibh orci. Curabitur aliquet diam in dolor scelerisque, sed sollicitudin nulla finibus. Praesent a placerat erat, vel varius mauris. Praesent tincidunt augue ultricies faucibus sollicitudin. Morbi ut sapien nec mauris tempus cursus suscipit vitae ante. Etiam vulputate sapien sit amet tellus vulputate sollicitudin. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque quis lacinia sem.</p>
+<p class="text-blue text-center" id="home-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam mollis, augue malesuada porttitor sodales, augue ante venenatis mi, at tincidunt nunc magna quis nulla. Curabitur vestibulum nibh orci. Curabitur aliquet diam in dolor scelerisque, sed sollicitudin nulla finibus. Praesent a placerat erat, vel varius mauris. Praesent tincidunt augue ultricies faucibus sollicitudin. Morbi ut sapien nec mauris tempus cursus suscipit vitae ante. Etiam vulputate sapien sit amet tellus vulputate sollicitudin. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque quis lacinia sem.</p>
 <div class="row mt-5 mb-4">
-    <div class="col-sm-5">
+    <div class="col-sm-5 mt-3">
         <div class="card p-3" style="width: 100%;">
             <ul class="list-group list-group-flush">
                 <li class="list-group-item lgi-title">Jumlah Reklame yang Disewa</li>
@@ -46,7 +46,7 @@
             </ul>
         </div>
     </div>
-    <div class="col-sm-7">
+    <div class="col-sm-7 mt-3">
         <div class="chart-penyewaan-reklame" >
             <canvas id="myChart"></canvas>
         </div>
