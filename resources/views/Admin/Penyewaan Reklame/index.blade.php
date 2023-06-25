@@ -141,7 +141,7 @@
                 data: 'tgl_jatuh_tempo',
                 name: 'tgl_jatuh_tempo'
             },{
-                data: 'reklame.harga',
+                data: 'total_harga',
                 name: 'harga'
             },{
                 data: 'perusahaan',

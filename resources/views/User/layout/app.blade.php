@@ -68,7 +68,7 @@
     <div class="container">
         <div class="row">
             <div id="wrapper">
-                <p class="breadcrump-page text-end mb-5">{{ $title }} | <span class="breadcrump-role">Admin</span></p>
+                <p class="breadcrump-page text-end mb-5">{{ $title }} | <span class="breadcrump-role">User</span></p>
                 <section>
                     @yield('content')
                 </section>

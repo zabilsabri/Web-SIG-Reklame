@@ -8,6 +8,7 @@ use App\Models\Reklame;
 use DataTables;
 use App\Models\Penyewaan;
 use DB;
+use Carbon\Carbon;
 
 class SewaReklameController extends Controller
 {
@@ -49,12 +50,28 @@ class SewaReklameController extends Controller
     public function store(Request $request)
     {
         $penyewaan = new Penyewaan();
+        $reklame = Reklame::find($request->id_reklame);
+
         $penyewaan->reklame_id = $request->id_reklame;
         $penyewaan->nama = $request->nama_penyewa;
         $penyewaan->perusahaan = $request->nama_perusahaan;
         $penyewaan->jenis = $request->jenis_iklan;
         $penyewaan->tgl_pasang = $request->tgl_pasang;
         $penyewaan->tgl_jatuh_tempo = $request->jth_tempo;
+
+        $tgl_pasang = Carbon::parse($request->tgl_pasang);
+        $tgl_jatuh_tempo = Carbon::parse($request->jth_tempo);
+
+        $diff = $tgl_pasang->diffInMonths($tgl_jatuh_tempo);
+
+        if($diff == 0){
+            $diff = 1;
+        }
+        
+        $total_harga_sewa = $diff * (int)$reklame -> getRawOriginal('harga');
+
+        $penyewaan->total_harga = $total_harga_sewa;
+
         $penyewaan->save();
 
 
@@ -68,11 +85,27 @@ class SewaReklameController extends Controller
     public function editProcess(Request $request, $id)
     {
         $penyewaan = Penyewaan::find($id);
+        $reklame = Reklame::find($penyewaan->reklame_id);
+
         $penyewaan->nama = $request->nama_penyewa;
         $penyewaan->perusahaan = $request->nama_perusahaan;
         $penyewaan->jenis = $request->jenis_iklan;
         $penyewaan->tgl_pasang = $request->tgl_pasang;
         $penyewaan->tgl_jatuh_tempo = $request->jth_tempo;
+
+        $tgl_pasang = Carbon::parse($request->tgl_pasang);
+        $tgl_jatuh_tempo = Carbon::parse($request->jth_tempo);
+
+        $diff = $tgl_pasang->diffInMonths($tgl_jatuh_tempo);
+
+        if($diff == 0){
+            $diff = 1;
+        }
+        
+        $total_harga_sewa = $diff * (int)$reklame -> getRawOriginal('harga');
+
+        $penyewaan->total_harga = $total_harga_sewa;
+
         $penyewaan->save();
 
         return back();

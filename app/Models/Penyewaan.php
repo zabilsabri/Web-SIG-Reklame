@@ -38,4 +38,10 @@ class Penyewaan extends Model
     public function getTglJatuhTempoAttribute($value){
         return Carbon::parse($value)->format('d/m/Y');
     }
+
+    public function getTotalHargaAttribute($value)
+    {
+        $money_format = number_format($value);
+        return "Rp " . $money_format;
+    }
 }
