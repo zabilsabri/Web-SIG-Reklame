@@ -1,8 +1,14 @@
 @extends('Admin.layout.app', ['title' => 'Data Reklame'])
 <link rel="stylesheet" href="{{ asset('css/Admin/Penyewaan Reklame/sewaReklame.css') }}">
+<link rel="stylesheet" href="{{ asset('css/Layout/map.css') }}">
 
 @section('content')
-<div class="card-border-blue p-5">
+
+<div class="container">
+    <div id="map"></div>
+</div>
+
+<div class="card-border-blue p-5 mb-5">
 <table id="tableReklame" class="table table-striped table-hover">
     <thead>
         <tr class="table-head" >
@@ -149,6 +155,14 @@
 @push('script')
 
 <script>
+
+mapboxgl.accessToken = 'pk.eyJ1IjoiYWRtaW5yZWtsYW1lMjMiLCJhIjoiY2xqZGZoM3gzMDRyazNlbHMyaXE0b2tqMSJ9.71yErR2ww_Ip5OTTVp4nFA';
+var map = new mapboxgl.Map({
+    container: 'map', // container ID
+    style: 'mapbox://styles/mapbox/streets-v11', // style URL
+    center: [119.423790, -5.135399], // starting position [lng, lat]
+    zoom: 9 // starting zoom
+});
 
 $(document).ready( function () {
     $('#tableReklame').DataTable({
