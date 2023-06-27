@@ -21,7 +21,7 @@ class Reklame extends Model
     public function getHargaAttribute($value)
     {
         $money_format = number_format($value);
-        return "Rp " . $money_format;
+        return "Rp " . $money_format . " / bulan";
     }
 
 }

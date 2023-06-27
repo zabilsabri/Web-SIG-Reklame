@@ -12,7 +12,7 @@
 
 <div class="d-flex align-items-center">
   <div class="flex-shrink-0">
-    <a href="{{ route('reklame.admin') }}"><img src="{{ asset('img/back.png') }}" class="img-fluid" alt="back"></a>
+    <a href="{{ route('monitor.pimpinan') }}"><img src="{{ asset('img/back.png') }}" class="img-fluid" alt="back"></a>
   </div>
   <h3 class="title-blue mb-0" >Detail Data Penyewaan</h3>
 </div>

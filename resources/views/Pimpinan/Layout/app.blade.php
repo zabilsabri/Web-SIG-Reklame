@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,56 +14,93 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/css/bootstrap-select.min.css">
     <link rel="stylesheet" href="{{ asset('css/Layout/layoutStyle.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/Layout/datatables.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/Layout/dropdown.css') }}">
 
     <title>{{ $title }}</title>
 </head>
+
 <body>
-<nav class="navbar bg-body-tertiary">
-  <div class="container-fluid">
-    <a class="navbar-brand text-white" href="#">
-      <img src="{{ asset('img/Logo.png') }}" alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
-      <span class="nav-text">
-        SIG REKLAME KECAMATAN KOLAKA
-      </span>
-    </a>
-  </div>
-</nav>
-<div class="container">
-	<div class="row">
-		<div id="wrapper">
-        <!-- Sidebar -->
+    <nav class="navbar bg-body-tertiary fixed-top">
+        <div class="container-fluid">
+            <div class="brand-section d-flex">
+                <div class="hamburger-button">
+                    <input type="checkbox" />
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <a class="navbar-brand text-white d-flex align-items-center" href="#">
+                    <img src="{{ asset('img/Logo.png') }}" alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
+                    <h6 class="nav-text mb-0 ms-3">
+                        SIG REKLAME KECAMATAN KOLAKA
+                    </h6>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <div id="side-container">
+        <div class="side-bg">
+        </div>
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav d-flex flex-column" style="margin-left:0; height: 95%">
                 <li class="sidebar-brand">
-                    <a href="#menu-toggle"  id="menu-toggle" style="margin-top:20px;"> <i class="fa fa-bars " style="font-size:20px !Important;" aria-hidden="true" aria-hidden="true"></i> </a>
+                    <a href="#menu-toggle" id="menu-toggle" style="margin-top:20px;"> <i class="fa fa-bars " style="font-size:20px !Important;" aria-hidden="true" aria-hidden="true"></i> </a>
                 </li>
-                <li class="text-center">
+                <li class="text-center account-section">
                     <div class="text-center">
-                        <img class="sb-img"  src="{{ asset('img/profile-pic.png') }}" alt="">
-                        <p class="username" >user</p>
+                        <img class="sb-img" src="{{ asset('img/profile-pic.png') }}" alt="">
+                        <p class="username">user</p>
                     </div>
                     <hr>
                 </li>
                 <li class="{{ Route::is('home.pimpinan') ? 'active' : '' }}">
-                    <a href="{{ Route('home.pimpinan') }}"><i class="fa fa-home" aria-hidden="true"> </i> <span class="sb-text" style="margin-left:10px;">Home</span>  </a>
+                    <a href="{{ Route('home.pimpinan') }}"><i class="fa fa-home" aria-hidden="true"> </i> <span class="sb-text" style="margin-left:10px;">Home</span> </a>
                 </li>
-                <li class="{{ Route::is('monitor.pimpinan') ? 'active' : '' }}">
+                <li class="{{ Route::is('monitor.pimpinan') || Route::is('monitor-detail.pimpinan') ? 'active' : '' }}">
                     <a href="{{ Route('monitor.pimpinan') }}"> <i class="fa fa-window-maximize" aria-hidden="true"> </i> <span class="sb-text" style="margin-left:10px;">Monitoring Reklame</span> </a>
                 </li>
-                <li class="{{ Route::is('laporan.pimpinan') ? 'active' : '' }}">
+                <li class="{{ Route::is('laporan.pimpinan') || Route::is('laporan-detail.pimpinan') ? 'active' : '' }}">
                     <a href="{{ Route('laporan.pimpinan') }}"> <i class="fa fa-folder" aria-hidden="true"></i> <span class="sb-text" style="margin-left:10px;">Laporan Penyewaan</span> </a>
                 </li>
                 <li class="mt-auto">
-                    <a href="#"> <i class="fa fa-sign-out" aria-hidden="true"></i> <span class="sb-text" style="margin-left:10px;">Keluar</span> </a>
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"> <i class="fa fa-sign-out" aria-hidden="true"></i> <span class="sb-text" style="margin-left:10px;">Keluar</span> </a>
                 </li>
             </ul>
         </div>
-        <p class="breadcrump-page text-end mb-5" >{{ $title }} | <span class="breadcrump-role" >Pimpinan</span></p>
-        <section>
-            @yield('content')
-        </section>
     </div>
-</div>
+
+    <div class="container pt-5 mt-4">
+        <div class="row">
+            <div id="wrapper">
+                <p class="breadcrump-page text-end mb-5">{{ $title }} | <span class="breadcrump-role">Pimpinan</span></p>
+                <section>
+                    @yield('content')
+                </section>
+
+                <!-- Modal Logout -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <div class="text-center mb-3">
+                                    <img src="{{ asset('img/redquestion.png') }}" width="90px" height="90px" alt="">
+                                    <p class="text-black mt-3">Apakah Anda yakin ingin keluar?</p>
+                                </div>
+                                <div class="d-flex justify-content-around">
+                                    <button type="button" class="btn btn-secondary w-25" data-bs-dismiss="modal">Tidak</button>
+                                    <a href="{{ route('logout') }}" type="button" class="btn btn-danger w-25">Ya</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
         <!-- /#sidebar-wrapper -->
 
 </body>
@@ -75,35 +113,20 @@
 
 </html>
 
-<script>
-  const ctx = document.getElementById('myChart');
-  const labels = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
-
-  new Chart(ctx, {
-    type: 'line',
-    data: {
-        labels: labels,
-        datasets: [{
-            label: 'Penyewaan Reklame',
-            data: [65, 59, 80, 81, 56, 55, 40, 80, 81, 56, 55, 40],
-            fill: false,
-            borderColor: 'rgb(46, 80, 166)',
-            tension: 0.5
-      }]
-    },
-  });
-</script>
+@stack('script')
 
 <script>
-    // $(document).ready( function () {
         $('#tableMonitorReklame').DataTable({
             scrollX: true,
             "dom": '<"btn-sr">frtp',
-            language: { search: '', searchPlaceholder: "Search...",
+            language: {
+                search: '',
+                searchPlaceholder: "Search...",
                 paginate: {
                     next: ">",
                     previous: "<"
-                } },
+                }
+            },
             responsive: true,
             order: [[ 1, "asc" ]],
 
@@ -115,7 +138,7 @@
 
         $("#tableMonitorReklame_filter.dataTables_filter").append($("#categoryFilterStatus"));
 
-        $("#categoryFilterStatus").on('change', function (e) {
+$("#categoryFilterStatus").on('change', function (e) {
             table.column(4).search(this.value).draw();
         });
 
@@ -126,30 +149,33 @@
                 this.data(i++);
             });
         }).draw();
-
-    // });
-
 </script>
 
-<script>
-    $(document).ready( function () {
-        $('#tableLaporan').DataTable({
-            scrollX: true,
-            "dom": 'frtp',
-            language: { search: '', searchPlaceholder: "Search...",
-                paginate: {
-                    next: ">",
-                    previous: "<"
-                } },
-            responsive: true,
-        });
-
-    });
-</script>
+@yield('datatable')
 
 <script>
 $("#menu-toggle").click(function(e) {
-    e.preventDefault();
-    $("#wrapper").toggleClass("toggled");
-});
+        e.preventDefault();
+        $("#side-container").toggleClass("toggled");
+    });
+
+    $(".hamburger-button input").click(function(e) {
+        e.stopPropagation();
+        console.log("hamburger clicked");
+        $("#side-container").toggleClass("toggle-sidebar");
+    });
+
+    $(document).on("click", function(a) {
+        if ($(a.target).is(".sidebar-nav") == false &&
+                $(a.target).is("#sidebar-wrapper") == false &&
+                $(a.target).is(".sidebar-nav") == false && 
+                $(a.target).is("div.text-center") === false &&
+                $(a.target).is("li.account-section.text-center") === false &&
+                $(a.target).is("img.sb-img") === false &&
+                $(a.target).is("p.username") === false && 
+                $(a.target).is("li hr") === false) {
+            $(".hamburger-button input").prop('checked', false);
+            $("#side-container").removeClass("toggle-sidebar");
+        }
+    });
 </script>
