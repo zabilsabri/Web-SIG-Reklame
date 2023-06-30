@@ -85,7 +85,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <img src="{{ asset('img/background.png') }}" width="100%" height="200px" alt="peta">
+                            <div id="mapDetail"></div>
                         </div>
                         <div class="col-sm-4">
                             <div class="col-sm-auto mb-3">
@@ -241,16 +241,19 @@ function hideSpinner() {
     $('#spinner').hide();
 }
 
+// Untuk memasukkan mapbox kedalam halaman
 mapboxgl.accessToken = 'pk.eyJ1IjoiYWRtaW5yZWtsYW1lMjMiLCJhIjoiY2xqZGZoM3gzMDRyazNlbHMyaXE0b2tqMSJ9.71yErR2ww_Ip5OTTVp4nFA';
 var map = new mapboxgl.Map({
     container: 'map', // container ID
     style: 'mapbox://styles/mapbox/streets-v11', // style URL
-    center: [119.423790, -5.135399], // starting position [lng, lat]
-    zoom: 9 // starting zoom
+    center: [121.673138, -4.036445], // posisi awal map (Kolaka) [lng, lat]
+    zoom: 11 // starting zoom
 });
 
+// Untuk mengambil data dari database dan mengubahnya menjadi dalam bentuk json
 var reklames = {!! json_encode($reklames) !!}
 
+// Untuk menambahkan marker ke dalam map
 reklames.forEach(function (location) {
     var marker = new mapboxgl.Marker()
         .setLngLat([location.longitude, location.latitude])
@@ -269,6 +272,7 @@ reklames.forEach(function (location) {
         
 });
 
+// Untuk mengambil data dari database dalam bentuk json dan memasukkannya ke dalam kolom tabel
 $(document).ready( function () {
     $('#tableReklame').DataTable({
         ajax: "{{ route('data-reklame-json.admin') }}",
@@ -308,6 +312,7 @@ $(document).ready( function () {
     $('div.btn-sr').html('<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tambahReklameModal">+ Tambah Data</button>');
 });
 
+// Untuk menghapus data dari tabel
 $(document).ready(function(){
     $(document).on('click', '#btn-hapus-reklame', function(e){
         var id = $(this).data('id');
@@ -339,6 +344,7 @@ $(document).ready(function(){
     })
 })
 
+// Untuk menambahkan data pada tabel
 $(document).ready(function(){
     $(document).on('click', '#add_reklame', function(e){
         e.preventDefault();
@@ -375,11 +381,13 @@ $(document).ready(function(){
     })
 })
 
+// untuk membuka detail reklame pada tabel
 $(document).ready(function(){
     $(document).on('click', '#detail-reklame', function(e){
         e.preventDefault();
         hideSpinner();
         var id = $(this).data('id');
+        mapboxgl.accessToken = 'pk.eyJ1IjoiYWRtaW5yZWtsYW1lMjMiLCJhIjoiY2xqZGZoM3gzMDRyazNlbHMyaXE0b2tqMSJ9.71yErR2ww_Ip5OTTVp4nFA';
 
         $.ajax({
             method: 'GET',
@@ -390,6 +398,15 @@ $(document).ready(function(){
             },
             success: function (response) {
                 if(response.statusWeb == 'success'){
+                    var mapDetail = new mapboxgl.Map({
+                        container: 'mapDetail', // container ID
+                        style: 'mapbox://styles/mapbox/streets-v11', // style URL
+                        center: [response.reklame.longitude, response.reklame.latitude], // starting position [lng, lat]
+                        zoom: 16 // starting zoom
+                    });
+                    var marker = new mapboxgl.Marker()
+                    .setLngLat([response.reklame.longitude, response.reklame.latitude])
+                    .addTo(mapDetail);
                     $('#nama').val(response.reklame.nama);
                     $('#latitude').val(response.reklame.latitude);
                     $('#longitude').val(response.reklame.longitude);
@@ -411,6 +428,7 @@ $(document).ready(function(){
     })
 })
 
+// Untuk mengubah format uang pada add reklame
 $("input[data-type='currency']").on({
     keyup: function() {
       formatCurrency($(this));
@@ -420,12 +438,12 @@ $("input[data-type='currency']").on({
     }
 });
 
-
+// Untuk mengubah format uang pada add reklame
 function formatNumber(n) {
   return n.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",")
 }
 
-
+// Untuk mengubah format uang pada add reklame
 function formatCurrency(input, blur) {
   var input_val = input.val();
   

@@ -1,5 +1,6 @@
 @extends('Admin.layout.app', ['title' => 'Edit Data Reklame'])
 <link rel="stylesheet" href="{{ asset('css/Admin/Penyewaan Reklame/sewaReklame.css') }}">
+<link rel="stylesheet" href="{{ asset('css/Layout/map.css') }}">
 
 @section('content')
 
@@ -63,7 +64,7 @@
             </div>
         </div>
         <div class="col-sm-6">
-            <img src="{{ asset('img/background.png') }}" width="100%" height="350px" alt="foto">
+            <div id="mapEdit"></div>
         </div>
     </div>
     <div class="text-center mt-5">
@@ -72,7 +73,25 @@
     </div>
 </div>
 
+@endsection
+
+@push('script')
+
 <script>
+
+var reklames = {!! json_encode($reklame) !!}
+
+mapboxgl.accessToken = 'pk.eyJ1IjoiYWRtaW5yZWtsYW1lMjMiLCJhIjoiY2xqZGZoM3gzMDRyazNlbHMyaXE0b2tqMSJ9.71yErR2ww_Ip5OTTVp4nFA';
+var map = new mapboxgl.Map({
+    container: 'mapEdit', // container ID
+    style: 'mapbox://styles/mapbox/streets-v11', // style URL
+    center: [reklames.longitude, reklames.latitude], // starting position [lng, lat]
+    zoom: 17 // starting zoom
+});
+
+var marker = new mapboxgl.Marker()
+    .setLngLat([reklames.longitude, reklames.latitude])
+    .addTo(map);
 
 $("input[data-type='currency']").on({
     keyup: function() {
@@ -127,4 +146,4 @@ function formatCurrency(input, blur) {
 
 </script>
 
-@endsection
+@endpush

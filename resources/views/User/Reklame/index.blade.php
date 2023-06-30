@@ -1,7 +1,23 @@
 @extends('User.layout.app', ['title' => 'Penyewaan Reklame'])
 <link rel="stylesheet" href="{{ asset('css/Layout/dropdown.css') }}">
+<link rel="stylesheet" href="{{ asset('css/Layout/map.css') }}">
+
+<style>
+    .modal-detail-map td{
+        text-align: left !important;
+    }
+
+    .modal-detail-title-map{
+        width: 180px;
+    }
+</style>
 
 @section('content')
+
+<div class="container">
+    <div id="map"></div>
+</div>
+
 <table id="tableInfoReklame" class="table table-striped table-hover">
     <thead>
         <tr class="table-head" >
@@ -66,4 +82,75 @@
         @endforeach
     </tbody>
 </table>
+
+<!-- Modal Map Detail -->
+<div class="modal fade" id="reklameMapDetailModal" tabindex="-1" aria-labelledby="reklameMapDetailModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="reklameMapDetailModalLabel">Detail Reklame</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div id="foto-reklame-map"></div>
+        <table class="modal-detail-map m-3">
+            <tr>
+                <td class="modal-detail-title-map">Nama</td>
+                <td>:</td>
+                <td id="nama-reklame-map"></td>
+            </tr>
+            <tr>
+                <td class="modal-detail-title-map">Lokasi</td>
+                <td>:</td>
+                <td id="lokasi-reklame-map"></td>
+            </tr>
+            <tr>
+                <td class="modal-detail-title-map">Lama Pemasangan</td>
+                <td>:</td>
+                <td id="lama-reklame-map"></td>
+            </tr>
+            <tr>
+                <td class="modal-detail-title-map">Harga Sewa</td>
+                <td>:</td>
+                <td id="harga-reklame-map"></td>
+            </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// Untuk memasukkan mapbox kedalam halaman
+mapboxgl.accessToken = 'pk.eyJ1IjoiYWRtaW5yZWtsYW1lMjMiLCJhIjoiY2xqZGZoM3gzMDRyazNlbHMyaXE0b2tqMSJ9.71yErR2ww_Ip5OTTVp4nFA';
+var map = new mapboxgl.Map({
+    container: 'map', // container ID
+    style: 'mapbox://styles/mapbox/streets-v11', // style URL
+    center: [121.673138, -4.036445], // Posisi awal map (Kolaka) [lng, lat]
+    zoom: 11 // starting zoom
+});
+
+// Untuk mengambil data dari database dan mengubahnya menjadi dalam bentuk json
+var reklames = {!! json_encode($reklames) !!}
+
+// Untuk menambahkan marker ke dalam map
+reklames.forEach(function (location) {
+    var marker = new mapboxgl.Marker()
+        .setLngLat([location.longitude, location.latitude])
+        .addTo(map);
+        marker.getElement().addEventListener('click', function(e) {
+            var baseUrl = '{{ url('/') }}';
+            var imageUrl = baseUrl + '/img/background.png';
+            var listItem = $('<img src="' + imageUrl + '" width="100%" height="250px" alt="foto">');
+            $('#foto-reklame-map').html(listItem);
+            $('#nama-reklame-map').html(location.nama);
+            $('#lokasi-reklame-map').html(location.jalan);
+            $('#lama-reklame-map').html(location.lama);
+            $('#harga-reklame-map').html(location.harga);
+            $('#reklameMapDetailModal').modal('show');
+        });
+        
+});
+</script>
+
 @endsection
