@@ -17,6 +17,12 @@ Route::group(['prefix' => '', 'namespace' => 'App\Http\Controllers\Auth'], funct
 
     Route::get('/login', 'LoginController@index')->name('login');
     Route::post('/loginProcess', 'LoginController@authenticate')->name('login.post');
+
+    Route::get('/email-recovery', 'LoginController@emailRecIndex')->name('email-recovery');
+    Route::post('/email-recovery-process', 'LoginController@re_pass')->name('email-recovery.post');
+    Route::get('/reset-password/{token}', 'LoginController@showResetPasswordForm')->name('reset-password.get');
+    Route::post('/reset-password', 'LoginController@submitResetPasswordForm')->name('reset-password.post');
+    
     Route::get('/logout', 'LoginController@logout')->name('logout');
 
 });
