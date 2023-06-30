@@ -12,7 +12,9 @@ class DataReklameController extends Controller
 {
     public function index()
     {
-        return view('Admin.Data Reklame.index');
+        $reklames = Reklame::all();
+        return view('Admin.Data Reklame.index')
+            ->with(compact('reklames'));
     }
 
     public function json()

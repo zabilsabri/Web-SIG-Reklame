@@ -235,8 +235,7 @@ $(document).ready(function(){
                 method: 'DELETE',
                 success: function (response) {
                 if(response.status == 'success'){
-                    $('#tambahSewaReklameModal').modal('hide');
-                    Swal.fire("Done!", "Data Penyewaan Reklame Berhasil Ditambahkan. Tekan OK Untuk Memperbarui Halaman.", "success")
+                    Swal.fire("Done!", "Data Penyewaan Reklame Berhasil Dihapus. Tekan OK Untuk Memperbarui Halaman.", "success")
                     .then(function(){
                         location.reload();
                     });

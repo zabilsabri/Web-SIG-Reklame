@@ -2,7 +2,43 @@
 <link rel="stylesheet" href="{{ asset('css/Admin/Penyewaan Reklame/sewaReklame.css') }}">
 <link rel="stylesheet" href="{{ asset('css/Layout/map.css') }}">
 
+<style>
+    #spinner-backdrop {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9998;
+    }
+
+    .modal-detail-map td{
+        text-align: left !important;
+    }
+
+    .modal-detail-title-map{
+        width: 180px;
+    }
+
+    #spinner {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 55%;
+        z-index: 9999;
+    }
+
+</style>
+
 @section('content')
+
+<div id="spinner-backdrop"></div>
+
+<div id="spinner" class="spinner-border text-dark" role="status">
+    <span class="visually-hidden">Loading...</span>
+</div>
 
 <div class="container">
     <div id="map"></div>
@@ -81,6 +117,43 @@
 </table>
 </div>
 
+<!-- Modal Map Detail -->
+<div class="modal fade" id="reklameMapDetailModal" tabindex="-1" aria-labelledby="reklameMapDetailModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="reklameMapDetailModalLabel">Detail Reklame</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div id="foto-reklame-map"></div>
+        <table class="modal-detail-map m-3">
+            <tr>
+                <td class="modal-detail-title-map">Nama</td>
+                <td>:</td>
+                <td id="nama-reklame-map"></td>
+            </tr>
+            <tr>
+                <td class="modal-detail-title-map">Lokasi</td>
+                <td>:</td>
+                <td id="lokasi-reklame-map"></td>
+            </tr>
+            <tr>
+                <td class="modal-detail-title-map">Lama Pemasangan</td>
+                <td>:</td>
+                <td id="lama-reklame-map"></td>
+            </tr>
+            <tr>
+                <td class="modal-detail-title-map">Harga Sewa</td>
+                <td>:</td>
+                <td id="harga-reklame-map"></td>
+            </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <div class="modal fade" id="tambahReklameModal" tabindex="-1" aria-labelledby="tambahReklameModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-xl">
@@ -156,12 +229,44 @@
 
 <script>
 
+// Fungsi untuk menampilkan spinner
+function showSpinner() {
+    $('#spinner-backdrop').show();
+    $('#spinner').show();
+}
+
+// Fungsi untuk menyembunyikan spinner
+function hideSpinner() {
+    $('#spinner-backdrop').hide();
+    $('#spinner').hide();
+}
+
 mapboxgl.accessToken = 'pk.eyJ1IjoiYWRtaW5yZWtsYW1lMjMiLCJhIjoiY2xqZGZoM3gzMDRyazNlbHMyaXE0b2tqMSJ9.71yErR2ww_Ip5OTTVp4nFA';
 var map = new mapboxgl.Map({
     container: 'map', // container ID
     style: 'mapbox://styles/mapbox/streets-v11', // style URL
     center: [119.423790, -5.135399], // starting position [lng, lat]
     zoom: 9 // starting zoom
+});
+
+var reklames = {!! json_encode($reklames) !!}
+
+reklames.forEach(function (location) {
+    var marker = new mapboxgl.Marker()
+        .setLngLat([location.longitude, location.latitude])
+        .addTo(map);
+        marker.getElement().addEventListener('click', function(e) {
+            var baseUrl = '{{ url('/') }}';
+            var imageUrl = baseUrl + '/img/background.png';
+            var listItem = $('<img src="' + imageUrl + '" width="100%" height="250px" alt="foto">');
+            $('#foto-reklame-map').html(listItem);
+            $('#nama-reklame-map').html(location.nama);
+            $('#lokasi-reklame-map').html(location.jalan);
+            $('#lama-reklame-map').html(location.lama);
+            $('#harga-reklame-map').html(location.harga);
+            $('#reklameMapDetailModal').modal('show');
+        });
+        
 });
 
 $(document).ready( function () {
@@ -219,8 +324,10 @@ $(document).ready(function(){
                 method: 'DELETE',
                 success: function (response) {
                 if(response.status == 'success'){
-                    $('#tableReklame').DataTable().ajax.reload();
-                    Swal.fire("Done!", "Data Reklame Berhasil Dihapus", "success");
+                    Swal.fire("Done!", "Data Penyewaan Reklame Berhasil Dihapus. Tekan OK Untuk Memperbarui Halaman.", "success")
+                    .then(function(){
+                        location.reload();
+                    });
                 }
                 },
                 error: function (response) {
@@ -253,9 +360,10 @@ $(document).ready(function(){
             success: function (response) {
                 if(response.status == 'success'){
                     $('#tambahReklameModal').modal('hide');
-                    $('#formReklame')[0].reset();
-                    $('#tableReklame').DataTable().ajax.reload();
-                    Swal.fire("Done!", "Data Reklame Berhasil Ditambahkan", "success");
+                    Swal.fire("Done!", "Data Reklame Berhasil Ditambahkan. Tekan OK Untuk Memperbarui Halaman.", "success")
+                    .then(function(){
+                        location.reload();
+                    });
                 }
             },
             error: function (response) {
@@ -270,15 +378,18 @@ $(document).ready(function(){
 $(document).ready(function(){
     $(document).on('click', '#detail-reklame', function(e){
         e.preventDefault();
+        hideSpinner();
         var id = $(this).data('id');
 
         $.ajax({
             method: 'GET',
             url:'data-reklame/json-detail/'+id,
             dataType: 'json',
+            beforeSend: function() {
+                showSpinner(); // Tampilkan spinner sebelum permintaan data dimulai
+            },
             success: function (response) {
                 if(response.statusWeb == 'success'){
-                    $('#detailReklame').modal('show');
                     $('#nama').val(response.reklame.nama);
                     $('#latitude').val(response.reklame.latitude);
                     $('#longitude').val(response.reklame.longitude);
@@ -287,11 +398,14 @@ $(document).ready(function(){
                     $('#tgl_pasang').val(response.reklame.tgl_pasang);
                     $('#jth_tempo').val(response.reklame.jth_tempo);
                     $('#jenis_iklan').val(response.reklame.jenis_iklan);
+                    $('#detailReklame').modal('show');
+                    hideSpinner();
                 }
             },
             error: function (response) {
                 var errors = response.responseJSON;
                 alert(errors);
+                hideSpinner();
             }
         })
     })
