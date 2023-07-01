@@ -8,6 +8,12 @@
     <div class="col-sm-6 p-5 align-self-center">
         <h5 class="login-title">Log In</h5>
         <p class="login-desc">Mohon masukkan username/email dan password Anda</p>
+        @if($message = Session::get('failed'))
+            <div class="alert alert-danger alert-dismissible fade show w-100" role="alert">
+                <strong> {{$message}} </strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
         <form action="{{ route('login.post') }}" method="POST">
             @csrf
             <div class="form-floating mb-3 w-75">

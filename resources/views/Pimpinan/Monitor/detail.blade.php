@@ -25,7 +25,7 @@
             <div id="mapDetail"></div>
         </div>
         <div class="reklame-pic mb-4">
-            <img src="{{ asset('temp_file/foto_reklame/' . $penyewaan->reklame->foto) }}" onerror="this.onerror=null;this.src='{{ asset('style/img/avatar/avatar-1.png') }}';" class="img-fluid" alt="profile-pic">
+            <img src="{{ asset('temp_file/foto_reklame/' . $penyewaan->reklame->foto) }}" onerror="this.onerror=null;this.src='{{ asset('img\background.png') }}';" class="img-fluid" alt="profile-pic">
         </div>
     </div>
     <div class="col-sm-4">

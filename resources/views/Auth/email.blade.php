@@ -8,6 +8,14 @@
     <div class="col-sm-6 p-5 align-self-center">
         <h5 class="login-title">Email Recovery</h5>
         <p class="login-desc">Mohon masukkan email yang Anda gunakan, untuk dikirimkan link recovery.</p>
+        @if ($errors->any())
+            @foreach ($errors->all() as $v)
+                <div class="alert alert-danger alert-dismissible fade show w-100" role="alert">
+                    <strong> {{$v}} </strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endforeach
+        @endif
         <form action="{{ route('email-recovery.post') }}" method="POST">
             @csrf
             <div class="form-floating mb-3 w-75">

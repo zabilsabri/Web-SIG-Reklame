@@ -170,22 +170,22 @@
                 <div class="col-sm-6">
                     <div class="mb-3">
                         <p class="form-label-modal text-light-blue" >Nama Reklame</p>
-                        <input type="text" class="form-control input-border-blue" name="nama" id="nama-add">
+                        <input type="text" class="form-control input-border-blue" name="nama" id="nama-add" required>
                     </div>
                     <div class="mb-3">
                         <p class="form-label-modal text-light-blue" >Lokasi Jalan Reklame</p>
-                        <input type="text" class="form-control input-border-blue" name="jalan" id="jalan-add">
+                        <input type="text" class="form-control input-border-blue" name="jalan" id="jalan-add" required>
                     </div>
                     <div class="mb-3 p-3 bg-light-blue">
                         <p class="form-label-modal text-black mb-3" >Titik Lokasi Reklame</p>
                         <div class="row">
                             <div class="col-sm-6">
                                 <p class="form-label-modal text-light-blue" >Lattitude</p>
-                                <input type="text" class="form-control input-border-blue" name="lattitude" id="lattitude-add">
+                                <input type="text" class="form-control input-border-blue" name="lattitude" id="lattitude-add" required>
                             </div>
                             <div class="col-sm-6">
                                 <p class="form-label-modal text-light-blue" >Longitude</p>
-                                <input type="text" class="form-control input-border-blue" name="longitude" id="longitude-add">
+                                <input type="text" class="form-control input-border-blue" name="longitude" id="longitude-add" required>
                             </div>
                         </div>
                     </div>
@@ -195,26 +195,26 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <p class="form-label-modal text-light-blue" >Tinggi Reklame</p>
-                                <input type="text" class="form-control input-border-blue" name="tinggi" id="tinggi-add">
+                                <input type="text" class="form-control input-border-blue" name="tinggi" id="tinggi-add" required>
                             </div>
                             <div class="col-sm-6">
                                 <p class="form-label-modal text-light-blue" >Luas Reklame</p>
-                                <input type="text" class="form-control input-border-blue" name="luas" id="luas-add">
+                                <input type="text" class="form-control input-border-blue" name="luas" id="luas-add" required>
                             </div>
                         </div>
                     </div>
                     <div class="mb-3">
                         <p class="form-label-modal text-light-blue" >Lama Pemasangan</p>
-                        <input type="text" class="form-control input-border-blue" name="lama" id="lama-add">
+                        <input type="text" class="form-control input-border-blue" name="lama" id="lama-add" required>
                     </div>
                     <div class="mb-3">
                         <p class="form-label-modal text-light-blue" >Harga Sewa</p>
-                        <input type="text" class="form-control input-border-blue" name="harga" id="harga-add" pattern="^\Rp.\d{1,3}(,\d{3})*(\.\d+)?Rp." data-type="currency" placeholder="">
+                        <input type="text" class="form-control input-border-blue" name="harga" id="harga-add" pattern="^\Rp.\d{1,3}(,\d{3})*(\.\d+)?Rp." data-type="currency" placeholder="" required>
                         <input id="reklame-token-add" name="_token" type="hidden" value="{{csrf_token()}}">
                     </div>
                     <div class="mb-3">
                         <label for="formFile" class="form-label text-light-blue">Foto Reklame</label>
-                        <input class="form-control" type="file" name="foto_reklame" id="foto_reklame">
+                        <input class="form-control" type="file" name="foto_reklame" id="foto_reklame" required>
                     </div>
                 </div>
             </div>            
@@ -408,11 +408,17 @@ $(document).ready(function(){
                     $('#nama').val(response.reklame.nama);
                     $('#latitude').val(response.reklame.latitude);
                     $('#longitude').val(response.reklame.longitude);
-                    $('#status').val(response.reklame.status);
+                    $('#status').val(response.status);
                     $('#harga').val(response.reklame.harga);
-                    $('#tgl_pasang').val(response.reklame.tgl_pasang);
-                    $('#jth_tempo').val(response.reklame.jth_tempo);
-                    $('#jenis_iklan').val(response.reklame.jenis_iklan);
+                    if(response.penyewaan != null){
+                        $('#tgl_pasang').val(response.penyewaan.tgl_pasang);
+                        $('#jth_tempo').val(response.penyewaan.tgl_jatuh_tempo);
+                        $('#jenis_iklan').val(response.penyewaan.jenis);
+                    } else {
+                        $('#tgl_pasang').val("-");
+                        $('#jth_tempo').val("-");
+                        $('#jenis_iklan').val("-");
+                    }
                     $('#detailReklame').modal('show');
                     hideSpinner();
                 }

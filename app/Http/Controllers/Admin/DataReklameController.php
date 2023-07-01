@@ -36,11 +36,33 @@ class DataReklameController extends Controller
 
     public function jsonDetail($id)
     {
+        $now = date('Y-m-d');
+
         $reklames = Reklame::find($id);
-        return response()->json([
-            'statusWeb' => 'success',
-            'reklame' => $reklames
-        ]);
+        $penyewaan = Penyewaan::where('reklame_id', $id)->latest()->first();
+
+        if(!empty($penyewaan)){
+            if($now >= $penyewaan->getRawOriginal('tgl_jatuh_tempo')){
+                return response()->json([
+                    'statusWeb' => 'success',
+                    'reklame' => $reklames,
+                    'status' => 'Tersedia'
+                ]);
+            } else {
+                return response()->json([
+                    'statusWeb' => 'success',
+                    'reklame' => $reklames,
+                    'penyewaan' => $penyewaan,
+                    'status' => 'Tidak Tersedia'
+                ]);
+            }
+        } else {
+            return response()->json([
+                'statusWeb' => 'success',
+                'reklame' => $reklames,
+                'status' => 'Tersedia'
+            ]);
+        }
     }
 
     public function store(Request $request)
