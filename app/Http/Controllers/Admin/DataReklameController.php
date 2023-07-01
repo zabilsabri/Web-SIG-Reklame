@@ -46,6 +46,7 @@ class DataReklameController extends Controller
     public function store(Request $request)
     {
         $reklame = new Reklame();
+
         $reklame->nama = $request->nama;
         $reklame->jalan = $request->jalan;
         $reklame->latitude = $request->lattitude;
@@ -54,6 +55,12 @@ class DataReklameController extends Controller
         $reklame->luas = $request->luas;
         $reklame->harga = $request->harga;
         $reklame->lama = $request->lama;
+
+        $nama_file = time(). '.' . $request->foto_reklame->extension();
+        $request->foto_reklame->move(public_path('temp_file/foto_reklame/'), $nama_file);
+
+        $reklame->foto = $nama_file;
+
         $reklame->save();
 
         return response()->json([

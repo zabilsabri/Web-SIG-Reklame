@@ -154,7 +154,7 @@
   </div>
 </div>
 
-
+<!-- Modal Tambah Data Reklame -->
 <div class="modal fade" id="tambahReklameModal" tabindex="-1" aria-labelledby="tambahReklameModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-xl">
     <div class="modal-content">
@@ -165,27 +165,27 @@
         <div class="modal-body">
             <div class="row">
                 <div class="btn-group">
-                    <form action="" method="POST" id="formReklame">
+                    <form action="" method="POST" id="formReklame" enctype="multipart/form-data">
                 </div>
                 <div class="col-sm-6">
                     <div class="mb-3">
                         <p class="form-label-modal text-light-blue" >Nama Reklame</p>
-                        <input type="text" class="form-control input-border-blue" id="nama-add">
+                        <input type="text" class="form-control input-border-blue" name="nama" id="nama-add">
                     </div>
                     <div class="mb-3">
                         <p class="form-label-modal text-light-blue" >Lokasi Jalan Reklame</p>
-                        <input type="text" class="form-control input-border-blue" id="jalan-add">
+                        <input type="text" class="form-control input-border-blue" name="jalan" id="jalan-add">
                     </div>
                     <div class="mb-3 p-3 bg-light-blue">
                         <p class="form-label-modal text-black mb-3" >Titik Lokasi Reklame</p>
                         <div class="row">
                             <div class="col-sm-6">
                                 <p class="form-label-modal text-light-blue" >Lattitude</p>
-                                <input type="text" class="form-control input-border-blue" id="lattitude-add">
+                                <input type="text" class="form-control input-border-blue" name="lattitude" id="lattitude-add">
                             </div>
                             <div class="col-sm-6">
                                 <p class="form-label-modal text-light-blue" >Longitude</p>
-                                <input type="text" class="form-control input-border-blue" id="longitude-add">
+                                <input type="text" class="form-control input-border-blue" name="longitude" id="longitude-add">
                             </div>
                         </div>
                     </div>
@@ -195,28 +195,32 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <p class="form-label-modal text-light-blue" >Tinggi Reklame</p>
-                                <input type="text" class="form-control input-border-blue" id="tinggi-add">
+                                <input type="text" class="form-control input-border-blue" name="tinggi" id="tinggi-add">
                             </div>
                             <div class="col-sm-6">
                                 <p class="form-label-modal text-light-blue" >Luas Reklame</p>
-                                <input type="text" class="form-control input-border-blue" id="luas-add">
+                                <input type="text" class="form-control input-border-blue" name="luas" id="luas-add">
                             </div>
                         </div>
                     </div>
                     <div class="mb-3">
                         <p class="form-label-modal text-light-blue" >Lama Pemasangan</p>
-                        <input type="text" class="form-control input-border-blue" id="lama-add">
+                        <input type="text" class="form-control input-border-blue" name="lama" id="lama-add">
                     </div>
                     <div class="mb-3">
                         <p class="form-label-modal text-light-blue" >Harga Sewa</p>
-                        <input type="text" class="form-control input-border-blue" id="harga-add" pattern="^\Rp.\d{1,3}(,\d{3})*(\.\d+)?Rp." data-type="currency" placeholder="">
+                        <input type="text" class="form-control input-border-blue" name="harga" id="harga-add" pattern="^\Rp.\d{1,3}(,\d{3})*(\.\d+)?Rp." data-type="currency" placeholder="">
                         <input id="reklame-token-add" name="_token" type="hidden" value="{{csrf_token()}}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="formFile" class="form-label text-light-blue">Foto Reklame</label>
+                        <input class="form-control" type="file" name="foto_reklame" id="foto_reklame">
                     </div>
                 </div>
             </div>            
         </div>
         <div class="modal-footer">
-            <button type="button" id="add_reklame" class="btn btn-primary">Simpan</button>
+            <button type="submit" id="add_reklame" class="btn btn-primary">Simpan</button>
         </div>
         </form>
     </div>
@@ -260,7 +264,7 @@ reklames.forEach(function (location) {
         .addTo(map);
         marker.getElement().addEventListener('click', function(e) {
             var baseUrl = '{{ url('/') }}';
-            var imageUrl = baseUrl + '/img/background.png';
+            var imageUrl = baseUrl + '/temp_file/foto_reklame/' + location.foto;
             var listItem = $('<img src="' + imageUrl + '" width="100%" height="250px" alt="foto">');
             $('#foto-reklame-map').html(listItem);
             $('#nama-reklame-map').html(location.nama);
@@ -346,23 +350,17 @@ $(document).ready(function(){
 
 // Untuk menambahkan data pada tabel
 $(document).ready(function(){
-    $(document).on('click', '#add_reklame', function(e){
+    $(document).on('submit', '#formReklame', function(e){
         e.preventDefault();
-        let nama = $('#nama-add').val();
-        let jalan = $('#jalan-add').val();
-        let lattitude = $('#lattitude-add').val();
-        let longitude = $('#longitude-add').val();
-        let tinggi = $('#tinggi-add').val();
-        let luas = $('#luas-add').val();
-        let lama = $('#lama-add').val();
-        let harga = $('#harga-add').val();
-        let _token = $('#reklame-token-add').val();
+        
+        var formData = new FormData(this);
 
         $.ajax({
             method: 'POST',
             url:"{{ route('data-reklame-tambah.admin') }}",
-            dataType: 'json',
-            data:{nama:nama, jalan:jalan, lattitude:lattitude, longitude:longitude, tinggi:tinggi, luas:luas, lama:lama, harga:harga,_token:_token},
+            data: formData,
+            processData: false,
+            contentType: false,
             success: function (response) {
                 if(response.status == 'success'){
                     $('#tambahReklameModal').modal('hide');
