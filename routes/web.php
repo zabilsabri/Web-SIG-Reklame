@@ -66,6 +66,7 @@ Route::group(['prefix' => '', 'namespace' => 'App\Http\Controllers\Admin', 'midd
 
             //Edit
             Route::get('/edit/{id}', 'AkunController@edit')->name('akun-edit.admin');
+            Route::put('update-profile-pic/{id}', 'AkunController@updateProfilePic')->name('change-profile-picture');
             Route::put('/process-edit/{id}', 'AkunController@editProcess')->name('akun-edit-process.admin');
 
         });

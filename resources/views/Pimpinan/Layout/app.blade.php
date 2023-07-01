@@ -53,7 +53,7 @@
                 </li>
                 <li class="text-center account-section">
                     <div class="text-center">
-                        <img class="sb-img" src="{{ asset('img/profile-pic.png') }}" alt="">
+                    <img class="sb-img rounded-circle" src="{{ asset('temp_file/profile/' . Auth::user()->foto) }}" onerror="this.onerror=null;this.src='{{ asset('img/PP.png') }}';" alt="">
                         <p class="username">user</p>
                     </div>
                     <hr>

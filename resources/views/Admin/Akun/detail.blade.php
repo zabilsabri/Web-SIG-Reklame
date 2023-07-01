@@ -9,7 +9,7 @@
 @endif
 
 <div class="profile-pic text-center mb-3">
-    <img src="{{ asset('img/PP.png') }}" width="150px" height="auto" class="rounded-circle" alt="profile-pic">
+<img class="rounded-circle" src="{{ asset('temp_file/profile/' . Auth::user()->foto) }}" width="150px" onerror="this.onerror=null;this.src='{{ asset('img/PP.png') }}';" alt="">
 </div>
 <div class="row">
     <div class="col-sm-6">

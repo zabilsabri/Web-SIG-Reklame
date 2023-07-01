@@ -10,6 +10,10 @@ body {
     border-left-width: 15px;
 }
 
+.sb-img{
+    width: 150px;
+}
+
 .text-blue {
     color: #2e50a6;
     font-family: "Nunito";

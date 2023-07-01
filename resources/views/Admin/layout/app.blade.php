@@ -52,7 +52,7 @@
                 </li>
                 <li class="account-section text-center">
                     <div class="text-center">
-                        <img class="sb-img" src="{{ asset('img/profile-pic.png') }}" alt="">
+                        <img class="sb-img rounded-circle" src="{{ asset('temp_file/profile/' . Auth::user()->foto) }}" onerror="this.onerror=null;this.src='{{ asset('img/PP.png') }}';" alt="">
                         <p class="username">{{ Auth::user()->nama }}</p>
                     </div>
                     <hr>
@@ -66,7 +66,7 @@
                 <li class="{{ Route::is('reklame.admin') || Route::is('reklame-edit.admin') ? 'active' : '' }}">
                     <a href="{{ Route('reklame.admin') }}"> <i class="fa fa-window-maximize" aria-hidden="true"> </i> <span class="sb-text" style="margin-left:10px;">Penyewaan Reklame</span> </a>
                 </li>
-                <li class="{{ Route::is('akun.admin') || Route::is('akun-detail.admin') ? 'active' : '' }}">
+                <li class="{{ Route::is('akun.admin') || Route::is('akun-detail.admin') || Route::is('akun-edit.admin') ? 'active' : '' }}">
                     <a href="{{ Route('akun.admin') }}"> <i class="fa fa-user-circle" aria-hidden="true"> </i> <span class="sb-text" style="margin-left:10px;">Pengaturan Akun</span> </a>
                 </li>
                 <li class="{{ Route::is('laporan.admin') || Route::is('laporan-detail.admin') ? 'active' : '' }}">
