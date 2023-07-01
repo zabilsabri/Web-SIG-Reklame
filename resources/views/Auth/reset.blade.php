@@ -10,15 +10,15 @@
         <p class="login-desc">Mohon masukkan email yang Anda gunakan, untuk dikirimkan link recovery.</p>
         @if ($errors->any())
             @foreach ($errors->all() as $v)
-                <div class="alert alert-danger alert-dismissible fade show w-100" role="alert">
+                <div class="alert alert-danger alert-dismissible fade show w-75" role="alert">
                     <strong> {{$v}} </strong>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             @endforeach
         @endif
         @if($message = Session::get('failed'))
-            <div class="alert alert-danger alert-dismissible fade show w-100" role="alert">
-                <strong> {{$message}} </strong>
+            <div class="alert alert-danger alert-dismissible fade show w-75" role="alert">
+                <strong> Gagal! </strong> {{$message}}
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         @endif

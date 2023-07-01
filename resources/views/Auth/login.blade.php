@@ -9,9 +9,15 @@
         <h5 class="login-title">Log In</h5>
         <p class="login-desc">Mohon masukkan username/email dan password Anda</p>
         @if($message = Session::get('failed'))
-            <div class="alert alert-danger alert-dismissible fade show w-100" role="alert">
-                <strong> {{$message}} </strong>
+            <div class="alert alert-danger alert-dismissible fade show w-75" role="alert">
+                <strong> Gagal! </strong> {{$message}}
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+        @if($message = Session::get('success'))
+            <div class="alert alert-success alert-dismissible fade show mt-1" role="alert">
+            <strong>Berhasil!</strong> {{$message}}.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         @endif
         <form action="{{ route('login.post') }}" method="POST">

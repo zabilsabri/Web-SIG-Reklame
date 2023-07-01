@@ -13,6 +13,13 @@
   </div>
 </div>
 
+@if($message = Session::get('success'))
+<div class="alert alert-success alert-dismissible fade show mt-1" role="alert">
+  <strong>Berhasil!</strong> {{$message}}.
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+@endif
+
 <div class="card-edit p-5 mt-4 mb-5">
     <div class="row">
         <div class="col-sm-6">

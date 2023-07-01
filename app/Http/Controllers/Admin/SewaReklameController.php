@@ -108,7 +108,7 @@ class SewaReklameController extends Controller
 
         $penyewaan->save();
 
-        return back();
+        return back()->with('success', 'Data Penyewaan Reklame Telah Diedit!');
     }
 
     public function destroy($id)

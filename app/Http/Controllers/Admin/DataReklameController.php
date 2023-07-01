@@ -102,7 +102,7 @@ class DataReklameController extends Controller
         $reklame->lama = $request->lama;
         $reklame->save();
 
-        return back();
+        return back()->with('success', 'Data Reklame Berhasil Diedit!');
     }
 
     public function edit($id)

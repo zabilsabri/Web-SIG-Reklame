@@ -1,6 +1,13 @@
 @extends('Admin.layout.app', ['title' => 'Detail Akun'])
 @section('content')
 
+@if($message = Session::get('success'))
+<div class="alert alert-success alert-dismissible fade show mt-1" role="alert">
+  <strong>Berhasil!</strong> {{$message}}.
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+@endif
+
 <div class="profile-pic text-center mb-3">
     <img src="{{ asset('img/PP.png') }}" width="150px" height="auto" class="rounded-circle" alt="profile-pic">
 </div>

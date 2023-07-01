@@ -81,7 +81,7 @@ class AkunController extends Controller
         if($id == Auth::user()->id){
             return redirect()->route('login')->with('success', 'Data Anda Berhasil Diedit. Silahkan Login Kembali!');
         } else {
-            return redirect()->route('akun-detail.admin', [$user -> id])->with('success', 'Data Berhasil Diedit!');
+            return redirect()->route('akun-detail.admin', [$user -> id])->with('success', 'Data User Telah Diedit!');
         }
     }
 
