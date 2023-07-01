@@ -15,8 +15,8 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         $users = [
-            ['id' => 1, 'nama' => 'Admin', 'email' => 'admin@gmail.com', 'password' => Hash::make('123'), 'alamat' => 'alamat1', 'no_telp' => '123', 'role' => 'Admin'],
-            ['id' => 2, 'nama' => 'Pimpinan', 'email' => 'pimpinan@gmail.com', 'password' => Hash::make('123'), 'alamat' => 'alamat2', 'no_telp' => '234', 'role' => 'Pimpinan'],
+            ['id' => 1, 'nama' => 'Admin', 'email' => 'admreklame23@gmail.com', 'password' => Hash::make('123'), 'alamat' => 'alamat1', 'no_telp' => '123', 'role' => 'Admin'],
+            ['id' => 2, 'nama' => 'Pimpinan', 'email' => 'pmpreklame23@gmail.com', 'password' => Hash::make('123'), 'alamat' => 'alamat2', 'no_telp' => '234', 'role' => 'Pimpinan'],
         ];
 
         foreach ($users as $key => $v) {
