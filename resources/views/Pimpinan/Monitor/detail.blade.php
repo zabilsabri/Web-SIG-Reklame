@@ -1,7 +1,9 @@
 @extends('Pimpinan.Layout.app', ['title' => 'Detail-Monitor-Reklame'])
+<link rel="stylesheet" href="{{ asset('css/Layout/map.css') }}">
+
 
 <style>
-    td{
+    .table-detail td{
         padding-right: 20px;
         padding-bottom: 15px;
         text-align: left !important;
@@ -20,10 +22,10 @@
 <div class="row gap-5">
     <div class="col-sm-6">
         <div class="map mb-4">
-            <img src="{{ asset('img/home(1).png') }}" class="img-fluid" height = 600; alt="reklame picture">
+            <div id="mapDetail"></div>
         </div>
         <div class="reklame-pic mb-4">
-            <img src="{{ asset('img/home(1).png') }}" class="img-fluid" alt="reklame picture">
+            <img src="{{ asset('temp_file/foto_reklame/' . $penyewaan->reklame->foto) }}" onerror="this.onerror=null;this.src='{{ asset('style/img/avatar/avatar-1.png') }}';" class="img-fluid" alt="profile-pic">
         </div>
     </div>
     <div class="col-sm-4">
@@ -31,7 +33,7 @@
             <div class="text-light-blue">
                 <h4>Data Reklame</h4>
             </div>
-            <table>
+            <table class="table-detail">
                 <tr>
                     <td class="text-black" >ID Sewa Reklame</td>
                     <td>:</td>
@@ -86,7 +88,7 @@
         <div class="text-light-blue">
                 <h4>Data Perusahaan</h4>
             </div>
-            <table>
+            <table class="table-detail">
                 <tr>
                     <td class="text-black" >Nama Perusahaan</td>
                     <td>:</td>
@@ -108,3 +110,26 @@
 </div>
 
 @endsection
+
+@push('script')
+
+<script>
+
+var reklames = {!! json_encode($penyewaan->reklame) !!}
+
+mapboxgl.accessToken = 'pk.eyJ1IjoiYWRtaW5yZWtsYW1lMjMiLCJhIjoiY2xqZGZoM3gzMDRyazNlbHMyaXE0b2tqMSJ9.71yErR2ww_Ip5OTTVp4nFA';
+var map = new mapboxgl.Map({
+    container: 'mapDetail', // container ID
+    style: 'mapbox://styles/mapbox/streets-v11', // style URL
+    center: [reklames.longitude, reklames.latitude], // starting position [lng, lat]
+    zoom: 17 // starting zoom
+});
+
+var marker = new mapboxgl.Marker()
+    .setLngLat([reklames.longitude, reklames.latitude])
+    .addTo(map);
+
+
+</script>
+
+@endpush
