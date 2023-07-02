@@ -21,3 +21,11 @@
     border: 1px solid #2E50A6;
     margin-bottom: 10px;
 }
+
+#mapDrag{
+    width: 75%;
+    height: 200px;
+    border-radius: 10px;
+    border: 1px solid #2E50A6;
+    margin-top: 10px;
+}

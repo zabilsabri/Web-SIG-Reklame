@@ -30,6 +30,29 @@
         z-index: 9999;
     }
 
+    .coordinates {
+        background: rgba(0, 0, 0, 0.5);
+        color: #fff;
+        position: absolute;
+        bottom: 40px;
+        left: 10px;
+        padding: 5px 10px;
+        margin: 0;
+        font-size: 11px;
+        line-height: 18px;
+        border-radius: 3px;
+        display: none;
+    }
+
+    .mapDrag {
+        border: 5px solid;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 10px;
+    }
+
 </style>
 
 @section('content')
@@ -181,13 +204,15 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <p class="form-label-modal text-light-blue" >Lattitude</p>
-                                <input type="text" class="form-control input-border-blue" name="lattitude" id="lattitude-add" required>
+                                <input type="text" class="form-control input-border-blue" name="lattitude" onchange="markerChange()" id="lattitude-add" required>
                             </div>
                             <div class="col-sm-6">
                                 <p class="form-label-modal text-light-blue" >Longitude</p>
-                                <input type="text" class="form-control input-border-blue" name="longitude" id="longitude-add" required>
+                                <input type="text" class="form-control input-border-blue" name="longitude" onchange="markerChange()" id="longitude-add" required>
                             </div>
                         </div>
+                        <div id="mapDrag"></div>
+                        <pre id="coordinates" class="coordinates"></pre>
                     </div>
                 </div>
                 <div class="col-sm-6">
@@ -245,8 +270,43 @@ function hideSpinner() {
     $('#spinner').hide();
 }
 
-// Untuk memasukkan mapbox kedalam halaman
 mapboxgl.accessToken = 'pk.eyJ1IjoiYWRtaW5yZWtsYW1lMjMiLCJhIjoiY2xqZGZoM3gzMDRyazNlbHMyaXE0b2tqMSJ9.71yErR2ww_Ip5OTTVp4nFA';
+const coordinates = document.getElementById('coordinates');
+const mapDrag = new mapboxgl.Map({
+    container: 'mapDrag',
+    style: 'mapbox://styles/mapbox/streets-v11',
+    center: [121.673138, -4.036445],
+    zoom: 10
+});
+
+function markerChange() {
+    var latitudeInput = document.getElementById("lattitude-add");
+    var longitudeInput = document.getElementById("longitude-add");
+    
+    var latitude = parseFloat(latitudeInput.value);
+    var longitude = parseFloat(longitudeInput.value);
+    
+    if (!isNaN(latitude) && !isNaN(longitude)) {
+        markerDrag.setLngLat([longitude, latitude]);
+    }
+}
+
+const markerDrag = new mapboxgl.Marker({
+    draggable: true
+})
+    .setLngLat([121.673138, -4.036445])
+    .addTo(mapDrag);
+
+
+function onDragEnd() {
+    const lngLat = markerDrag.getLngLat();
+    $('#lattitude-add').val(lngLat.lat);
+    $('#longitude-add').val(lngLat.lng);
+}
+ 
+markerDrag.on('dragend', onDragEnd);
+
+// Untuk memasukkan mapbox kedalam halaman
 var map = new mapboxgl.Map({
     container: 'map', // container ID
     style: 'mapbox://styles/mapbox/streets-v11', // style URL
