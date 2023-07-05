@@ -1,7 +1,33 @@
 @extends('Admin.layout.app', ['title' => 'Kelola Akun'])
 <link rel="stylesheet" href="{{ asset('css/Admin/Penyewaan Reklame/sewaReklame.css') }}">
 
+<style>
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+    }
+
+    /* Firefox */
+    input[type=number] {
+    -moz-appearance: textfield;
+    }
+</style>
+
 @section('content')
+
+@if ($errors->any())
+    <div class="alert alert-danger alert-dismissible fade show m-5" role="alert">
+            <ul>
+            @foreach ($errors->all() as $error)
+                <li> {{$error}} </li>
+            @endforeach
+            </ul>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+@endif
+
 <table id="tableKelolaAkun" class="table table-striped table-hover">
     <thead>
         <tr class="table-head" >
@@ -21,7 +47,7 @@
   <div class="modal-dialog modal-dialog-centered modal-xl">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="tambahAkunModalLabel">Tambah Data Penyewaan</h1>
+        <h1 class="modal-title fs-5" id="tambahAkunModalLabel">Tambah Data User</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
         <div class="modal-body">
@@ -29,8 +55,9 @@
                 <div class="row">
                     <div class="col-sm-auto">
                         <div class="btn-group">
-                            <select class="selectpicker">
-                                <option selected>Peran</option>
+                            <form action="" id="addUserForm" method="post">
+                            <select class="selectpicker" required>
+                                <option value="" selected>Peran</option>
                                 <option value="Pimpinan">Pimpinan</option>
                                 <option value="Admin">Admin</option>
                             </select>
@@ -40,32 +67,31 @@
             </div>
             <div class="row">
                 <div class="col-sm-6">
-                <form action="" id="addUserForm" method="post">
                     <div class="mb-3">
-                        <p class="form-label-modal" >Nama Reklame</p>
-                        <input type="text" class="form-control input-border-blue" id="nama" name="nama">
+                        <p class="form-label-modal" >Nama</p>
+                        <input type="text" class="form-control input-border-blue" id="nama" name="nama" required>
                     </div>
                     <div class="mb-3">
                         <p class="form-label-modal" >Email</p>
-                        <input type="email" class="form-control input-border-blue" id="email" name="email">
+                        <input type="email" class="form-control input-border-blue" id="email" name="email" required>
                     </div>
                     <div class="mb-3">
                         <p class="form-label-modal" >Alamat</p>
-                        <input type="text" class="form-control input-border-blue" id="alamat" name="alamat">
+                        <input type="text" class="form-control input-border-blue" id="alamat" name="alamat" required>
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="mb-3">
                         <p class="form-label-modal" >Nomor Telpon</p>
-                        <input type="text" class="form-control input-border-blue" id="no_telp" name="no_telp">
+                        <input type="number" class="form-control input-border-blue" id="no_telp" name="no_telp" required>
                     </div>
                     <div class="mb-3">
                         <p class="form-label-modal" >Password</p>
-                        <input type="text" class="form-control input-border-blue" id="password" name="password">
+                        <input type="text" class="form-control input-border-blue" id="password" name="password" required>
                         <input id="signup-token" name="_token" type="hidden" value="{{csrf_token()}}">
                     </div>
                     <div class="text-center mt-4">
-                        <button class="btn btn-primary w-50" id="add_user" type="button">SIMPAN</button>
+                        <button class="btn btn-primary w-50" id="add_user" type="submit">SIMPAN</button>
                     </div>
                 </form>
                 </div>
@@ -78,7 +104,7 @@
 @push('script')
 <script>
     $(document).ready(function(){
-        $(document).on('click', '#add_user', function(e){
+        $(document).on('submit', '#addUserForm', function(e){
             e.preventDefault();
             let role = $('.selectpicker').val();
             let nama = $('#nama').val();
@@ -87,6 +113,7 @@
             let no_telp = $('#no_telp').val();
             let password = $('#password').val();
             let _token = $('#signup-token').val();
+
 
             $.ajax({
                 method: 'POST',
@@ -102,8 +129,12 @@
                     }
                 },
                 error: function (response) {
-                    var errors = response.responseJSON;
-                    alert(errors);
+                    if(response.status === 422){
+                        alert("Password anda minimal 8 karakter dan harus mengandung huruf dan angka");
+                    } else {
+                        var errors = response.responseJSON;
+                        alert(errors);
+                    }
                 }
             })
 

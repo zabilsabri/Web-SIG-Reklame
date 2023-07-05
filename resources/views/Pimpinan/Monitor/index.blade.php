@@ -9,40 +9,59 @@
     <thead>
         <tr class="table-head">
             <th scope="col">No.</th>
-            <th scope="col">Nomor Reklame</th>
+            <th scope="col">Nama Reklame</th>
             <th scope="col">Perusahaan Penyewa</th>
             <th scope="col">Status</th>
             <th scope="col">Detail</th>
         </tr>
     </thead>
     <tbody>
-        @foreach ($penyewaans as $penyewaan)
+        @foreach ($reklames as $reklame)
         <tr>
             <th></th>
-            <td>{{ $penyewaan->reklame->nama }}</td>
-            <td>{{ $penyewaan->perusahaan }}</td>
-            @if ($penyewaan->status() == 1)
+            <td>{{ $reklame->nama }}</td>
             <td>
-                <p class="status-monitor-blue p-2 m-0" >Sedang Disewa</p>
+            @forelse($reklame -> penyewaan as $penyewaanr)
+                @if($loop->last)
+                    {{ $penyewaanr -> perusahaan }}
+                @endif
+            @empty
+                -
+            @endforelse
             </td>
-            <td>
-                <a href="{{ route('monitor-detail.pimpinan', ['id' => $penyewaan->id]) }}"><img src="{{ asset('img/blue i.png') }}" width="25px" alt="blue"></a>
-            </td>
-            @elseif ($penyewaan->status() == 2)
-            <td>
-                <p class="status-monitor-yellow p-2 m-0" ><img class="me-1" src="{{ asset('img/clock yellow.png') }}" alt="">Mendekati Jatuh Tempo</p>
-            </td>
-            <td>
-                <a href="{{ route('monitor-detail.pimpinan', ['id' => $penyewaan->id]) }}"><img src="{{ asset('img/yellow i.png') }}" width="25px" alt="yellow"></a>
-            </td>
-            @else
-            <td>
-                <p class="status-monitor-red p-2 m-0" ><img class="me-1" src="{{ asset('img/danger red.png') }}" alt="">Melebihi Jatuh Tempo</p>
-            </td>
-            <td>
-                <a href="{{ route('monitor-detail.pimpinan', ['id' => $penyewaan->id]) }}"><img src="{{ asset('img/red i.png') }}" width="25px" alt="red"></a>
-            </td>
-            @endif
+            @forelse($reklame -> penyewaan as $penyewaanr)
+                @if($loop->last)
+                    @if ($penyewaanr->status() == 1)
+                        <td>
+                            <p class="status-monitor-blue p-2 m-0" >Sedang Disewa</p>
+                        </td>
+                        <td>
+                            <a href="{{ route('monitor-detail.pimpinan', ['id' => $reklame->id]) }}"><img src="{{ asset('img/blue i.png') }}" width="25px" alt="blue"></a>
+                        </td>
+                    @elseif ($penyewaanr->status() == 2)
+                        <td>
+                            <p class="status-monitor-yellow p-2 m-0" ><img class="me-1" src="{{ asset('img/clock yellow.png') }}" alt="">Mendekati Jatuh Tempo</p>
+                        </td>
+                        <td>
+                            <a href="{{ route('monitor-detail.pimpinan', ['id' => $reklame->id]) }}"><img src="{{ asset('img/yellow i.png') }}" width="25px" alt="yellow"></a>
+                        </td>
+                    @else
+                        <td>
+                            <p class="status-monitor-red p-2 m-0" ><img class="me-1" src="{{ asset('img/danger red.png') }}" alt="">Melebihi Jatuh Tempo</p>
+                        </td>
+                        <td>
+                            <a href="{{ route('monitor-detail.pimpinan', ['id' => $reklame->id]) }}"><img src="{{ asset('img/red i.png') }}" width="25px" alt="red"></a>
+                        </td>
+                        @endif
+                    @endif
+            @empty
+                <td>
+                    <p class="status-monitor-blue p-2 m-0" >Belum Disewa</p>
+                </td>
+                <td>
+                    <a href="{{ route('monitor-detail.pimpinan', ['id' => $reklame->id]) }}"><img src="{{ asset('img/blue i.png') }}" width="25px" alt="blue"></a>
+                </td>
+            @endforelse
         </tr>
         @endforeach
     </tbody>

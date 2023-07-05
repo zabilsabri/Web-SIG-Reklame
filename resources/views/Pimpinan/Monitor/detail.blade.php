@@ -25,7 +25,7 @@
             <div id="mapDetail"></div>
         </div>
         <div class="reklame-pic mb-4">
-            <img src="{{ asset('temp_file/foto_reklame/' . $penyewaan->reklame->foto) }}" onerror="this.onerror=null;this.src='{{ asset('img\background.png') }}';" class="img-fluid" alt="profile-pic">
+            <img src="{{ asset('temp_file/foto_reklame/' . $reklame->foto) }}" onerror="this.onerror=null;this.src='{{ asset('img\background.png') }}';" class="img-fluid" alt="profile-pic">
         </div>
     </div>
     <div class="col-sm-4">
@@ -37,17 +37,17 @@
                 <tr>
                     <td class="text-black" >ID Sewa Reklame</td>
                     <td>:</td>
-                    <td class="text-light-blue" >{{ $penyewaan->id }}</td>
+                    <td class="text-light-blue" >{{ $penyewaan->id ?? '-' }}</td>
                 </tr>
                 <tr>
                     <td class="text-black" >Nama Reklame</td>
                     <td>:</td>
-                    <td class="text-light-blue" >{{ $penyewaan->reklame->nama }}</td>
+                    <td class="text-light-blue" >{{ $reklame->nama }}</td>
                 </tr>
                 <tr>
                     <td class="text-black" >Lokasi Reklame</td>
                     <td>:</td>
-                    <td class="text-light-blue" >{{ $penyewaan->reklame->jalan }}</td>
+                    <td class="text-light-blue" >{{ $reklame->jalan }}</td>
                 </tr>
                 <tr>
                     <td class="text-black" >Jenis Iklan</td>
@@ -57,28 +57,32 @@
                 <tr>
                     <td class="text-black" >Tanggal Pemasangan</td>
                     <td>:</td>
-                    <td class="text-light-blue" >{{ $penyewaan->tgl_pasang }}</td>
+                    <td class="text-light-blue" >{{ $penyewaan->tgl_pasang ?? '-' }}</td>
                 </tr>
                 <tr>
                     <td class="text-black" >Harga Sewa</td>
                     <td>:</td>
-                    <td class="text-light-blue" >{{ $penyewaan->reklame->harga }}</td>
+                    <td class="text-light-blue" >{{ $reklame->harga }}</td>
                 </tr>
                 <tr>
                     <td class="text-black" >Jatuh Tempo</td>
                     <td>:</td>
-                    <td class="text-light-blue" >{{ $penyewaan->tgl_jatuh_tempo }}</td>
+                    <td class="text-light-blue" >{{ $penyewaan->tgl_jatuh_tempo ?? '-' }}</td>
                 </tr>
                 <tr>
                     <td class="text-black" >Status</td>
                     <td>:</td>
                     <td class="text-light-blue" >
-                    @if ($penyewaan->status() == 1)
-                    Sedang Disewa
-                    @elseif ($penyewaan->status() == 2)
-                    Mendekati Jatuh Tempo
+                    @if($penyewaan != null)
+                        @if ($penyewaan->status() == 1)
+                            Sedang Disewa
+                        @elseif ($penyewaan->status() == 2)
+                            Mendekati Jatuh Tempo
+                        @else
+                            Melebihi Jatuh Tempo
+                        @endif
                     @else
-                    Melebihi Jatuh Tempo
+                        Belum Disewa
                     @endif
                     </td>
                 </tr>
@@ -92,17 +96,12 @@
                 <tr>
                     <td class="text-black" >Nama Perusahaan</td>
                     <td>:</td>
-                    <td class="text-light-blue" >{{ $penyewaan->perusahaan }}</td>
+                    <td class="text-light-blue" >{{ $penyewaan->perusahaan ?? '-'}}</td>
                 </tr>
                 <tr>
                     <td class="text-black" >PIC Perusahaan</td>
                     <td>:</td>
-                    <td class="text-light-blue" >{{ $penyewaan->nama }}</td>
-                </tr>
-                <tr>
-                    <td class="text-black" >Alamat Perusahaan</td>
-                    <td>:</td>
-                    <td class="text-light-blue" >test</td>
+                    <td class="text-light-blue" >{{ $penyewaan->nama ?? '-'}}</td>
                 </tr>
             </table>
         </div>
@@ -115,7 +114,7 @@
 
 <script>
 
-var reklames = {!! json_encode($penyewaan->reklame) !!}
+var reklames = {!! json_encode($reklame) !!}
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiYWRtaW5yZWtsYW1lMjMiLCJhIjoiY2xqZGZoM3gzMDRyazNlbHMyaXE0b2tqMSJ9.71yErR2ww_Ip5OTTVp4nFA';
 var map = new mapboxgl.Map({

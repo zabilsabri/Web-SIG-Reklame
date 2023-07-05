@@ -41,24 +41,24 @@
         <div class="col-sm-6">
             <div class="mb-3">
                 <p class="form-label-modal" >Nama Penyewa</p>
-                <input type="text" class="form-control" id="disabledTextInput" name="nama_penyewa" value="{{ $penyewaan -> nama }}">
+                <input type="text" class="form-control" id="disabledTextInput" name="nama_penyewa" value="{{ $penyewaan -> nama }}" required>
             </div>
             <div class="mb-3">
                 <p class="form-label-modal" >Nama Perusahaan</p>
-                <input type="text" class="form-control" id="disabledTextInput" name="nama_perusahaan" value="{{ $penyewaan -> perusahaan }}">
+                <input type="text" class="form-control" id="disabledTextInput" name="nama_perusahaan" value="{{ $penyewaan -> perusahaan }}" required>
             </div>
             <div class="mb-3">
                 <p class="form-label-modal" >Jenis Iklan</p>
-                <input type="text" class="form-control" id="disabledTextInput" name="jenis_iklan" value="{{ $penyewaan -> jenis }}">
+                <input type="text" class="form-control" id="disabledTextInput" name="jenis_iklan" value="{{ $penyewaan -> jenis }}" required>
             </div>
             <div class="row">
                 <div class="col-sm-6">
                     <p class="form-label-modal" >Tanggal Pemasangan</p>
-                    <input type="date" class="form-control form-date" name="tgl_pasang" value="{{ $penyewaan -> getRawOriginal('tgl_pasang') }}">
+                    <input type="date" class="form-control form-date" name="tgl_pasang" value="{{ $penyewaan -> getRawOriginal('tgl_pasang') }}" required>
                 </div>
                 <div class="col-sm-6">
                     <p class="form-label-modal" >Jatuh Tempo</p>
-                    <input type="date"  class="form-control form-date" name="jth_tempo" value="{{ $penyewaan -> getRawOriginal('tgl_jatuh_tempo') }}">
+                    <input type="date"  class="form-control form-date" name="jth_tempo" value="{{ $penyewaan -> getRawOriginal('tgl_jatuh_tempo') }}" required>
                 </div>
             </div>
         </div>

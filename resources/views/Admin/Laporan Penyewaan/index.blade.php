@@ -10,8 +10,8 @@
         <div class="card-body">
             <h5 class="card-title text-blue">Pilih Periode Data Penyewaan</h5>
             <form action="{{ route('laporan-detail.admin')}}" method="GET">
-            <select class="form-select form-select-lg my-3 input-border-blue" name="year" aria-label=".form-select-lg example">
-                <option selected>Periode Data</option>
+            <select class="form-select form-select-lg my-3 input-border-blue" name="year" aria-label=".form-select-lg example" required>
+                <option value="" selected>Periode Data</option>
                 @foreach($res as $re)
                 <option value="{{$re -> year}}">{{$re -> year}}</option>
                 @endforeach

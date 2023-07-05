@@ -71,7 +71,7 @@
 <table id="tableReklame" class="table table-striped table-hover">
     <thead>
         <tr class="table-head" >
-            <th scope="col">ID</th>
+            <th scope="col">No.</th>
             <th scope="col">Nama Reklame</th>
             <th scope="col">Peta Lokasi Reklame</th>
             <th scope="col">Lama Pemasangan</th>
@@ -204,11 +204,11 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <p class="form-label-modal text-light-blue" >Lattitude</p>
-                                <input type="text" class="form-control input-border-blue" name="lattitude" onchange="markerChange()" id="lattitude-add" required>
+                                <input type="text" class="form-control input-border-blue" name="lattitude" value="-4.036445" onchange="markerChange()" id="lattitude-add" required>
                             </div>
                             <div class="col-sm-6">
                                 <p class="form-label-modal text-light-blue" >Longitude</p>
-                                <input type="text" class="form-control input-border-blue" name="longitude" onchange="markerChange()" id="longitude-add" required>
+                                <input type="text" class="form-control input-border-blue" name="longitude" value="121.673138" onchange="markerChange()" id="longitude-add" required>
                             </div>
                         </div>
                         <div id="mapDrag"></div>
@@ -350,7 +350,8 @@ $(document).ready( function () {
         responsive: true,
         columns: [{
             data: 'DT_RowIndex', name: 'DT_RowIndex', searchable: false
-        },{
+        }
+        ,{
             data: 'nama',
             name: 'nama'
         },{

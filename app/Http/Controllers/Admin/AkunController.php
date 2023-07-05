@@ -39,6 +39,14 @@ class AkunController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'password' => [
+                Password::min(8)
+                    ->letters()
+                    ->numbers()
+            ]
+        ]);
+
         $user = new User();
         $user->nama = $request->nama;
         $user->role = $request->role;

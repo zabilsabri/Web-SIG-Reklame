@@ -5,7 +5,7 @@
 <table id="tableSewaReklame" class="table table-striped table-hover">
     <thead>
         <tr class="table-head" >
-            <th scope="col">ID</th>
+            <th scope="col">No.</th>
             <th scope="col">Nama</th>
             <th scope="col">Lokasi</th>
             <th scope="col">Jenis Iklan</th>
@@ -43,11 +43,11 @@
                                             @forelse($reklame -> penyewaan as $status)
                                             @if($loop->last)
                                                 @if($status -> status() == 0)
-                                                <option data-tokens="{{ $reklame -> id }}" value="{{ $reklame -> id }}">{{ $reklame -> nama }} ({{ $reklame -> id }})</option>
+                                                <option data-tokens="{{ $reklame -> id }}" value="{{ $reklame -> id }}">{{ $reklame -> nama }}</option>
                                                 @endif
                                             @endif
                                             @empty
-                                            <option data-tokens="{{ $reklame -> id }}" value="{{ $reklame -> id }}">{{ $reklame -> nama }} ({{ $reklame -> id }})</option>
+                                            <option data-tokens="{{ $reklame -> id }}" value="{{ $reklame -> id }}">{{ $reklame -> nama }}</option>
                                             @endforelse
                                         @endforeach
                                     </select>
@@ -76,25 +76,25 @@
                 <div class="col-sm-6">
                     <div class="mb-3">
                         <p class="form-label-modal" >Nama Penyewa</p>
-                        <input type="text" class="form-control" name="nama_penyewa" id="nama_penyewa">
+                        <input type="text" class="form-control" name="nama_penyewa" id="nama_penyewa" required>
                         <input id="reklame-token-add" name="_token" type="hidden" value="{{csrf_token()}}">
                     </div>
                     <div class="mb-3">
                         <p class="form-label-modal" >Nama Perusahaan</p>
-                        <input type="text" class="form-control" name="penyewa" id="nama_perusahaan">
+                        <input type="text" class="form-control" name="penyewa" id="nama_perusahaan" required>
                     </div>
                     <div class="mb-3">
                         <p class="form-label-modal" >Jenis Iklan</p>
-                        <input type="text" class="form-control" name="penyewa" id="jenis_iklan">
+                        <input type="text" class="form-control" name="penyewa" id="jenis_iklan" required>
                     </div>
                     <div class="row">
                         <div class="col-sm-6">
                             <p class="form-label-modal" >Tanggal Pemasangan</p>
-                            <input type="date" class="form-control form-date" id="tgl_pasang">
+                            <input type="date" class="form-control form-date" id="tgl_pasang" required>
                         </div>
                         <div class="col-sm-6">
                             <p class="form-label-modal" >Jatuh Tempo</p>
-                            <input type="date"  class="form-control form-date" id="jth_tempo">
+                            <input type="date"  class="form-control form-date" id="jth_tempo" required>
                         </div>
                     </div>
                 </div>

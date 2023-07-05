@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Pimpinan;
 
 use App\Http\Controllers\Controller;
+use App\Models\Reklame;
 use App\Models\Penyewaan;
 use Illuminate\Http\Request;
 
@@ -10,14 +11,17 @@ class MonitorController extends Controller
 {
     public function index()
     {
-        $penyewaans = Penyewaan::all();
+        $reklames = Reklame::all();
 
-        return view('Pimpinan.Monitor.index', compact('penyewaans'));
+        return view('Pimpinan.Monitor.index', compact('reklames'));
     }
 
     public function detail($id)
     {
-        $penyewaan = Penyewaan::find($id);
-        return view('Pimpinan.Monitor.detail', compact('penyewaan'));
+        $reklame = Reklame::find($id);
+        $penyewaan = Penyewaan::where('reklame_id', $id)->latest()->first();
+        return view('Pimpinan.Monitor.detail')
+            ->with(compact('reklame'))
+            ->with(compact('penyewaan'));
     }
 }

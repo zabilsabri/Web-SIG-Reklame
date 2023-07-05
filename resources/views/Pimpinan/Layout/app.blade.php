@@ -54,7 +54,7 @@
                 <li class="text-center account-section">
                     <div class="text-center">
                     <img class="sb-img rounded-circle" src="{{ asset('temp_file/profile/' . Auth::user()->foto) }}" onerror="this.onerror=null;this.src='{{ asset('img/PP.png') }}';" alt="">
-                        <p class="username">user</p>
+                        <p class="username">{{ Auth::user()->nama }}</p>
                     </div>
                     <hr>
                 </li>
@@ -134,14 +134,14 @@
 
         });
 
-        $('div.btn-sr').html('<select id="categoryFilterStatus" style="width: auto;" class="form-control special"><option value="">Status (Show All)</option><option value="Belum Disewa">Belum Disewa</option><option value="Sudah Disewa">Sudah Disewa</option></select>');
+        $('div.btn-sr').html('<select id="categoryFilterStatus" style="width: auto;" class="form-control special"><option value="">Status (Show All)</option><option value="Belum Disewa">Belum Disewa</option><option value="Sudah Disewa">Sudah Disewa</option><option value="Mendekati Jatuh Tempo">Mendekati Jatuh Tempo</option><option value="Melebihi Jatuh Tempo">Melebihi Jatuh Tempo</option></select>');
 
         var table = $('#tableMonitorReklame').DataTable();
 
         $("#tableMonitorReklame_filter.dataTables_filter").append($("#categoryFilterStatus"));
 
-$("#categoryFilterStatus").on('change', function (e) {
-            table.column(4).search(this.value).draw();
+        $("#categoryFilterStatus").on('change', function (e) {
+            table.column(3).search(this.value).draw();
         });
 
         table.on('order.dt search.dt', function () {

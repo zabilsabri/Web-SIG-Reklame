@@ -24,4 +24,9 @@ class Reklame extends Model
         return "Rp " . $money_format . " / bulan";
     }
 
+    public function idReklame(){
+        $id = $this->getRawOriginal('id');
+        return "R " . $id;
+    }
+
 }

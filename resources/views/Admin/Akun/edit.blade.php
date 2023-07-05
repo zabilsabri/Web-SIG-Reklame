@@ -65,6 +65,17 @@
 </div>
 @endif
 
+@if ($errors->any())
+    <div class="alert alert-danger alert-dismissible fade show m-5" role="alert">
+            <ul>
+            @foreach ($errors->all() as $error)
+                <li> {{$error}} </li>
+            @endforeach
+            </ul>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+@endif
+
 <div class="profile-pic text-center mb-3">
     <figure class="avatar mr-2 avatar-xxl img-fluid">
     <img src="{{ asset('temp_file/profile/' . $user -> foto) }}" onerror="this.onerror=null;this.src='{{ asset('img/PP.png') }}';" class="rounded-circle" alt="profile-pic">
