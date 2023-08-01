@@ -6,7 +6,7 @@
     <table id="tableLaporan" class="table table-striped table-hover">
         <thead>
             <tr class="table-head" >
-                <th scope="col">ID</th>
+                <th scope="col">No</th>
                 <th scope="col">PIC Perusahaan Penyewa</th>
                 <th scope="col">Perusahaan Penyewa</th>
                 <th scope="col">Tanggal Penyewa</th>
@@ -18,7 +18,7 @@
         <tbody>
             @foreach($penyewaans as $index => $penyewaan)
             <tr>
-                <th scope="row">{{ $index++ }}</th>
+                <th scope="row">{{ $index += 1 }}</th>
                 <td>{{ $penyewaan -> nama }}</td>
                 <td>{{ $penyewaan -> perusahaan }}</td>
                 <td>{{ $penyewaan -> tgl_pasang }}</td>

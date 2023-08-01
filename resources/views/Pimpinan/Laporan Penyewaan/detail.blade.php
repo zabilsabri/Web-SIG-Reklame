@@ -18,7 +18,7 @@
         <tbody>
             @foreach($penyewaans as $index => $penyewaan)
             <tr>
-                <th scope="row">{{ $index++ }}</th>
+                <th scope="row">{{ $index += 1 }}</th>
                 <td>{{ $penyewaan -> nama }}</td>
                 <td>{{ $penyewaan -> perusahaan }}</td>
                 <td>{{ $penyewaan -> tgl_pasang }}</td>

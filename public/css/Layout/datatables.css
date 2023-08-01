@@ -30,10 +30,10 @@ td, th{
     color: #FF9900;
 }
 
-.status-monitor-red{
-    background: #FFDEDE;
+.status-monitor-green{
+    background: #cefca3;
     border-radius: 5px;
-    color: #FF0000; 
+    color: #008011; 
 }
 
 .dataTables_wrapper .dataTables_filter input {
