@@ -71,6 +71,7 @@
             </div>
         </div>
         <div class="col-sm-6">
+            <small class="text-danger">* Anda Dapat Menggeser Pin Untuk Menentukan Lokasi Reklame</small>
             <div id="mapEdit"></div>
             <pre id="coordinates" class="coordinates"></pre>
         </div>

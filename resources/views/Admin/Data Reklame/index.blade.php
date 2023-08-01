@@ -213,6 +213,7 @@
                         </div>
                         <div id="mapDrag"></div>
                         <pre id="coordinates" class="coordinates"></pre>
+                        <small class="text-danger">* Anda Dapat Menggeser Pin Untuk Menentukan Lokasi Reklame</small>
                     </div>
                 </div>
                 <div class="col-sm-6">
