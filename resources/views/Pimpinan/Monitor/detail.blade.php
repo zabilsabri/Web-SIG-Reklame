@@ -52,7 +52,7 @@
                 <tr>
                     <td class="text-black" >Jenis Iklan</td>
                     <td>:</td>
-                    <td class="text-light-blue" >test</td>
+                    <td class="text-light-blue" >{{ $penyewaan -> jenis }}</td>
                 </tr>
                 <tr>
                     <td class="text-black" >Tanggal Pemasangan</td>
@@ -79,7 +79,7 @@
                         @elseif ($penyewaan->status() == 2)
                             Mendekati Jatuh Tempo
                         @else
-                            Melebihi Jatuh Tempo
+                            Selesai
                         @endif
                     @else
                         Belum Disewa
