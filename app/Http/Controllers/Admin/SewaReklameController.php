@@ -20,7 +20,7 @@ class SewaReklameController extends Controller
 
     public function edit($id)
     {
-        $penyewaan = Penyewaan::with('reklame')->first();
+        $penyewaan = Penyewaan::with('reklame')->find($id);
         return view('Admin.Penyewaan Reklame.edit')
             ->with(compact('penyewaan'));
     }
