@@ -135,7 +135,30 @@ var reklames = {!! json_encode($reklames) !!}
 
 // Untuk menambahkan marker ke dalam map
 reklames.forEach(function (location) {
-    var marker = new mapboxgl.Marker()
+    var tanggalSekarang = new Date();
+    
+    if (location.penyewaan.length != 0) {
+        var [hari, bulan, tahun] = location.penyewaan.pop().tgl_jatuh_tempo.split('/');
+        var tanggalBaru = `${bulan}/${hari}/${tahun}`;
+    
+        var tanggalDariDatabase = new Date(tanggalBaru);
+        var selisihWaktu = tanggalDariDatabase - tanggalSekarang;
+        var selisihHari = Math.ceil(selisihWaktu / (24 * 60 * 60 * 1000));
+
+        if(selisihHari < 0){
+        var color = 'green'
+        } else if(selisihHari > 5){
+            var color = 'red'
+        } else{
+            var color = 'yellow'
+        }
+    } else {
+        var color = 'green'
+    }
+
+    var marker = new mapboxgl.Marker({
+        color: color,
+    })
         .setLngLat([location.longitude, location.latitude])
         .addTo(map);
         marker.getElement().addEventListener('click', function(e) {

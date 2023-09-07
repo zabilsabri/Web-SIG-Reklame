@@ -19,10 +19,10 @@ class Penyewaan extends Model
         $now = date('Y-m-d');
         $tgl_jatuh_tempo = $this->getRawOriginal('tgl_jatuh_tempo');
 
-        if ($now <= $tgl_jatuh_tempo) {
+        if ($now < $tgl_jatuh_tempo) {
             $diff = date_diff(date_create($now), date_create($tgl_jatuh_tempo));
             $diff = $diff->format("%a");
-            if ($diff <= 5) {
+            if ($diff < 5) {
                 return 2;
             }
             return 1;
