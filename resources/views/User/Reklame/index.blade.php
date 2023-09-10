@@ -135,7 +135,10 @@ var reklames = {!! json_encode($reklames) !!}
 
 // Untuk menambahkan marker ke dalam map
 reklames.forEach(function (location) {
+
+    console.log(location);
     var tanggalSekarang = new Date();
+    console.log(location.penyewaan.pop());
     
     if (location.penyewaan.length != 0) {
         var [hari, bulan, tahun] = location.penyewaan.pop().tgl_jatuh_tempo.split('/');
@@ -145,7 +148,8 @@ reklames.forEach(function (location) {
         var selisihWaktu = tanggalDariDatabase - tanggalSekarang;
         var selisihHari = Math.ceil(selisihWaktu / (24 * 60 * 60 * 1000));
 
-        if(selisihHari < 0){
+
+        if(selisihHari < 0 || selisihHari == -0){
         var color = 'green'
         } else if(selisihHari > 5){
             var color = 'red'
@@ -155,6 +159,8 @@ reklames.forEach(function (location) {
     } else {
         var color = 'green'
     }
+
+    console.log(selisihHari);
 
     var marker = new mapboxgl.Marker({
         color: color,
