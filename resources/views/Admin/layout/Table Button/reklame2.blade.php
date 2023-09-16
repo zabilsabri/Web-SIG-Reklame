@@ -1,1 +1,1 @@
-<button type="button" class="btn btn-primary" id="detail-reklame" data-id="{{ $data -> id }}"><img src="{{ asset('img/peta.png') }}" alt="icon peta"></button>
+<button type="button" class="btn btn-primary" id="detail-reklame" data-id="{{ $data -> id_reklames }}"><img src="{{ asset('img/peta.png') }}" alt="icon peta"></button>

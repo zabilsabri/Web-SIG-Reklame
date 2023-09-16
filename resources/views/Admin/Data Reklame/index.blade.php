@@ -408,7 +408,7 @@ $(document).ready(function(){
         Swal.fire({
             title: 'Konfirmasi',
             icon: 'question',
-            text: 'Apakah Anda Yakin Ingin Menghapus Data User Ini?',
+            text: 'Apakah Anda Yakin Ingin Menghapus Data Reklame Ini?',
             showConfirmButton: true, 
             showCancelButton: true
         }).then((result) => {
