@@ -398,7 +398,21 @@ $(document).ready( function () {
             { "width": "100px", "targets": 6 }
         ]
     });
-    $('div.btn-sr').html('<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tambahReklameModal">+ Tambah Data</button>');
+    $('div.btn-sr').html('<div style="display:flex; flex-direction: row; justify-content: space-between"><div style="margin-right: 20px" ><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tambahReklameModal">+ Tambah Data</button></div><div><select id="categoryFilterStatus" class="form-control special"><option value="">Status (Show All)</option><option value="Tidak Tersedia">Tidak Tersedia</option><option value="Masih Tersedia">Masih Tersedia</option></select></div></div>');
+  
+    var table = $('#tableReklame').DataTable();
+
+        $("#categoryFilterStatus").on('change', function (e) {
+            table.column(5).search(this.value).draw();
+        });
+
+        table.on('order.dt search.dt', function () {
+            let i = 1;
+
+            table.cells(null, 0, { search: 'applied', order: 'applied' }).every(function (cell) {
+                this.data(i++);
+            });
+        }).draw();
 });
 
 // Untuk menghapus data dari tabel

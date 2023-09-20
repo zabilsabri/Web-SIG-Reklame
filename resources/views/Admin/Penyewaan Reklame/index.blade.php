@@ -160,7 +160,21 @@
                 { "width": "100px", "targets": 9 }
             ]
             });
-        $('div.sw-reklame-add').html('<button type="button" class="btn btn-primary float-start" data-bs-toggle="modal" data-bs-target="#tambahSewaReklameModal">+ Tambah Sewa Reklame</button>');
+        $('div.sw-reklame-add').html('<div style="display:flex; flex-direction: row;"><div style="margin-right: 20px" ><button type="button" class="btn btn-primary float-start" data-bs-toggle="modal" data-bs-target="#tambahSewaReklameModal">+ Tambah Sewa Reklame</button></div><div><select id="categoryFilterStatus" style="width: auto;" class="form-control special"><option value="">Status (Show All)</option><option value="Belum Disewa">Belum Disewa</option><option value="Sedang Disewa">Sedang Disewa</option><option value="Selesai">Selesai</option><option value="Mendekati Jatuh Tempo">Mendekati Jatuh Tempo</option><option value="Melebihi Jatuh Tempo">Melebihi Jatuh Tempo</option></select></div></div>');
+    
+        var table = $('#tableSewaReklame').DataTable();
+
+        $("#categoryFilterStatus").on('change', function (e) {
+            table.column(9).search(this.value).draw();
+        });
+
+        table.on('order.dt search.dt', function () {
+            let i = 1;
+
+            table.cells(null, 0, { search: 'applied', order: 'applied' }).every(function (cell) {
+                this.data(i++);
+            });
+        }).draw();
     });
 </script>
 
