@@ -19,13 +19,7 @@ class DataReklameController extends Controller
 
     public function json()
     {
-        $reklames = Reklame::select('reklames.id as id_reklames', 'reklames.nama', 'reklames.harga', 'reklames.tinggi', 'reklames.luas', 'reklames.jalan', 'reklames.latitude', 'reklames.longitude', 'reklames.foto', 'reklames.lama', 'penyewaans.id as id_penyewaans', 'penyewaans.reklame_id', 'penyewaans.perusahaan', 'penyewaans.jenis', 'penyewaans.tgl_pasang', 'penyewaans.tgl_jatuh_tempo', 'penyewaans.total_harga')
-        ->leftJoin('penyewaans', 'penyewaans.reklame_id', '=', 'reklames.id')
-        ->groupBy('penyewaans.reklame_id')
-        ->orderBy('penyewaans.tgl_jatuh_tempo', 'asc')
-        ->with('penyewaan')
-        ->get();
-
+        $reklames = Reklame::with('penyewaan')->get();
         return DataTables::of($reklames)
             ->addIndexColumn()
             ->addColumn('detail', function($reklames){

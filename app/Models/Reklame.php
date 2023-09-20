@@ -4,14 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Penyewaan;
 
 class Reklame extends Model
 {
     use HasFactory;
 
     public function penyewaan(){
-    	return $this->hasMany(Penyewaan::class, 'reklame_id', 'id_reklames');
+    	return $this->hasMany('App\Models\Penyewaan');
     }
 
     public function setHargaAttribute($value)
