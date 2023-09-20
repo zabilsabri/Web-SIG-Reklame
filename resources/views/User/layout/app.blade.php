@@ -105,6 +105,10 @@
             },
             responsive: true,
             "searching": true,
+             "order": [
+            // Define the default sorting for column 9 in ascending order
+            [9, 'asc']
+        ]
         });
 
         $('div.btn-sr').html('<select id="categoryFilterStatus" style="width: auto;" class="form-control special"><option value="">Status (Show All)</option><option value="Belum Disewa">Belum Disewa</option><option value="Sudah Disewa">Sudah Disewa</option></select>');

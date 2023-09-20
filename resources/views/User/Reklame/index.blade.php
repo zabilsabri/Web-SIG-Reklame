@@ -21,7 +21,7 @@
 <table id="tableInfoReklame" class="table table-striped table-hover">
     <thead>
         <tr class="table-head" >
-            <th scope="col">Nomor Reklame</th>
+            <th scope="col">ID Reklame</th>
             <th scope="col">Nama Reklame</th>
             <th scope="col">Lokasi Reklame</th>
             <th scope="col">Perusahaan Penyewa</th>
@@ -39,7 +39,7 @@
             @forelse($reklame -> penyewaan as $penyewaan)
                 @if($loop->last)
                     @if($penyewaan -> status() == 0)
-                        <th scope="row"> {{ $reklame -> id }} </th>
+                        <th scope="row"> R{{ $reklame -> id }} </th>
                         <td>{{ $reklame -> nama}}</td>
                         <td>{{ $reklame -> jalan }}</td>
                         <td>-</td>
@@ -50,7 +50,7 @@
                         <td>-</td>
                         <td>Belum Disewa</td>
                     @else
-                        <th scope="row"> {{ $reklame -> id }} </th>
+                        <th scope="row"> R{{ $reklame -> id }} </th>
                         <td>{{ $reklame -> nama}}</td>
                         <td>{{ $reklame -> jalan }}</td>
                         <td>{{ $penyewaan -> perusahaan }}</td>
@@ -67,7 +67,7 @@
                     @endif
                 @endif
             @empty
-                <th scope="row"> {{ $reklame -> id }} </th>
+                <th scope="row"> R{{ $reklame -> id }} </th>
                 <td>{{ $reklame -> nama}}</td>
                 <td>{{ $reklame -> jalan }}</td>
                 <td>-</td>
@@ -136,9 +136,7 @@ var reklames = {!! json_encode($reklames) !!}
 // Untuk menambahkan marker ke dalam map
 reklames.forEach(function (location) {
 
-    console.log(location);
     var tanggalSekarang = new Date();
-    console.log(location.penyewaan.pop());
     
     if (location.penyewaan.length != 0) {
         var [hari, bulan, tahun] = location.penyewaan.pop().tgl_jatuh_tempo.split('/');
@@ -147,7 +145,6 @@ reklames.forEach(function (location) {
         var tanggalDariDatabase = new Date(tanggalBaru);
         var selisihWaktu = tanggalDariDatabase - tanggalSekarang;
         var selisihHari = Math.ceil(selisihWaktu / (24 * 60 * 60 * 1000));
-
 
         if(selisihHari < 0 || selisihHari == -0){
         var color = 'green'
@@ -159,8 +156,6 @@ reklames.forEach(function (location) {
     } else {
         var color = 'green'
     }
-
-    console.log(selisihHari);
 
     var marker = new mapboxgl.Marker({
         color: color,
