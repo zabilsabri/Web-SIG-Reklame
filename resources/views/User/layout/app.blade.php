@@ -107,7 +107,7 @@
             "searching": true,
              "order": [
             // Define the default sorting for column 9 in ascending order
-            [9, 'asc']
+            [8, 'asc']
         ]
         });
 
@@ -118,7 +118,7 @@
         $("#tableInfoReklame_filter.dataTables_filter").append($("#categoryFilterStatus"));
 
         $("#categoryFilterStatus").on('change', function(e) {
-            table.column(9).search(this.value).draw();
+            table.column(8).search(this.value).draw();
         });
     });
 </script>

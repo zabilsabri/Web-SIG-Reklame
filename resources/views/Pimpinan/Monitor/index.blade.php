@@ -33,7 +33,7 @@
                 @if($loop->last)
                     @if ($penyewaanr->status() == 1)
                         <td>
-                            <p class="status-monitor-blue p-2 m-0" >Sedang Disewa</p>
+                            <p class="status-monitor-grey p-2 m-0" >Sedang Disewa</p>
                         </td>
                         <td>
                             <a href="{{ route('monitor-detail.pimpinan', ['id' => $reklame->id]) }}"><img src="{{ asset('img/blue i.png') }}" width="25px" alt="blue"></a>

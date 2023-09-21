@@ -2,6 +2,7 @@
 <link rel="stylesheet" href="{{ asset('css/Admin/Penyewaan Reklame/sewaReklame.css') }}">
 
 @section('content')
+<div class="card-border-blue p-5 mb-5">
 <table id="tableSewaReklame" class="table table-striped table-hover">
     <thead>
         <tr class="table-head" >
@@ -19,6 +20,7 @@
         </tr>
     </thead>
 </table>
+</div>
 @endsection
 
 <div class="modal fade" id="tambahSewaReklameModal" tabindex="-1" aria-labelledby="tambahSewaReklameModalLabel" aria-hidden="true">

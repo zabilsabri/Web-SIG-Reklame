@@ -18,6 +18,7 @@
     <div id="map"></div>
 </div>
 
+<div class="card-border-blue p-5 mb-5">
 <table id="tableInfoReklame" class="table table-striped table-hover">
     <thead>
         <tr class="table-head" >
@@ -78,6 +79,7 @@
         @endforeach
     </tbody>
 </table>
+</div>
 
 <!-- Modal Map Detail -->
 <div class="modal fade" id="reklameMapDetailModal" tabindex="-1" aria-labelledby="reklameMapDetailModalLabel" aria-hidden="true">

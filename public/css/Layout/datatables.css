@@ -24,6 +24,12 @@ td, th{
     color: #2E50A6;
 }
 
+.status-monitor-grey{
+    background: #a7a7a7;
+    border-radius: 5px;
+    color: white;
+}
+
 .status-monitor-yellow{
     background: #FFF3D6;
     border-radius: 5px;
