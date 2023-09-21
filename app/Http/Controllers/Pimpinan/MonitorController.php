@@ -11,7 +11,11 @@ class MonitorController extends Controller
 {
     public function index()
     {
-        $reklames = Reklame::all();
+        $reklames = Reklame::
+        orderByRaw(
+            "CAST(SUBSTRING_INDEX(nama, ' ', -1) AS UNSIGNED)"
+        )
+        ->get();
 
         return view('Pimpinan.Monitor.index', compact('reklames'));
     }
