@@ -52,7 +52,7 @@
                 <tr>
                     <td class="text-black" >Jenis Iklan</td>
                     <td>:</td>
-                    <td class="text-light-blue" >{{ $penyewaan -> jenis }}</td>
+                    <td class="text-light-blue" >{{ $penyewaan -> jenis ?? '-' }}</td>
                 </tr>
                 <tr>
                     <td class="text-black" >Tanggal Pemasangan</td>

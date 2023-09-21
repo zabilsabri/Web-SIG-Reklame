@@ -36,7 +36,7 @@
                             <p class="status-monitor-grey p-2 m-0" >Sedang Disewa</p>
                         </td>
                         <td>
-                            <a href="{{ route('monitor-detail.pimpinan', ['id' => $reklame->id]) }}"><img src="{{ asset('img/blue i.png') }}" width="25px" alt="blue"></a>
+                            <a href="{{ route('monitor-detail.pimpinan', ['id' => $reklame->id]) }}"><img src="{{ asset('img/grey i.png') }}" width="25px" alt="blue"></a>
                         </td>
                     @elseif ($penyewaanr->status() == 2)
                         <td>
@@ -50,7 +50,7 @@
                             <p class="status-monitor-green p-2 m-0" ><img class="me-1" src="{{ asset('img/green check.png') }}" width="25px" alt="">Selesai</p>
                         </td>
                         <td>
-                            <a href="{{ route('monitor-detail.pimpinan', ['id' => $reklame->id]) }}"><img src="{{ asset('img/red i.png') }}" width="25px" alt="red"></a>
+                            <a href="{{ route('monitor-detail.pimpinan', ['id' => $reklame->id]) }}"><img src="{{ asset('img/green i.png') }}" width="25px" alt="red"></a>
                         </td>
                         @endif
                     @endif
