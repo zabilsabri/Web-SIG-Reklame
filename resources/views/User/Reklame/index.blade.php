@@ -21,7 +21,6 @@
 <table id="tableInfoReklame" class="table table-striped table-hover">
     <thead>
         <tr class="table-head" >
-            <th scope="col">ID Reklame</th>
             <th scope="col">Nama Reklame</th>
             <th scope="col">Lokasi Reklame</th>
             <th scope="col">Perusahaan Penyewa</th>
@@ -39,7 +38,6 @@
             @forelse($reklame -> penyewaan as $penyewaan)
                 @if($loop->last)
                     @if($penyewaan -> status() == 0)
-                        <th scope="row"> R{{ $reklame -> id }} </th>
                         <td>{{ $reklame -> nama}}</td>
                         <td>{{ $reklame -> jalan }}</td>
                         <td>-</td>
@@ -50,7 +48,6 @@
                         <td>-</td>
                         <td>Belum Disewa</td>
                     @else
-                        <th scope="row"> R{{ $reklame -> id }} </th>
                         <td>{{ $reklame -> nama}}</td>
                         <td>{{ $reklame -> jalan }}</td>
                         <td>{{ $penyewaan -> perusahaan }}</td>
@@ -67,7 +64,6 @@
                     @endif
                 @endif
             @empty
-                <th scope="row"> R{{ $reklame -> id }} </th>
                 <td>{{ $reklame -> nama}}</td>
                 <td>{{ $reklame -> jalan }}</td>
                 <td>-</td>
