@@ -132,7 +132,7 @@
             responsive: true,
         });
 
-        $('div.btn-sr').html('<select id="categoryFilterStatus" style="width: auto;" class="form-control special"><option value="">Status (Show All)</option><option value="Belum Disewa">Belum Disewa</option><option value="Sedang Disewa">Sedang Disewa</option><option value="Selesai">Selesai</option><option value="Mendekati Jatuh Tempo">Mendekati Jatuh Tempo</option></select>');
+        $('div.btn-sr').html('<select id="categoryFilterStatus" style="width: auto;" class="form-control special"><option value="">Status (Show All)</option><option value="Belum Disewa">Belum Disewa</option><option value="Sedang Disewa">Sedang Disewa</option><option value="Mendekati Jatuh Tempo">Mendekati Jatuh Tempo</option></select>');
 
         var table = $('#tableMonitorReklame').DataTable();
 
