@@ -46,7 +46,7 @@
                         <td>-</td>
                         <td>-</td>
                         <td>{{ $reklame -> lama }}</td>
-                        <td>-</td>
+                        <td>{{ $reklame -> harga }}</td>
                         <td>Belum Disewa</td>
                     @else
                         <td>{{ $reklame -> nama}}</td>
@@ -56,7 +56,7 @@
                         <td>{{ $penyewaan -> tgl_pasang }}</td>
                         <td>{{ $penyewaan -> tgl_jatuh_tempo }}</td>
                         <td>{{ $reklame -> lama }}</td>
-                        <td>{{ $penyewaan -> total_harga }}</td>
+                        <td>{{ $reklame -> harga }}</td>
                         @if ( $penyewaan->status() == 1 || $penyewaan->status() == 2)
                         <td>
                             <p class="status-monitor-blue p-2 m-0" >Sudah Disewa</p>
@@ -72,7 +72,7 @@
                 <td>-</td>
                 <td>-</td>
                 <td>{{ $reklame -> lama }}</td>
-                <td>-</td>
+                <td>{{ $reklame -> harga }}</td>
                 <td>Belum Disewa</td>
             @endforelse
         </tr>

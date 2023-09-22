@@ -7,8 +7,9 @@
 @else
 
 @php
-$date = strtotime($data->tgl_jatuh_tempo);
-$reklameYear = date('Y', $date);
+$date = $data->tgl_jatuh_tempo;
+$dateParts = explode("/", $date);
+$reklameYear = $dateParts[2];
 
 $currentDate = new DateTime();
 $thisYear = $currentDate->format("Y");
