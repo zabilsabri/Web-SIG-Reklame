@@ -56,17 +56,17 @@
                     @endphp
                     @if ($reklameYear == $thisYear)
                         <td>
-                            <p class="status-monitor-green p-2 m-0" ><img class="me-1" src="{{ asset('img/green check.png') }}" width="25px" alt="">Selesai</p>
-                        </td>
-                        <td>
-                            <a href="{{ route('monitor-detail.pimpinan', ['id' => $reklame->id]) }}"><img src="{{ asset('img/green i.png') }}" width="25px" alt="green"></a>
-                        </td>
-                    @else
-                        <td>
                             <p class="status-monitor-red p-2 m-0" ><img class="me-1" src="{{ asset('img/danger red.png') }}" width="25px" alt="">Melebihi Jatuh Tempo</p>
                         </td>
                         <td>
                             <a href="{{ route('monitor-detail.pimpinan', ['id' => $reklame->id]) }}"><img src="{{ asset('img/red i.png') }}" width="25px" alt="red"></a>
+                        </td>
+                    @else
+                        <td>
+                            <p class="status-monitor-green p-2 m-0" ><img class="me-1" src="{{ asset('img/green check.png') }}" width="25px" alt="">Selesai</p>
+                        </td>
+                        <td>
+                            <a href="{{ route('monitor-detail.pimpinan', ['id' => $reklame->id]) }}"><img src="{{ asset('img/green i.png') }}" width="25px" alt="green"></a>
                         </td>
                     @endif
                     @endif
