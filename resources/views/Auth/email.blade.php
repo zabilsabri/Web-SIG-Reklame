@@ -16,6 +16,12 @@
                 </div>
             @endforeach
         @endif
+        @if($message = Session::get('success'))
+            <div class="alert alert-success alert-dismissible fade show w-75" role="alert">
+                <strong> Berhasil! </strong> Silahkan Periksa Gmail Anda
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
         <form action="{{ route('email-recovery.post') }}" method="POST">
             @csrf
             <div class="form-floating mb-3 w-75">

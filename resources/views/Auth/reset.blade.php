@@ -7,7 +7,7 @@
     </div>
     <div class="col-sm-6 p-5 align-self-center">
         <h5 class="login-title">Email Recovery</h5>
-        <p class="login-desc">Mohon masukkan email yang Anda gunakan, untuk dikirimkan link recovery.</p>
+        <p class="login-desc">Mohon isi inputan dibawah untuk mengubah password akun anda.</p>
         @if ($errors->any())
             @foreach ($errors->all() as $v)
                 <div class="alert alert-danger alert-dismissible fade show w-75" role="alert">

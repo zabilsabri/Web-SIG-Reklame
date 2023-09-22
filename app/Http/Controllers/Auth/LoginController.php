@@ -31,6 +31,12 @@ class LoginController extends Controller
             'email' => 'required|email|exists:users',
         ]);
 
+        $checkAccount = DB::table('password_reset_tokens')->where('email', $request->email)->first();
+
+        if($checkAccount != null){
+            DB::table('password_reset_tokens')->where('email', $request->email)->delete();
+        }
+
         $token = Str::random(64);
 
         DB::table('password_reset_tokens')->insert([
