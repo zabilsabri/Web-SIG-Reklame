@@ -112,6 +112,7 @@
 
 @push('script')
 
+<!-- Untuk menampilkan data ke dalam datatables (tabel yang digunakan pada web ini) -->
 <script>
     $(document).ready( function () {
         $('#tableSewaReklame').DataTable({
@@ -181,6 +182,7 @@
     });
 </script>
 
+<!-- Untuk membukan modal pada detail reklame -->
 <script>
  function pilih_reklame(){
     var id_reklame = $('#id_reklame').val();
@@ -199,6 +201,7 @@
  }
 </script>
 
+<!-- Kode untuk memasukkan data ke dalam tabel menggunakan AJAX -->
 <script>
     $(document).ready(function(){
         $(document).on('click', '#add_sewa_reklame', function(e){
@@ -235,6 +238,7 @@
     })
 </script>
 
+<!-- Kode untuk menghapus data dari dalam tabel menggunakan AJAX -->
 <script>
 $(document).ready(function(){
     $(document).on('click', '#btn-hapus-sw-reklame', function(e){

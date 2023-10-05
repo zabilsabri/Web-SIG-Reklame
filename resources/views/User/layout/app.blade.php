@@ -90,6 +90,7 @@
 
 </html>
 
+<!-- Untuk memasukkan datatables (tabel yang digunakan untuk web ini) dan dropdown filter ke dalam web -->
 <script>
     $(document).ready(function() {
         $('#tableInfoReklame').DataTable({
@@ -111,18 +112,21 @@
         ]
         });
 
+        // Kode dibawah untuk memasukkan dropdown filter ke dalam tabel
         $('div.btn-sr').html('<select id="categoryFilterStatus" style="width: auto;" class="form-control special"><option value="">Status (Show All)</option><option value="Belum Disewa">Belum Disewa</option><option value="Sudah Disewa">Sudah Disewa</option></select>');
 
         var table = $('#tableInfoReklame').DataTable();
 
         $("#tableInfoReklame_filter.dataTables_filter").append($("#categoryFilterStatus"));
 
+        // Kode untuk melakukan filter (mengecek kolom ke delapan)
         $("#categoryFilterStatus").on('change', function(e) {
             table.column(8).search(this.value).draw();
         });
     });
 </script>
 
+<!-- Untuk responsivitas halaman -->
 <script>
     $("#menu-toggle").click(function(e) {
         e.preventDefault();

@@ -35,6 +35,7 @@
 
 @push('script')
 
+<!-- Untuk menampilkan data ke dalam datatables (tabel yang digunakan pada web ini) -->
 <script>
 $(document).ready( function () {
     $('#tableLaporan').DataTable({

@@ -135,6 +135,7 @@
     $('#test').selectpicker();
 </script>
 
+<!-- Untuk responsivitas halaman -->
 <script>
     $("#menu-toggle").click(function(e) {
         e.preventDefault();

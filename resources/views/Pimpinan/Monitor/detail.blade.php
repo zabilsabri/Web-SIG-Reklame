@@ -114,6 +114,7 @@
 
 <script>
 
+// Untuk memasukkan lokasi marker ke dalam map
 var reklames = {!! json_encode($reklame) !!}
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiYWRtaW5yZWtsYW1lMjMiLCJhIjoiY2xqZGZoM3gzMDRyazNlbHMyaXE0b2tqMSJ9.71yErR2ww_Ip5OTTVp4nFA';

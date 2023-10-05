@@ -102,6 +102,8 @@
 </div>
 
 @push('script')
+
+<!-- Kode untuk memasukkan data ke dalam tabel menggunakan AJAX -->
 <script>
     $(document).ready(function(){
         $(document).on('submit', '#addUserForm', function(e){
@@ -115,6 +117,7 @@
             let _token = $('#signup-token').val();
 
 
+            // Memanggil route controller untuk menginput data ke dalam database menggunakan AJAX
             $.ajax({
                 method: 'POST',
                 url:"{{ route('akun-tambah.admin') }}",
@@ -139,6 +142,8 @@
             })
 
         });
+
+        // Untuk menghapus data dalam database menggunakan AJAX
         $(document).on('click', '#btn-hapus', function(e){
             var id = $(this).data('id');
             Swal.fire({
@@ -166,6 +171,8 @@
                 }
             });
         });
+
+        // Untuk menampilkan data ke dalam datatables (tabel yang digunakan pada web ini)
         $('#tableKelolaAkun').DataTable({
             ajax: "{{ route('akun-json.admin') }}",
             processing: true,

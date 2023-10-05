@@ -117,6 +117,7 @@
 
 @stack('script')
 
+<!-- Untuk memasukkan datatables (tabel yang digunakan untuk web ini) dan dropdown filter ke dalam web -->
 <script>
         $('#tableMonitorReklame').DataTable({
             scrollX: true,
@@ -132,12 +133,14 @@
             responsive: true,
         });
 
-        $('div.btn-sr').html('<select id="categoryFilterStatus" style="width: auto;" class="form-control special"><option value="">Status (Show All)</option><option value="Belum Disewa">Belum Disewa</option><option value="Sedang Disewa">Sedang Disewa</option><option value="Mendekati Jatuh Tempo">Mendekati Jatuh Tempo</option></select>');
+        // Kode dibawah untuk memasukkan dropdown filter ke dalam tabel
+        $('div.btn-sr').html('<select id="categoryFilterStatus" style="width: auto;" class="form-control special"><option value="">Status (Show All)</option><option value="Belum Disewa">Belum Disewa</option><option value="Sedang Disewa">Sedang Disewa</option><option value="Selesai">Selesai</option><option value="Mendekati Jatuh Tempo">Mendekati Jatuh Tempo</option><option value="Melebihi Jatuh Tempo">Melebihi Jatuh Tempo</option></select>');
 
         var table = $('#tableMonitorReklame').DataTable();
 
         $("#tableMonitorReklame_filter.dataTables_filter").append($("#categoryFilterStatus"));
 
+        // Kode untuk melakukan filter (mengecek kolom ke tiga)
         $("#categoryFilterStatus").on('change', function (e) {
             table.column(3).search(this.value).draw();
         });
@@ -153,6 +156,7 @@
 
 @yield('datatable')
 
+<!-- Untuk responsivitas halaman -->
 <script>
 $("#menu-toggle").click(function(e) {
         e.preventDefault();

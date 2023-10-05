@@ -56,6 +56,8 @@
 @endsection
 
 @push('script')
+
+<!-- Untuk memasukkan data ke dalam chart -->
 <script>
     var datas =  {{ Js::from($data_penyewaan) }};
 
